@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Insights for Savvy Multifamily Marketers | razz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-veil" aria-hidden="true"></div>
+
+    <header class="site-header" data-header>
+      <a class="logo" href="./index.html" aria-label="razz home">
+        <span class="logo-mark">razz</span>
+        <span class="logo-sub">by infinabit</span>
+      </a>
+
+      <nav class="nav" data-nav aria-label="Primary">
+        <a href="#property-websites">Property Websites</a>
+        <a href="#website-features">Website Features</a>
+        <a href="#shopping-tool">Interactive Shopping Tool</a>
+        <a href="#multifamily">Multifamily Design</a>
+        <a href="#why-razz">Why Razz</a>
+        <a class="is-active" href="./index.html">Blog</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-pink" type="button" data-open-connect>Connect</button>
+        <button class="menu-toggle" type="button" data-menu-toggle aria-label="Open menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <h1>
+            <span class="line"><span>Insights for Savvy</span></span>
+            <span class="line"><span>Multifamily Marketers</span></span>
+          </h1>
+          <a class="btn btn-pink hero-cta" href="#posts">Blog Posts</a>
+        </div>
+      </section>
+
+      <section class="posts" id="posts">
+        <div class="posts-grid" data-posts-grid></div>
+        <div class="posts-more">
+          <button class="btn btn-pink" type="button" data-load-more>Load More</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-curve" aria-hidden="true"></div>
+      <div class="footer-social">
+        <span>Follow Us</span>
+        <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer">f</a>
+        <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6" />
+            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6" />
+            <circle cx="17.4" cy="6.6" r="1" fill="currentColor" />
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer">in</a>
+      </div>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a class="logo" href="./index.html">
+            <span class="logo-mark">razz</span>
+            <span class="logo-sub">by infinabit</span>
+          </a>
+          <ul class="footer-links">
+            <li><a href="#property-websites">Explore Templates</a></li>
+            <li><a href="#website-features">Razz CMS</a></li>
+            <li><a href="#why-razz">Why Razz</a></li>
+            <li><a href="./index.html">Blog</a></li>
+            <li><a href="#why-razz">Careers</a></li>
+            <li><button type="button" data-open-connect>Connect</button></li>
+          </ul>
+        </div>
+        <div class="footer-cta">
+          <h2>Let’s build<br />something bold.</h2>
+          <p>
+            When you’re ready to stand out in your digital space —
+            we’ll be here. Connect with our team and start building
+            already unlike.
+          </p>
+          <button class="btn btn-pink" type="button" data-open-connect>Connect With Our Team</button>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <span>© All rights reserved Razz by Infinabit</span>
+        <a href="#privacy">Privacy Policy</a>
+      </div>
+    </footer>
+
+    <button class="chat-launcher" type="button" data-chat-toggle aria-label="Open chat">
+      r
+    </button>
+
+    <aside class="chat-panel" data-chat-panel hidden>
+      <div class="chat-head">
+        <strong>razz</strong>
+        <button type="button" data-chat-toggle aria-label="Close chat">×</button>
+      </div>
+      <div class="chat-body" data-chat-log>
+        <p class="chat-bubble">Hi — looking for multifamily marketing insights? Ask us anything.</p>
+      </div>
+      <form class="chat-form" data-chat-form>
+        <input type="text" name="message" placeholder="Type a message…" autocomplete="off" required />
+        <button type="submit" aria-label="Send">Send</button>
+      </form>
+    </aside>
+
+    <div class="modal" data-connect-modal hidden>
+      <div class="modal-backdrop" data-close-connect></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="connect-title">
+        <button class="modal-close" type="button" data-close-connect aria-label="Close">×</button>
+        <div class="modal-copy">
+          <h2 id="connect-title">Request a Demo Today</h2>
+          <p>When you submit this form, we’ll reach out to book a personalized demo tailored to your property goals.</p>
+        </div>
+        <form class="connect-form" data-connect-form>
+          <label>First Name<input name="first" required /></label>
+          <label>Last Name<input name="last" required /></label>
+          <label>Business Email<input type="email" name="email" required /></label>
+          <label>Phone Number<input type="tel" name="phone" /></label>
+          <label>Job Title<input name="title" /></label>
+          <label>Number of Properties<input name="properties" /></label>
+          <label class="full">Message<textarea name="message" rows="4"></textarea></label>
+          <button class="btn btn-pink full" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <article class="article" data-article hidden>
+      <div class="article-backdrop" data-close-article></div>
+      <div class="article-sheet">
+        <button class="modal-close" type="button" data-close-article aria-label="Close article">×</button>
+        <img alt="" data-article-image />
+        <div class="article-content">
+          <p class="eyebrow">Blog</p>
+          <h2 data-article-title></h2>
+          <p data-article-body></p>
+          <button class="btn btn-pink" type="button" data-close-article>Back to posts</button>
+        </div>
+      </div>
+    </article>
+
+    <div class="toast" data-toast hidden></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

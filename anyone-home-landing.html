@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Every conversation. Closer to home. | Anyone Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./anyone-home.css" />
+    <link rel="stylesheet" href="./anyone-home-landing.css" />
+    <script>
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("motion");
+      }
+    </script>
+  </head>
+  <body class="page-landing">
+    <header class="site-header" data-header>
+      <a class="brand" href="./anyone-home-landing.html" aria-label="Anyone Home home">
+        <img class="brand-mark" src="./assets/anyone-home/landing/symbol.svg" alt="" />
+        <span class="brand-type">
+          <img src="./assets/anyone-home/landing/wordmark.png" alt="Anyone Home" />
+        </span>
+      </a>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+      <nav class="nav" data-nav aria-label="Primary">
+        <a href="#offerings">Solutions</a>
+        <a href="#journey">The renter journey</a>
+        <a href="#assistant">Why Anyone Home</a>
+        <button class="btn btn-green" type="button" data-open-demo>Let’s connect</button>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-kicker section-head">
+          <p class="eyebrow">CONNECTION CHANGES EVERYTHING</p>
+          <p class="phrase">Leasing, brought together.</p>
+        </div>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <h1>
+              <span class="type-line">Every conversation.</span>
+              <span class="type-line">Closer to home.</span>
+            </h1>
+            <p>The intelligence behind the interaction. The connection that moves leasing forward.</p>
+            <a class="btn btn-green" href="#offerings">Explore our solutions</a>
+          </div>
+          <div class="hero-visual brand-scene">
+            <div class="brand-names">
+              <span>Anyone</span>
+              <span class="plus" aria-hidden="true">+</span>
+              <span>Home</span>
+            </div>
+            <div class="map-stage" data-map>
+              <img class="map" src="./assets/anyone-home/landing/map.svg" alt="Connected map of the United States" />
+              <svg class="map-live" viewBox="0 0 540 340" aria-hidden="true">
+                <path class="map-link-glow" />
+                <path class="map-link" />
+                <circle class="map-traveler" r="4" cx="0" cy="0" />
+              </svg>
+            </div>
+            <hr class="divider" />
+            <h2>Every journey starts with a connection.</h2>
+            <p class="fine">A connected renter journey, coast to coast.</p>
+          </div>
+        </div>
+        <div class="scroll-invite">
+          <p class="eyebrow">SCROLL TO CONNECT</p>
+          <p>01 / Anyone + Home</p>
+          <a href="#journey">Explore the renter journey ↓</a>
+        </div>
+      </section>
+
+      <section class="band" aria-labelledby="space-title">
+        <div class="section-head">
+          <p class="label">[ THE SPACE BETWEEN ]</p>
+          <p class="aside">People. Conversations. Possibilities.</p>
+        </div>
+        <div class="split split-wide">
+          <div>
+            <h2 class="display" id="space-title">Great leasing starts with a connection.</h2>
+            <p class="green-note">[ HOME + CONVERSATION + INSIGHT ]</p>
+          </div>
+          <p class="lede">
+            A question. A conversation. A next step. Anyone Home brings those moments together, helping your team turn interest into a more connected renter experience.
+          </p>
+        </div>
+      </section>
+
+      <section class="band band-tight" aria-label="Community website and chatbot">
+        <div class="browser">
+          <div class="browser-bar">
+            <img class="window-controls" src="./assets/anyone-home/landing/window-controls.svg" alt="" />
+            <span>thehaven.example / apartment living.</span>
+          </div>
+          <div class="community-nav">
+            <strong>THE HAVEN RESIDENCES.</strong>
+            <ul>
+              <li>Spaces</li>
+              <li>Lifestyle</li>
+              <li>Neighborhood</li>
+              <li>Find your home ↗</li>
+            </ul>
+          </div>
+          <div class="stage">
+            <img
+              class="photo-pan"
+              src="./assets/anyone-home/landing/residence.jpg"
+              alt="Landscaped courtyard at The Haven Residences"
+            />
+            <div class="community-copy">
+              <p class="eyebrow">ROOM TO BE YOU.</p>
+              <h3>A little closer to everything.</h3>
+              <p>Thoughtfully designed spaces. A life that feels like yours.</p>
+              <p class="go">Explore the residences ↗</p>
+              <p class="micro">01 / A NEW WAY TO COME HOME / Illustrative community.</p>
+            </div>
+            <div class="chat-card">
+              <div class="chat-id">
+                <img class="icon-24" src="./assets/anyone-home/landing/message.svg" alt="" />
+                <div>
+                  <h3>Your home, a conversation away.</h3>
+                  <p>Anyone Home · AI assistant.</p>
+                </div>
+              </div>
+              <hr class="divider" />
+              <div class="chat-log" data-chat-log>
+                <p class="bubble bubble-user">I’m looking for a one-bedroom. Can you help?</p>
+                <p class="bubble bubble-ai">Of course! Tell me a little about your move.</p>
+              </div>
+              <div class="composer">
+                <span>Ask about your next home…</span>
+                <span class="send" aria-hidden="true">↑</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="caption-row">
+          <p>[ FROM FIRST IMPRESSION TO FIRST CONVERSATION ]</p>
+          <p>A CONNECTION THAT GROWS WITH YOU ↓</p>
+        </div>
+      </section>
+
+      <section class="band band-paper" id="journey" aria-labelledby="journey-title">
+        <div class="section-head">
+          <p class="label">01 / THE CONNECTED RENTER JOURNEY</p>
+          <p class="aside">From first hello to welcome home.</p>
+        </div>
+        <div class="split">
+          <h2 class="display" id="journey-title">
+            <span class="type-line">Less distance.</span>
+            <span class="type-line">more connected.</span>
+          </h2>
+          <p class="lede">
+            Renters don’t move in a straight line. Your technology should connect every step, wherever the conversation goes next.
+          </p>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Renter journey">
+          <button class="tab is-active" type="button" role="tab" aria-selected="true" data-journey="discover">01 Discover</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-journey="connect">02 Connect</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-journey="tour">03 Tour</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-journey="home">04 Come home</button>
+        </div>
+        <div class="journey-panel" data-journey-panel>
+          <div class="moment">
+            <div class="icon-tile">
+              <img data-journey-icon src="./assets/anyone-home/landing/search.svg" alt="" />
+            </div>
+            <p class="kicker journey-copy" data-journey-kicker>THE FIRST MOMENT</p>
+            <h3 class="journey-copy" data-journey-title>Be there when interest begins.</h3>
+            <p class="journey-copy" data-journey-body>
+              Turn a question into a conversation. Connect prospects with the information they need, while giving your team a clear view of each new opportunity.
+            </p>
+          </div>
+          <div class="thread">
+            <div class="thread-head">
+              <div>
+                <h3>A better-connected experience</h3>
+                <p class="who">Anyone Home</p>
+              </div>
+              <p class="status"><img src="./assets/anyone-home/landing/status.svg" alt="" /> Connected</p>
+            </div>
+            <hr class="divider" />
+            <p class="bubble bubble-user journey-copy" data-journey-user>I think I just found my next home.</p>
+            <p class="bubble bubble-ai journey-copy" data-journey-ai>Let’s find the right fit for you. What would you like to know?</p>
+            <hr class="divider" />
+            <p class="note journey-copy" data-journey-note>Every interaction. One connected story. ✦</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band" id="offerings" aria-labelledby="offerings-title">
+        <div class="section-head">
+          <p class="label">[ 02 / ONE CONNECTED ECOSYSTEM ]</p>
+          <p class="aside">Built around people. Powered by intelligence.</p>
+        </div>
+        <div class="split">
+          <div>
+            <p class="eyebrow">THE TECHNOLOGY BEHIND THE CONNECTION.</p>
+            <h2 class="display" id="offerings-title">
+              <span class="type-line">Different roles.</span>
+              <span class="type-line">One journey.</span>
+            </h2>
+          </div>
+          <div>
+            <p class="lede">
+              Six connected offerings. Bring your digital experience, leasing conversations, and insight together around the renter.
+            </p>
+            <div class="cta-row">
+              <button class="btn btn-green" type="button" data-open-demo>Let’s talk about your team</button>
+            </div>
+          </div>
+        </div>
+        <div class="offering-grid">
+          <article class="card offering">
+            <div class="offering-top">
+              <span class="num">01</span>
+              <img class="offering-icon" src="./assets/anyone-home/landing/contact.svg" alt="" />
+            </div>
+            <h3>CRM AI</h3>
+            <p class="kicker">[ RELATIONSHIPS, WITH CONTEXT ]</p>
+            <p class="offering-copy">
+              Bring prospects, conversations, and next steps together. Help your team keep the renter journey moving with a clearer view of each relationship.
+            </p>
+            <button class="text-link" type="button" data-open-demo>
+              Let’s talk about CRM AI <img src="./assets/anyone-home/landing/arrow.svg" alt="" />
+            </button>
+          </article>
+          <article class="card offering offering-paper">
+            <div class="offering-top">
+              <span class="num">02</span>
+              <img class="offering-icon" src="./assets/anyone-home/landing/panels.svg" alt="" />
+            </div>
+            <h3>Marketing Websites</h3>
+            <p class="kicker">[ YOUR DIGITAL FIRST IMPRESSION ]</p>
+            <p class="offering-copy">
+              Introduce your communities through an engaging digital experience. Help renters explore what makes a property feel like home and take their next step.
+            </p>
+            <button class="text-link" type="button" data-open-demo>
+              Let’s talk about Marketing Websites <img src="./assets/anyone-home/landing/arrow.svg" alt="" />
+            </button>
+          </article>
+          <article class="card offering">
+            <div class="offering-top">
+              <span class="num">03</span>
+              <img class="offering-icon" src="./assets/anyone-home/landing/sparkles.svg" alt="" />
+            </div>
+            <h3>AI Leasing Assistant</h3>
+            <p class="kicker">[ KEEP THE CONVERSATION MOVING ]</p>
+            <p class="offering-copy">
+              Bring AI assistance into leasing conversations. Help renters find answers and move toward their next step with your community.
+            </p>
+            <button class="text-link" type="button" data-open-demo>
+              Let’s talk about AI Leasing Assistant <img src="./assets/anyone-home/landing/arrow.svg" alt="" />
+            </button>
+          </article>
+          <article class="card offering">
+            <div class="offering-top">
+              <span class="num">04</span>
+              <img class="offering-icon" src="./assets/anyone-home/landing/chart.svg" alt="" />
+            </div>
+            <h3>AI Reporting Assistant</h3>
+            <p class="kicker">[ FROM INFORMATION TO UNDERSTANDING ]</p>
+            <p class="offering-copy">
+              Bring AI assistance into reporting. Help your team explore information and build a clearer understanding of leasing performance.
+            </p>
+            <button class="text-link" type="button" data-open-demo>
+              Let’s talk about AI Reporting Assistant <img src="./assets/anyone-home/landing/arrow.svg" alt="" />
+            </button>
+          </article>
+          <article class="card offering">
+            <div class="offering-top">
+              <span class="num">05</span>
+              <img class="offering-icon" src="./assets/anyone-home/landing/headset.svg" alt="" />
+            </div>
+            <h3>Contact Center</h3>
+            <p class="kicker">[ A HUMAN CONNECTION ]</p>
+            <p class="offering-copy">
+              Connect renters with the support they need. Make space for meaningful conversations while helping your onsite team stay focused.
+            </p>
+            <button class="text-link" type="button" data-open-demo>
+              Let’s talk about Contact Center <img src="./assets/anyone-home/landing/arrow.svg" alt="" />
+            </button>
+          </article>
+          <article class="card offering offering-paper">
+            <div class="offering-top">
+              <span class="num">06</span>
+              <img class="offering-icon" src="./assets/anyone-home/landing/audio.svg" alt="" />
+            </div>
+            <h3>Leasing Call Analysis</h3>
+            <p class="kicker">[ INSIGHT IN EVERY CONVERSATION ]</p>
+            <p class="offering-copy">
+              Look more closely at the conversations behind leasing. Help your team understand renter needs and identify opportunities to improve the experience.
+            </p>
+            <button class="text-link" type="button" data-open-demo>
+              Let’s talk about Leasing Call Analysis <img src="./assets/anyone-home/landing/arrow.svg" alt="" />
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <section class="band band-ink" id="assistant" aria-labelledby="assistant-title">
+        <div class="section-head">
+          <p class="label">[ 03 / AI THAT MOVES LEASING FORWARD ]</p>
+          <p class="aside">A little help. A clearer next step.</p>
+        </div>
+        <div class="split">
+          <div>
+            <p class="eyebrow">✦ YOUR AI ASSISTANT, INSIDE THE CRM.</p>
+            <h2 class="display" id="assistant-title">
+              <span class="type-line">Meet AI Assistant.</span>
+              <span class="type-line">Make your next move.</span>
+            </h2>
+          </div>
+          <p class="lede">
+            From the first follow-up to the next conversation, AI Assistant helps your team take action inside Anyone Home CRM. Get help making calls, writing messages and emails, and choosing what to do next—with suggested next steps that keep the renter journey moving.
+          </p>
+        </div>
+        <div class="crm">
+          <div class="crm-bar">
+            <div class="crm-brand">
+              <img class="icon-24" src="./assets/anyone-home/landing/house.svg" alt="" />
+              Anyone Home CRM
+            </div>
+            <p class="fine">Illustrative preview.</p>
+          </div>
+          <div class="crm-body">
+            <div class="rail" aria-hidden="true">
+              <img src="./assets/anyone-home/landing/dashboard.svg" alt="" />
+              <img src="./assets/anyone-home/landing/contact-rail.svg" alt="" />
+              <img src="./assets/anyone-home/landing/calendar.svg" alt="" />
+              <img src="./assets/anyone-home/landing/message-square.svg" alt="" />
+              <img src="./assets/anyone-home/landing/chart-rail.svg" alt="" />
+            </div>
+            <div class="prospect">
+              <div class="avatar">AM</div>
+              <h3>Alex Morgan</h3>
+              <p class="who">Prospect · Tour completed.</p>
+              <hr class="divider" />
+              <div class="next-step">
+                <img src="./assets/anyone-home/landing/calendar-check.svg" alt="" />
+                <p class="eyebrow">SUGGESTED NEXT STEP</p>
+                <p>Follow up after the tour.</p>
+              </div>
+            </div>
+            <div class="workspace">
+              <div class="assistant-id">
+                <div>
+                  <h3>AI Assistant</h3>
+                  <p class="who">Your next move, together.</p>
+                </div>
+                <span class="badge">✦ AI assistant.</span>
+              </div>
+              <div class="tabs" aria-label="Assistant tools">
+                <span class="tab is-active">Next steps</span>
+                <span class="tab">Calls</span>
+                <span class="tab">Messages</span>
+                <span class="tab">Emails</span>
+              </div>
+              <div class="suggest">
+                <p class="kicker">SUGGESTED NEXT STEP.</p>
+                <h3>Follow up after the tour.</h3>
+                <p>A personal check-in can help Alex share any remaining questions and decide what comes next.</p>
+                <hr class="divider" />
+                <p class="note">A starting point for your conversation.</p>
+                <p class="draft">Hi Alex! How did you feel about the community after your visit? I’m happy to help with any questions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="crm-note">Your team brings the judgment. AI Assistant helps with the next step.</p>
+      </section>
+
+      <section class="band chat-split" id="chatbot" aria-labelledby="chatbot-title">
+        <div class="chat-copy">
+          <p class="label">[ ON YOUR WEBSITE, TOO ]</p>
+          <h2 class="display display-md" id="chatbot-title">
+            <span class="type-line">For your team, AI Assistant.</span>
+            <span class="type-line">For your renters, a conversation.</span>
+          </h2>
+          <p>
+            Our AI chatbot brings assistance to the renter-facing experience. Help prospects ask questions, explore your community, and find their next step—while AI Assistant helps your team move the conversation forward inside the CRM.
+          </p>
+          <a class="text-link" href="#assistant">
+            Explore AI for your leasing experience <img src="./assets/anyone-home/landing/arrow.svg" alt="" />
+          </a>
+        </div>
+        <div class="chat-panel">
+          <div class="chat-id">
+            <div class="bot-mark">
+              <img class="icon-24" src="./assets/anyone-home/landing/message-light.svg" alt="" />
+            </div>
+            <div>
+              <h3>Your community’s AI chatbot</h3>
+              <p>Illustrative conversation.</p>
+            </div>
+          </div>
+          <hr class="divider" />
+          <p class="bubble bubble-user">Hi! I’m looking for a one-bedroom apartment.</p>
+          <p class="bubble bubble-ai">Happy to help! When would you like to move in?</p>
+          <hr class="divider" />
+          <p class="closer">A renter-facing conversation. A better-connected journey.</p>
+        </div>
+      </section>
+    </main>
+
+    <div class="paper-end">
+      <section class="logo-bar" aria-label="Customers">
+        <div class="logo-track">
+          <div class="logo-set">
+            <img src="./assets/anyone-home/logo-1.png" alt="AMC Apartment Management Consultants" />
+            <img src="./assets/anyone-home/logo-3.png" alt="" />
+            <img src="./assets/anyone-home/logo-4.png" alt="" />
+            <img src="./assets/anyone-home/logo-5.png" alt="" />
+            <img src="./assets/anyone-home/logo-2.png" alt="" />
+            <img src="./assets/anyone-home/logo-6.png" alt="" />
+          </div>
+          <div class="logo-set" aria-hidden="true">
+            <img src="./assets/anyone-home/logo-1.png" alt="" />
+            <img src="./assets/anyone-home/logo-3.png" alt="" />
+            <img src="./assets/anyone-home/logo-4.png" alt="" />
+            <img src="./assets/anyone-home/logo-5.png" alt="" />
+            <img src="./assets/anyone-home/logo-2.png" alt="" />
+            <img src="./assets/anyone-home/logo-6.png" alt="" />
+          </div>
+        </div>
+      </section>
+      <section class="closing" aria-labelledby="close-title">
+        <img class="symbol" src="./assets/anyone-home/landing/symbol.svg" alt="" />
+        <p class="eyebrow">HUMAN CONNECTION. INTELLIGENT TECHNOLOGY.</p>
+        <h2 class="display" id="close-title">
+          <span class="type-line">Behind every pin, there’s a person.</span>
+          <span class="type-line">Behind every move, there’s a conversation.</span>
+        </h2>
+        <p class="lede">
+          We connect the people, information, and moments that turn a place to live into a place to call home.
+        </p>
+      </section>
+      <div class="refrain" data-refrain>
+        <span>People.</span>
+        <span>Conversations.</span>
+        <span class="home">Home.</span>
+      </div>
+      <footer class="landing-footer">
+        <div class="footer-nav">
+          <img class="footer-logo" src="./assets/anyone-home/landing/wordmark-footer.png" alt="Anyone Home" />
+          <nav aria-label="Footer">
+            <a href="#offerings">Solutions ↗</a>
+            <a href="#about" data-legal="About">About ↗</a>
+            <a href="#news" data-legal="News">News ↗</a>
+            <a href="#partners" data-legal="Partners">Partners ↗</a>
+            <button type="button" data-open-demo>Contact ↗</button>
+          </nav>
+        </div>
+        <div class="footer-rule"></div>
+        <div class="footer-legal">
+          <div class="legal-start">
+            <span>© 2026 Anyone Home · Brand concept.</span>
+            <a href="#privacy" data-legal="Privacy Policy">Privacy Policy.</a>
+          </div>
+          <a class="top" href="#top">Back to top ↑.</a>
+        </div>
+      </footer>
+    </div>
+
+    <div class="modal" data-demo hidden>
+      <div class="modal-backdrop" data-close-demo></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="demo-title">
+        <button class="modal-close" type="button" data-close-demo aria-label="Close">×</button>
+        <h2 id="demo-title">Let’s connect</h2>
+        <p>Tell us about your portfolio and we’ll book a walkthrough of Anyone Home.</p>
+        <form data-demo-form>
+          <label>First name<input name="first" required /></label>
+          <label>Last name<input name="last" required /></label>
+          <label>Work email<input type="email" name="email" required /></label>
+          <label>Company<input name="company" required /></label>
+          <label class="full">Number of properties<input name="properties" /></label>
+          <button class="btn btn-green full" type="submit">Book Your Demo</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="toast" data-toast hidden></div>
+    <script src="./anyone-home.js"></script>
+    <script>
+      (function () {
+        const header = document.querySelector("[data-header]");
+        const nav = document.querySelector("[data-nav]");
+        if (header) {
+          let last = window.scrollY;
+          let frame = 0;
+          const onScroll = () => {
+            if (frame) return;
+            frame = requestAnimationFrame(() => {
+              const y = window.scrollY;
+              const menuOpen = nav && nav.classList.contains("is-open");
+              const delta = y - last;
+              if (y < 12 || menuOpen) header.classList.remove("is-hidden");
+              else if (delta > 6) header.classList.add("is-hidden");
+              else if (delta < -6) header.classList.remove("is-hidden");
+              last = y;
+              frame = 0;
+            });
+          };
+          window.addEventListener("scroll", onScroll, { passive: true });
+        }
+
+        const journeys = {
+          discover: {
+            icon: "./assets/anyone-home/landing/search.svg",
+            kicker: "THE FIRST MOMENT",
+            title: "Be there when interest begins.",
+            body: "Turn a question into a conversation. Connect prospects with the information they need, while giving your team a clear view of each new opportunity.",
+            user: "I think I just found my next home.",
+            ai: "Let’s find the right fit for you. What would you like to know?",
+            note: "Every interaction. One connected story. ✦",
+          },
+          connect: {
+            icon: "./assets/anyone-home/landing/message.svg",
+            kicker: "THE CONVERSATION",
+            title: "Stay with them after the first hello.",
+            body: "Keep pricing, availability, and the feel of the community in the same thread. The Haven’s spaces, lifestyle, and neighborhood stay one conversation away.",
+            user: "What’s it like to live at The Haven?",
+            ai: "Thoughtfully designed spaces around a landscaped courtyard, and a life that feels like yours. What matters most to you?",
+            note: "One conversation. Every next step. ✦",
+          },
+          tour: {
+            icon: "./assets/anyone-home/landing/calendar-check.svg",
+            kicker: "THE VISIT",
+            title: "Turn interest into a tour.",
+            body: "Help renters choose a time and arrive ready. Your team sees the visit on the same story that started with the first question.",
+            user: "Can I see a one-bedroom this week?",
+            ai: "Yes. I can hold a tour of a one-bedroom at The Haven. Which day works best?",
+            note: "From the first question to the visit. ✦",
+          },
+          home: {
+            icon: "./assets/anyone-home/landing/house.svg",
+            kicker: "WELCOME HOME",
+            title: "Carry the conversation all the way home.",
+            body: "The same thread follows them through the decision. The people, the place, and the next step stay together.",
+            user: "I think this is the one.",
+            ai: "Wonderful. I’ll help you take the next step toward calling The Haven home.",
+            note: "Every step. Still one connected story. ✦",
+          },
+        };
+
+        const panel = document.querySelector("[data-journey-panel]");
+        const tabs = [...document.querySelectorAll("[data-journey]")];
+        if (panel && tabs.length) {
+          const fields = {
+            kicker: panel.querySelector("[data-journey-kicker]"),
+            title: panel.querySelector("[data-journey-title]"),
+            body: panel.querySelector("[data-journey-body]"),
+            user: panel.querySelector("[data-journey-user]"),
+            ai: panel.querySelector("[data-journey-ai]"),
+            note: panel.querySelector("[data-journey-note]"),
+            icon: panel.querySelector("[data-journey-icon]"),
+          };
+          let current = "discover";
+          const show = (key) => {
+            if (!journeys[key] || key === current) return;
+            current = key;
+            tabs.forEach((tab) => {
+              const on = tab.dataset.journey === key;
+              tab.classList.toggle("is-active", on);
+              tab.setAttribute("aria-selected", String(on));
+            });
+            panel.classList.add("is-fading");
+            window.setTimeout(() => {
+              const next = journeys[key];
+              fields.kicker.textContent = next.kicker;
+              fields.title.textContent = next.title;
+              fields.body.textContent = next.body;
+              fields.user.textContent = next.user;
+              fields.ai.textContent = next.ai;
+              fields.note.textContent = next.note;
+              fields.icon.src = next.icon;
+              panel.classList.remove("is-fading");
+            }, 180);
+          };
+          tabs.forEach((tab) => {
+            tab.addEventListener("pointerenter", (event) => {
+              if (event.pointerType === "touch") return;
+              show(tab.dataset.journey);
+            });
+            tab.addEventListener("focus", () => show(tab.dataset.journey));
+            tab.addEventListener("click", () => show(tab.dataset.journey));
+          });
+        }
+
+        const log = document.querySelector("[data-chat-log]");
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!log || reduce) return;
+        const opening = [
+          { role: "user", text: "I’m looking for a one-bedroom. Can you help?" },
+          { role: "ai", text: "Of course! Tell me a little about your move." },
+        ];
+        const follow = [
+          { role: "user", text: "Is there outdoor space? I’d love a place with room to be myself." },
+          {
+            role: "ai",
+            text: "Yes. The Haven’s one-bedrooms sit around a landscaped courtyard. Thoughtfully designed spaces, and a life that feels like yours.",
+          },
+          { role: "user", text: "Can you tell me about the neighborhood?" },
+          {
+            role: "ai",
+            text: "It’s a little closer to everything. I can walk you through the lifestyle and neighborhood, or help you find a one-bedroom.",
+          },
+        ];
+        const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+        const bubble = (line) => {
+          const el = document.createElement("p");
+          el.className = `bubble bubble-${line.role}`;
+          el.textContent = line.text;
+          return el;
+        };
+        const pin = () => {
+          log.scrollTo({ top: log.scrollHeight, behavior: "smooth" });
+        };
+        const restore = () => {
+          log.replaceChildren(...opening.map(bubble));
+          log.scrollTop = 0;
+        };
+        const lockLog = async () => {
+          if (document.fonts && document.fonts.ready) await document.fonts.ready;
+          if (!log.style.height) log.style.height = `${log.scrollHeight}px`;
+        };
+
+        let playing = false;
+        let visible = false;
+        async function play() {
+          await lockLog();
+          while (playing) {
+            if (!visible || document.hidden) {
+              await wait(400);
+              continue;
+            }
+            restore();
+            await wait(1100);
+            for (const line of follow) {
+              if (!visible || document.hidden) break;
+              if (line.role === "ai") {
+                const typing = bubble({ role: "ai", text: "···" });
+                typing.classList.add("is-typing");
+                log.appendChild(typing);
+                pin();
+                await wait(420);
+                typing.remove();
+              }
+              log.appendChild(bubble(line));
+              pin();
+              await wait(1150);
+            }
+            await wait(1600);
+          }
+        }
+        new IntersectionObserver(
+          ([entry]) => {
+            visible = entry.isIntersecting;
+            if (visible && !playing) {
+              playing = true;
+              play();
+            }
+          },
+          { threshold: 0.4 }
+        ).observe(log);
+      })();
+    </script>
+    <script>
+      (function () {
+        const refrain = document.querySelector("[data-refrain]");
+        if (!refrain || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const lines = [
+          ["People.", "Renters.", "Teams.", "Prospects."],
+          ["Conversations.", "Questions.", "Moments.", "Connections."],
+          ["Home.", "Community.", "Place.", "Journey."],
+        ];
+        const slots = [...refrain.children];
+        const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+        let visible = true;
+        const cycle = async (slot, words, index) => {
+          let current = 0;
+          await wait(900 + index * 480);
+          while (true) {
+            if (!visible || document.hidden) {
+              await wait(400);
+              continue;
+            }
+            slot.classList.add("is-leaving");
+            await wait(450);
+            current = (current + 1) % words.length;
+            slot.textContent = words[current];
+            slot.classList.remove("is-leaving");
+            await wait(1400);
+          }
+        };
+        new IntersectionObserver(
+          ([entry]) => {
+            visible = entry.isIntersecting;
+          },
+          { threshold: 0.35 }
+        ).observe(refrain);
+        slots.forEach((slot, index) => cycle(slot, lines[index], index));
+      })();
+    </script>
+    <script>
+      (function () {
+        const stage = document.querySelector("[data-map]");
+        if (!stage) return;
+        const svg = stage.querySelector(".map-live");
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const points = [
+          [67, 112],
+          [114, 201],
+          [169, 178],
+          [259, 110],
+          [284, 246],
+          [360, 149],
+          [410, 248],
+          [454, 122],
+          [501, 75],
+        ];
+        const routes = [
+          [0, 1],
+          [1, 2],
+          [2, 3],
+          [3, 5],
+          [5, 7],
+          [7, 8],
+          [3, 4],
+          [4, 6],
+          [6, 5],
+          [2, 4],
+          [0, 3],
+          [4, 7],
+          [1, 4],
+          [5, 8],
+          [6, 8],
+          [2, 5],
+        ];
+        const ns = "http://www.w3.org/2000/svg";
+        const nodes = points.map(([x, y]) => {
+          const node = document.createElementNS(ns, "g");
+          node.setAttribute("class", "map-node");
+          node.setAttribute("transform", `translate(${x} ${y})`);
+          const ring = document.createElementNS(ns, "circle");
+          ring.setAttribute("class", "ring");
+          ring.setAttribute("r", "12");
+          const pin = document.createElementNS(ns, "g");
+          pin.setAttribute("class", "map-pin");
+          const halo = document.createElementNS(ns, "circle");
+          halo.setAttribute("class", "halo");
+          halo.setAttribute("r", "11.5");
+          const dot = document.createElementNS(ns, "circle");
+          dot.setAttribute("class", "dot");
+          dot.setAttribute("r", "4");
+          pin.append(halo, dot);
+          node.append(ring, pin);
+          svg.appendChild(node);
+          return node;
+        });
+
+        if (reduce) {
+          nodes.forEach((node) => node.classList.add("is-on"));
+          return;
+        }
+
+        const glow = svg.querySelector(".map-link-glow");
+        const link = svg.querySelector(".map-link");
+        const traveler = svg.querySelector(".map-traveler");
+        const lit = [];
+        const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+
+        function pop(index) {
+          const node = nodes[index];
+          const at = lit.indexOf(index);
+          if (at !== -1) lit.splice(at, 1);
+          lit.push(index);
+          node.classList.add("is-on");
+          node.classList.remove("is-pop");
+          void node.getBoundingClientRect();
+          node.classList.add("is-pop");
+        }
+
+        function retire(keep) {
+          const hold = new Set(keep);
+          while (lit.length > 4) {
+            const oldest = lit.find((id) => !hold.has(id));
+            if (oldest == null) break;
+            lit.splice(lit.indexOf(oldest), 1);
+            nodes[oldest].classList.remove("is-on", "is-pop");
+          }
+        }
+
+        function pathFor(a, b, bend) {
+          const [x1, y1] = points[a];
+          const [x2, y2] = points[b];
+          const dx = x2 - x1;
+          const dy = y2 - y1;
+          const len = Math.hypot(dx, dy) || 1;
+          const bow = Math.min(42, len * 0.22) * bend;
+          const cx = (x1 + x2) / 2 + (-dy / len) * bow;
+          const cy = (y1 + y2) / 2 + (dx / len) * bow;
+          return { d: `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`, x1, y1, x2, y2, cx, cy };
+        }
+
+        function pointOn(t, x1, y1, cx, cy, x2, y2) {
+          const u = 1 - t;
+          return [u * u * x1 + 2 * u * t * cx + t * t * x2, u * u * y1 + 2 * u * t * cy + t * t * y2];
+        }
+
+        function prep(pathEl, d) {
+          pathEl.setAttribute("d", d);
+          const length = pathEl.getTotalLength();
+          pathEl.style.transition = "none";
+          pathEl.style.strokeDasharray = String(length);
+          pathEl.style.strokeDashoffset = String(length);
+          pathEl.style.opacity = "1";
+        }
+
+        function draw(a, b, bend) {
+          const spec = pathFor(a, b, bend);
+          prep(glow, spec.d);
+          prep(link, spec.d);
+          traveler.style.opacity = "0";
+          const duration = 620;
+          return new Promise((resolve) => {
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                const easeName = `stroke-dashoffset ${duration}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+                glow.style.transition = easeName;
+                link.style.transition = easeName;
+                glow.style.strokeDashoffset = "0";
+                link.style.strokeDashoffset = "0";
+                const start = performance.now();
+                const tick = (now) => {
+                  const t = Math.min(1, (now - start) / duration);
+                  const ease = 1 - Math.pow(1 - t, 3);
+                  const [x, y] = pointOn(ease, spec.x1, spec.y1, spec.cx, spec.cy, spec.x2, spec.y2);
+                  traveler.setAttribute("cx", x);
+                  traveler.setAttribute("cy", y);
+                  traveler.style.opacity = t > 0.04 && t < 0.97 ? "1" : "0";
+                  if (t < 1) requestAnimationFrame(tick);
+                  else resolve();
+                };
+                requestAnimationFrame(tick);
+              });
+            });
+          });
+        }
+
+        function fadeLink() {
+          glow.style.transition = "opacity 0.24s ease";
+          link.style.transition = "opacity 0.24s ease";
+          glow.style.opacity = "0";
+          link.style.opacity = "0";
+          traveler.style.opacity = "0";
+          return wait(260);
+        }
+
+        let playing = false;
+        let visible = false;
+
+        async function loop() {
+          let step = 0;
+          while (playing) {
+            if (!visible || document.hidden) {
+              await wait(320);
+              continue;
+            }
+            const [a, b] = routes[step % routes.length];
+            pop(a);
+            const arrive = wait(400).then(() => {
+              if (playing) pop(b);
+            });
+            await draw(a, b, step % 2 === 0 ? 1 : -1);
+            await arrive;
+            await wait(160);
+            await fadeLink();
+            retire([a, b]);
+            await wait(140);
+            step += 1;
+          }
+        }
+
+        function kick() {
+          if (playing || document.hidden) return;
+          playing = true;
+          loop();
+        }
+
+        new IntersectionObserver(
+          ([entry]) => {
+            visible = entry.isIntersecting;
+            if (visible) kick();
+          },
+          { threshold: 0.35 }
+        ).observe(stage);
+
+        document.addEventListener("visibilitychange", () => {
+          if (!document.hidden && visible) kick();
+        });
+      })();
+    </script>
+  </body>
+</html>

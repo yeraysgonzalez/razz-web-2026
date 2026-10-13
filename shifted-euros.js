@@ -1,0 +1,1 @@
+/* Animations intentionally disabled until layout matches Figma. */
