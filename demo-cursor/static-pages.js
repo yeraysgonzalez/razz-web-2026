@@ -133,6 +133,18 @@ function announce(message) {
   if (live) live.textContent = message;
 }
 
+/** Local proxy keeps the live embed. GitHub Pages shows a screenshot instead. */
+function hostedCanvasSrc(liveSrc, previewPath) {
+  if (usesLocalPreviewProxy()) return liveSrc;
+  try {
+    const url = new URL(previewPath, window.location.href);
+    url.searchParams.set("v", PREVIEW_CACHE_BUST);
+    return url.href;
+  } catch {
+    return `${previewPath}?v=${PREVIEW_CACHE_BUST}`;
+  }
+}
+
 function previewSrc(path, absoluteUrl) {
   const clean = path?.startsWith("/") ? path : `/${path || LIVE_PATH}`;
   // Local proxy: real path so Next.js /_next assets resolve on the same origin.
@@ -1498,7 +1510,7 @@ function showBuildingPage() {
   if (buildingTools) buildingTools.hidden = false;
   if (buildingFrame) {
     if (buildingFrame.dataset.loaded !== "true") {
-      buildingFrame.src = BUILDING_PAGE_SRC;
+      buildingFrame.src = hostedCanvasSrc(BUILDING_PAGE_SRC, "preview/github-building.html");
       buildingFrame.dataset.loaded = "true";
     }
     buildingFrame.hidden = false;
@@ -1523,7 +1535,7 @@ function showSitemapPage() {
   if (sitemapTools) sitemapTools.hidden = false;
   if (sitemapFrame) {
     if (sitemapFrame.dataset.loaded !== "true") {
-      sitemapFrame.src = SITEMAP_PAGE_SRC;
+      sitemapFrame.src = hostedCanvasSrc(SITEMAP_PAGE_SRC, "preview/github-sitemap.html");
       sitemapFrame.dataset.loaded = "true";
     }
     sitemapFrame.hidden = false;
@@ -1548,7 +1560,7 @@ function showModelPage() {
   if (modelTools) modelTools.hidden = false;
   if (modelFrame) {
     if (modelFrame.dataset.loaded !== "true") {
-      modelFrame.src = MODEL_PAGE_SRC;
+      modelFrame.src = hostedCanvasSrc(MODEL_PAGE_SRC, "preview/github-model.html");
       modelFrame.dataset.loaded = "true";
     }
     modelFrame.hidden = false;
@@ -1573,7 +1585,7 @@ function showUnitPage() {
   if (unitTools) unitTools.hidden = false;
   if (unitFrame) {
     if (unitFrame.dataset.loaded !== "true") {
-      unitFrame.src = UNIT_PAGE_SRC;
+      unitFrame.src = hostedCanvasSrc(UNIT_PAGE_SRC, "preview/github-unit.html");
       unitFrame.dataset.loaded = "true";
     }
     unitFrame.hidden = false;
