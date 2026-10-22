@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Made by Razz — Editor</title>
+    <meta
+      name="description"
+      content="Happily made in Razz markup settings in the Editor V2 floating panel."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#floater">Skip to block settings</a>
+
+    <main class="workspace">
+      <section class="canvas" aria-label="Page canvas">
+        <div class="review-bar" role="group" aria-label="Review states">
+          <button type="button" class="chip active" data-role="editor">App editor</button>
+          <button type="button" class="chip" data-role="super">Super admin</button>
+          <button type="button" class="chip active" data-ga="on">GA on</button>
+          <button type="button" class="chip" data-ga="off">GA off</button>
+          <button type="button" class="chip active" data-analytics="configured">Analytics ready</button>
+          <button type="button" class="chip" data-analytics="missing">Analytics missing</button>
+        </div>
+
+        <p class="canvas-kicker">Section canvas · <span id="role-pill">App editor</span></p>
+
+        <article class="page-card">
+          <div class="page-body">Page content above the footer…</div>
+          <footer class="page-footer" id="footer-strip">
+            <div class="block-wrap" id="block-wrap">
+              <div class="quick-actions" role="toolbar" aria-label="Block quick actions">
+                <button type="button" class="icon-button" id="qa-edit" aria-label="Edit">
+                  <span class="icon-24" aria-hidden="true">
+                    <img src="assets/icon-qa-edit.svg" alt="" width="24" height="24" />
+                  </span>
+                </button>
+                <button type="button" class="qa-color" id="qa-color" aria-label="Quick text color">
+                  <span class="qa-color-inner" id="qa-swatch"></span>
+                </button>
+                <span class="qa-divider" aria-hidden="true"></span>
+                <button
+                  type="button"
+                  class="icon-button"
+                  id="qa-delete"
+                  disabled
+                  aria-label="Delete is available to super admins only"
+                >
+                  <span class="icon-24" aria-hidden="true">
+                    <img src="assets/icon-qa-delete.svg" alt="" width="24" height="24" />
+                  </span>
+                </button>
+              </div>
+              <a href="https://www.razzinteractive.com/" class="powered-by" id="powered-by" data-tracking="on">
+                Happily made in <strong>Razz</strong>
+              </a>
+            </div>
+          </footer>
+        </article>
+        <p class="canvas-hint">The attribution does not navigate in the editor. It selects this block.</p>
+      </section>
+
+      <aside class="panel" id="floater" aria-label="Block settings">
+        <header class="panel-header">
+          <h1>Powered by Razz</h1>
+        </header>
+
+        <div class="tabs" role="tablist" aria-orientation="horizontal" aria-label="Block settings">
+          <button class="tab active" type="button" role="tab" id="tab-content" aria-selected="true" aria-controls="panel-content">
+            Content
+          </button>
+          <button class="tab" type="button" role="tab" id="tab-design" aria-selected="false" aria-controls="panel-design">
+            Design
+          </button>
+          <button class="tab" type="button" role="tab" id="tab-block" aria-selected="false" aria-controls="panel-block">
+            Block
+          </button>
+          <span class="tab tab-icon" aria-hidden="true">
+            <span class="icon-28">
+              <img src="assets/icon-device.svg" alt="" width="28" height="28" />
+            </span>
+          </span>
+        </div>
+
+        <div class="tab-panels">
+          <div class="tab-panel" id="panel-content" role="tabpanel" aria-labelledby="tab-content">
+            <p class="section-label">Link</p>
+            <label class="field">
+              <span class="field-label">Link destination</span>
+              <input type="text" value="https://www.razzinteractive.com/" readonly />
+              <span class="field-help">“Happily made in Razz” is fixed and links to the Razz website.</span>
+            </label>
+
+            <hr class="panel-divider" />
+
+            <p class="section-label">Click analytics</p>
+            <p class="warn" id="analytics-warn" hidden>
+              No Google Analytics ID or event tracking is enabled. Turn on Track Events in Analytics before clicks fire in GA4.
+            </p>
+
+            <div class="toggle-row">
+              <button type="button" class="switch on" id="ga-toggle" role="switch" aria-checked="true" aria-labelledby="ga-toggle-label"></button>
+              <div class="toggle-copy">
+                <span id="ga-toggle-label">Track clicks in Google Analytics</span>
+                <p class="hint" id="ga-hint">Track clicks on this footer link in your analytics.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="panel-design" role="tabpanel" aria-labelledby="tab-design" hidden>
+            <p class="section-label">Text Color</p>
+            <div class="color-card">
+              <button class="color-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Text color">
+                <span class="swatch" id="color-swatch"></span>
+                <span class="color-name" id="color-name">White</span>
+                <span class="icon-button" aria-hidden="true">
+                  <span class="icon-24">
+                    <img src="assets/icon-chevron.svg" alt="" width="24" height="24" />
+                  </span>
+                </span>
+              </button>
+              <ul class="color-menu" id="color-menu" hidden role="listbox" aria-label="Text colors">
+                <li>
+                  <button type="button" data-color="Primary" data-hex="#94abf9">
+                    <span class="swatch" style="background:#94abf9"></span>
+                    Primary
+                  </button>
+                </li>
+                <li>
+                  <button type="button" data-color="Secondary" data-hex="#f598ff">
+                    <span class="swatch" style="background:#f598ff"></span>
+                    Secondary
+                  </button>
+                </li>
+                <li>
+                  <button type="button" data-color="Tertiary" data-hex="#e5e9fd">
+                    <span class="swatch" style="background:#e5e9fd"></span>
+                    Tertiary
+                  </button>
+                </li>
+                <li>
+                  <button type="button" data-color="White" data-hex="#ffffff" aria-selected="true">
+                    <span class="swatch" style="background:#fff"></span>
+                    White
+                  </button>
+                </li>
+                <li>
+                  <button type="button" data-color="Dark" data-hex="#171d3a">
+                    <span class="swatch" style="background:#171d3a"></span>
+                    Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" data-color="Custom" data-hex="#d2d2d2">
+                    <span class="swatch" style="background:#d2d2d2"></span>
+                    Custom
+                  </button>
+                </li>
+                <li class="color-menu-footer">
+                  <button type="button" class="color-site-styles">Edit Site Styles</button>
+                </li>
+              </ul>
+            </div>
+
+            <hr class="panel-divider" />
+
+            <div class="inline-field">
+              <span class="inline-field-label" id="text-size-label">Text Size</span>
+              <div class="combo" role="group" aria-labelledby="text-size-label">
+                <input type="text" inputmode="decimal" id="font-size" value="15" aria-label="Text size" />
+                <button
+                  type="button"
+                  class="combo-unit"
+                  id="unit-trigger"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-label="Text size unit"
+                >
+                  <span id="unit-value">px</span>
+                  <span class="icon-24" aria-hidden="true">
+                    <img src="assets/icon-chevron.svg" alt="" width="24" height="24" />
+                  </span>
+                </button>
+                <ul class="field-menu combo-menu" id="unit-menu" hidden role="listbox" aria-label="Text size units">
+                  <li><button type="button" role="option" data-unit="px" aria-selected="true">px</button></li>
+                  <li><button type="button" role="option" data-unit="rem">rem</button></li>
+                  <li><button type="button" role="option" data-unit="em">em</button></li>
+                  <li><button type="button" role="option" data-unit="%">%</button></li>
+                </ul>
+              </div>
+            </div>
+
+            <hr class="panel-divider" />
+
+            <p class="section-label">Text Alignment</p>
+            <div class="icon-bar" id="align-source" role="group" aria-label="Text Alignment">
+              <button type="button" class="active" data-align="flex-start" aria-label="Align left">
+                <span class="icon-24"><img src="assets/icon-align-left.svg" alt="" width="24" height="24" /></span>
+              </button>
+              <button type="button" data-align="center" aria-label="Align center">
+                <span class="icon-24"><img src="assets/icon-align-center.svg" alt="" width="24" height="24" /></span>
+              </button>
+              <button type="button" data-align="flex-end" aria-label="Align right">
+                <span class="icon-24"><img src="assets/icon-align-right.svg" alt="" width="24" height="24" /></span>
+              </button>
+              <button type="button" data-align="stretch" aria-label="Align justify">
+                <span class="icon-24"><img src="assets/icon-align-justify.svg" alt="" width="24" height="24" /></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="panel-block" role="tabpanel" aria-labelledby="tab-block" hidden>
+            <p class="section-label">Animation</p>
+            <div class="field">
+              <span class="field-label" id="animation-label">Behavior</span>
+              <button
+                type="button"
+                class="field-trigger"
+                id="animation-trigger"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+                aria-labelledby="animation-label animation-value"
+              >
+                <span id="animation-value">Slide From Bottom</span>
+                <span class="icon-button" aria-hidden="true">
+                  <span class="icon-24">
+                    <img src="assets/icon-chevron.svg" alt="" width="24" height="24" />
+                  </span>
+                </span>
+              </button>
+              <ul class="field-menu" id="animation-menu" hidden role="listbox" aria-labelledby="animation-label">
+                <li><button type="button" role="option" data-animation="" aria-selected="false">None</button></li>
+                <li><button type="button" role="option" data-animation="slide-y" aria-selected="true">Slide From Bottom</button></li>
+                <li><button type="button" role="option" data-animation="zoom-in" aria-selected="false">Grow</button></li>
+                <li><button type="button" role="option" data-animation="zoom-out-in" aria-selected="false">Shrink</button></li>
+                <li><button type="button" role="option" data-animation="zoom-in-more" aria-selected="false">Zoom In</button></li>
+                <li><button type="button" role="option" data-animation="zoom-out" aria-selected="false">Zoom Out</button></li>
+              </ul>
+            </div>
+
+            <hr class="panel-divider" />
+
+            <p class="section-label">Padding</p>
+            <div class="segmented has-tune" id="padding-source" role="group" aria-label="Padding">
+              <button type="button" data-pad="0">—</button>
+              <button type="button" class="active" data-pad="8">S</button>
+              <button type="button" data-pad="16">M</button>
+              <button type="button" data-pad="24">L</button>
+              <button type="button" class="tune" aria-label="Custom padding">
+                <span class="icon-24"><img src="assets/icon-tune.svg" alt="" width="24" height="24" /></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <p class="sr-only" id="live" aria-live="polite"></p>
+    <script src="script.js"></script>
+  </body>
+</html>

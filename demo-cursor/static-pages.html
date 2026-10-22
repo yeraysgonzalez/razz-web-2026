@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Static Pages — Editor</title>
+    <meta
+      name="description"
+      content="Static Pages editor chrome from STR Back-End Block Management, framing the live Spring Brook Meadow View Lodge page."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="static-pages.css?v=39" />
+  </head>
+  <body class="sp-body">
+    <a class="skip-link" href="#page-viewport">Skip to page canvas</a>
+
+    <div class="sp-shell" id="sp-shell">
+      <header class="sp-topbar" aria-label="Editor toolbar">
+        <div class="sp-topbar-left">
+          <img
+            class="sp-brand"
+            src="assets/static-pages/logo.png"
+            alt=""
+            width="30"
+            height="30"
+          />
+          <button
+            type="button"
+            class="sp-page-picker"
+            id="page-picker"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            aria-controls="page-menu"
+          >
+            <span class="sp-page-picker-label">
+              <span class="sp-page-picker-prefix">Page:</span>
+              <span id="page-name">Meadow View Lodge</span>
+            </span>
+            <img
+              src="assets/static-pages/icon-chevron-down.svg"
+              alt=""
+              width="28"
+              height="28"
+            />
+          </button>
+          <div class="sp-page-menu" id="page-menu" role="dialog" aria-label="Pages" hidden>
+            <div class="sp-page-search-row">
+              <label class="sp-page-search">
+                <input id="page-search" type="search" placeholder="Search Pages" autocomplete="off" aria-label="Search Pages" />
+                <img src="assets/static-pages/icon-search.svg" alt="" width="17" height="17" />
+              </label>
+              <button
+                type="button"
+                class="sp-page-filter"
+                id="page-filter-trigger"
+                aria-expanded="false"
+                aria-controls="page-filter-panel"
+                aria-label="Filter categories"
+              >
+                <svg class="sp-page-filter-icon" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+                  <path fill="currentColor" d="M13.25 22.75V17.25H14.75V19.25H22.75V20.75H14.75V22.75H13.25ZM5.25 20.75V19.25H10.75V20.75H5.25ZM9.25 16.75V14.75H5.25V13.25H9.25V11.25H10.75V16.75H9.25ZM13.25 14.75V13.25H22.75V14.75H13.25ZM17.25 10.75V5.25H18.75V7.25H22.75V8.75H18.75V10.75H17.25ZM5.25 8.75V7.25H14.75V8.75H5.25Z" />
+                </svg>
+              </button>
+            </div>
+            <div class="sp-page-filter-panel" id="page-filter-panel" hidden>
+              <ul class="sp-sections-list" role="listbox" aria-multiselectable="true" aria-label="Filter categories">
+                <li>
+                  <button type="button" class="sp-sections-option" data-category-all="true" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Show All</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" data-category="module" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Module Pages</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" data-category="structured" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Structured Pages</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" data-category="ifpb" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">IFPB</span>
+                  </button>
+                </li>
+              </ul>
+              <hr class="sp-page-divider" />
+            </div>
+
+            <section class="sp-page-group" data-category="module" data-enabled="true">
+              <h2 class="sp-page-group-title">Module Pages</h2>
+              <ul class="sp-page-entries" role="listbox" aria-label="Module Pages">
+                <li><button type="button" role="option" data-page="Home" aria-selected="false">Home</button></li>
+                <li>
+                  <button type="button" role="option" data-page="Meadow View Lodge" data-url="https://spring-brook.vercel.app/properties/meadow-view-lodge" aria-selected="true">Meadow View Lodge</button>
+                </li>
+                <li><button type="button" role="option" data-page="Golf Course" data-pending="true" aria-selected="false">Golf Course</button></li>
+                <li><button type="button" role="option" data-page="Pools &amp; Recreation" data-pending="true" aria-selected="false">Pools &amp; Recreation</button></li>
+                <li><button type="button" role="option" data-page="Weddings &amp; Events" data-pending="true" aria-selected="false">Weddings &amp; Events</button></li>
+                <li>
+                  <button type="button" role="option" data-page="About Us" data-url="https://spring-brook.vercel.app/" aria-selected="false">About Us</button>
+                </li>
+                <li><button type="button" role="option" data-page="Contact Us" data-pending="true" aria-selected="false">Contact Us</button></li>
+              </ul>
+            </section>
+
+            <section class="sp-page-group" data-category="structured" data-enabled="true">
+              <hr class="sp-page-divider" />
+              <h2 class="sp-page-group-title">Structured Pages</h2>
+              <ul class="sp-page-entries" role="listbox" aria-label="Structured Pages">
+                <li><button type="button" role="option" data-page="Property Page" data-pending="true" aria-selected="false">Property Page</button></li>
+                <li><button type="button" role="option" data-page="Booking" data-pending="true" aria-selected="false">Booking</button></li>
+              </ul>
+            </section>
+
+            <section class="sp-page-group" data-category="ifpb" data-enabled="true">
+              <hr class="sp-page-divider" />
+              <h2 class="sp-page-group-title">IFPB</h2>
+              <ul class="sp-page-entries" role="listbox" aria-label="IFPB">
+                <li><button type="button" role="option" data-page="Building Page" data-canvas="building" aria-selected="false">Building Page</button></li>
+                <li><button type="button" role="option" data-page="Sitemap Page" data-canvas="sitemap" aria-selected="false">Sitemap Page</button></li>
+                <li><button type="button" role="option" data-page="Model Page" data-canvas="model" aria-selected="false">Model Page</button></li>
+                <li><button type="button" role="option" data-page="Unit Page" data-canvas="unit" aria-selected="false">Unit Page</button></li>
+              </ul>
+            </section>
+            <p class="sp-page-empty" id="page-menu-empty" hidden>No pages found</p>
+          </div>
+        </div>
+
+        <div class="sp-viewport-toggles" role="group" aria-label="Device preview">
+          <button
+            type="button"
+            class="sp-device-btn is-active"
+            data-device="laptop"
+            aria-pressed="true"
+            aria-label="Laptop"
+          >
+            <img src="assets/static-pages/icon-laptop.svg" alt="" width="28" height="28" />
+          </button>
+          <button
+            type="button"
+            class="sp-device-btn"
+            data-device="desktop"
+            aria-pressed="false"
+            aria-label="Desktop"
+          >
+            <img src="assets/static-pages/icon-desktop.svg" alt="" width="28" height="28" />
+          </button>
+          <button
+            type="button"
+            class="sp-device-btn"
+            data-device="tablet"
+            aria-pressed="false"
+            aria-label="Tablet"
+          >
+            <img src="assets/static-pages/icon-tablet.svg" alt="" width="28" height="28" />
+          </button>
+          <button
+            type="button"
+            class="sp-device-btn"
+            data-device="mobile"
+            aria-pressed="false"
+            aria-label="Mobile"
+          >
+            <img src="assets/static-pages/icon-mobile.svg" alt="" width="28" height="28" />
+          </button>
+        </div>
+
+        <div class="sp-topbar-right">
+          <p class="sp-published" id="published-status">
+            <strong>Page Published:</strong> 2h ago
+          </p>
+          <span class="sp-topbar-divider" aria-hidden="true"></span>
+          <button type="button" class="sp-btn sp-btn--outlined" id="btn-save">Save</button>
+          <button type="button" class="sp-btn sp-btn--filled" id="btn-publish">Publish</button>
+        </div>
+      </header>
+
+      <aside class="sp-rail" aria-label="Editor tools">
+        <button
+          type="button"
+          class="sp-rail-btn"
+          data-rail="add"
+          aria-pressed="false"
+          aria-label="Add block"
+        >
+          <img src="assets/static-pages/icon-rail-add.svg" alt="" width="24" height="24" />
+        </button>
+        <button
+          type="button"
+          class="sp-rail-btn"
+          id="pages-trigger"
+          data-rail="pages"
+          aria-pressed="false"
+          aria-expanded="false"
+          aria-controls="pages-flyout"
+          aria-label="Pages"
+        >
+          <img src="assets/static-pages/icon-rail-pages.svg" alt="" width="24" height="24" />
+        </button>
+        <button
+          type="button"
+          class="sp-rail-btn"
+          data-rail="layers"
+          aria-pressed="false"
+          aria-label="Layers"
+        >
+          <img src="assets/static-pages/icon-rail-layers.svg" alt="" width="24" height="24" />
+        </button>
+        <button
+          type="button"
+          class="sp-rail-btn is-active"
+          data-rail="media"
+          aria-pressed="true"
+          aria-label="Media"
+        >
+          <img src="assets/static-pages/icon-rail-media.svg" alt="" width="24" height="24" />
+        </button>
+      </aside>
+
+      <div class="sp-subbar" aria-label="Page settings">
+        <div class="sp-building-tools" id="building-tools" hidden>
+          <div class="bld-pop">
+            <button type="button" class="bld-swatch-btn" id="bld-color-trigger" aria-expanded="false" aria-controls="bld-color-panel" aria-label="Floor Selector Color" aria-describedby="sp-tooltip" data-tooltip="Floor Selector Color">
+              <span class="bld-swatch" id="bld-swatch" style="background: #74926a"></span>
+            </button>
+            <div class="bld-flyout sp-tool-panel sp-colors-panel" id="bld-color-panel" role="dialog" aria-label="Floor Selector Color" hidden>
+              <p class="sp-tool-panel-title">Floor Selector Color</p>
+              <div class="sp-colors-panel-list">
+                <div class="sp-color-field" data-slot="floor">
+                  <button
+                    type="button"
+                    class="sp-color-chip color-trigger"
+                    id="color-trigger-floor"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                    aria-controls="color-menu-floor"
+                    aria-label="Floor selector color"
+                  >
+                    <span class="sp-color-chip-label" id="bld-floor-label">Primary</span>
+                    <span class="swatch sp-swatch" id="swatch-floor" style="background: #74926a"></span>
+                  </button>
+                  <div class="color-menu sp-color-menu sp-color-picker" id="color-menu-floor" hidden role="listbox" aria-label="Floor selector colors">
+                    <div class="sp-color-picker-swatches">
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Primary" data-hex="#74926a" style="background:#74926a" aria-label="Primary"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Secondary" data-hex="#00324d" style="background:#00324d" aria-label="Secondary"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Tertiary" data-hex="#717c81" style="background:#717c81" aria-label="Tertiary"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="White" data-hex="#ffffff" style="background:#ffffff" aria-label="White"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Dark" data-hex="#262626" style="background:#262626" aria-label="Dark"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch sp-color-picker-add" data-color="Custom" data-hex="custom" aria-label="Custom color">
+                        <img src="assets/static-pages/icon-color-add.svg" alt="" width="24" height="24" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="bld-edit-styles">Edit Site Styles</button>
+            </div>
+          </div>
+          <span class="sp-subbar-divider" aria-hidden="true"></span>
+          <div class="bld-icon-row">
+            <div class="bld-pop">
+              <button type="button" class="bld-icon-btn" id="bld-pan-trigger" aria-expanded="false" aria-controls="bld-pan-panel" aria-label="Enable Pan/Zoom" aria-describedby="sp-tooltip" data-tooltip="Enable Pan/Zoom">
+                <img src="assets/static-pages/icon-pan-zoom.svg" alt="" width="28" height="28" />
+              </button>
+              <div class="bld-flyout bld-pan" id="bld-pan-panel" hidden>
+                <p class="bld-title">Enable Pan/Zoom</p>
+                <div class="bld-choices" data-choice="pan">
+                  <button type="button" class="bld-choice is-selected" data-value="yes" aria-pressed="true">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                </div>
+                <p class="bld-title bld-split">Initial Zoom Scale</p>
+                <div class="bld-zoom-row">
+                  <span>Building Zoom</span>
+                  <span class="bld-zoom-control">
+                    <span class="bld-zoom-value" id="bld-zoom-value">1</span>
+                    <span class="bld-zoom-arrows">
+                      <button type="button" class="bld-zoom-btn" data-zoom="up" aria-label="Increase building zoom">
+                        <img src="assets/static-pages/icon-chevron-up.svg" alt="" width="11" height="7" />
+                      </button>
+                      <button type="button" class="bld-zoom-btn" data-zoom="down" aria-label="Decrease building zoom" disabled>
+                        <img class="bld-zoom-down" src="assets/static-pages/icon-chevron-up.svg" alt="" width="11" height="7" />
+                      </button>
+                    </span>
+                  </span>
+                </div>
+                <p class="bld-title bld-split">Multi Building Hover</p>
+                <div class="bld-choices" data-choice="hover">
+                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice is-selected" data-value="no" aria-pressed="true">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                </div>
+              </div>
+            </div>
+            <div class="bld-pop">
+              <button type="button" class="bld-icon-btn" id="bld-seo-trigger" aria-expanded="false" aria-controls="bld-seo-panel" aria-label="SEO Information" aria-describedby="sp-tooltip" data-tooltip="SEO Information">
+                <img src="assets/static-pages/icon-seo-search.svg" alt="" width="28" height="28" />
+              </button>
+              <div class="bld-flyout bld-seo" id="bld-seo-panel" hidden>
+                <p class="bld-title">SEO Information</p>
+                <label class="bld-field">
+                  <span>SEO Screen Title</span>
+                  <input type="text" value="[screen_title] [separator] [site_title]" />
+                </label>
+                <label class="bld-field bld-field-area">
+                  <span>SEO Screen Meta Description</span>
+                  <textarea rows="5">Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!</textarea>
+                </label>
+              </div>
+            </div>
+            <div class="bld-pop">
+              <button type="button" class="bld-icon-btn" id="bld-visible-trigger" aria-expanded="false" aria-controls="bld-visible-panel" aria-label="Visible Search Engines" aria-describedby="sp-tooltip" data-tooltip="Visible Search Engines">
+                <img src="assets/static-pages/icon-language.svg" alt="" width="24" height="24" />
+              </button>
+              <div class="bld-flyout" id="bld-visible-panel" hidden>
+                <p class="bld-title">Visible to Search Engines</p>
+                <div class="bld-choices" data-choice="visible">
+                  <button type="button" class="bld-choice is-selected" data-value="global" aria-pressed="true">Use Global Settings <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="sp-subbar-divider" aria-hidden="true"></span>
+          <div class="bld-pop">
+            <button type="button" class="sp-sections-trigger" id="bld-sections-trigger" aria-expanded="false" aria-controls="bld-sections-panel" aria-describedby="sp-tooltip" data-tooltip="Display Sections">
+              <img src="assets/static-pages/icon-sections-track.svg" alt="" width="28" height="28" />
+              <span><strong>Sections:</strong> <span id="bld-sections-value"><span>Show All</span></span></span>
+              <img class="sp-sections-chevron" src="assets/static-pages/icon-chevron-down.svg" alt="" width="20" height="20" />
+            </button>
+            <div class="sp-sections-panel" id="bld-sections-panel" role="dialog" aria-labelledby="bld-sections-title" hidden>
+              <h2 class="sp-sections-title" id="bld-sections-title">Display Sections</h2>
+              <ul class="sp-sections-list" role="listbox" aria-multiselectable="true" aria-label="Display sections">
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section-all="true" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Show All</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="view" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Building View</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="sidebar" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Units Side Bar</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <span class="sp-subbar-divider" aria-hidden="true"></span>
+          <div class="bld-pop">
+            <button type="button" class="sp-options-trigger" id="bld-options-trigger" aria-expanded="false" aria-controls="options-panel" aria-label="More Options" aria-describedby="sp-tooltip" data-tooltip="More Options">
+              <img src="assets/static-pages/icon-tune.svg" alt="" width="28" height="28" />
+              <strong>Options</strong>
+            </button>
+          </div>
+        </div>
+        <div class="sp-sitemap-tools" id="sitemap-tools" hidden>
+          <div class="bld-pop">
+            <button type="button" class="bld-swatch-btn" id="smap-color-trigger" aria-expanded="false" aria-controls="smap-color-panel" aria-label="Filter Colors" aria-describedby="sp-tooltip" data-tooltip="Filter Colors">
+              <span class="bld-swatch" id="smap-swatch" style="background: #6cbc44"></span>
+            </button>
+            <div class="bld-flyout sp-tool-panel sp-colors-panel smap-colors" id="smap-color-panel" role="dialog" aria-label="Filter Colors" hidden>
+              <p class="bld-title">Filter Colors</p>
+              <div class="sp-colors-panel-list">
+                <div class="sp-color-field" data-slot="bed1">
+                  <button type="button" class="sp-color-chip color-trigger" id="color-trigger-bed1" aria-haspopup="listbox" aria-expanded="false" aria-controls="color-menu-bed1" aria-label="1 Bedroom color">
+                    <span class="sp-color-chip-label">1 Bedroom</span>
+                    <span class="swatch sp-swatch" id="swatch-bed1" style="background: #6cbc44"></span>
+                  </button>
+                  <div class="color-menu sp-color-menu sp-color-picker" id="color-menu-bed1" hidden role="listbox" aria-label="1 Bedroom colors">
+                    <div class="sp-color-picker-swatches">
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Primary" data-hex="#74926a" style="background:#74926a" aria-label="Primary"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Secondary" data-hex="#00324d" style="background:#00324d" aria-label="Secondary"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Tertiary" data-hex="#717c81" style="background:#717c81" aria-label="Tertiary"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="White" data-hex="#ffffff" style="background:#ffffff" aria-label="White"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Dark" data-hex="#262626" style="background:#262626" aria-label="Dark"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch sp-color-picker-add" data-color="Custom" data-hex="custom" aria-label="Custom color">
+                        <img src="assets/static-pages/icon-color-add.svg" alt="" width="24" height="24" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="sp-color-field" data-slot="bed2">
+                  <button type="button" class="sp-color-chip color-trigger" id="color-trigger-bed2" aria-haspopup="listbox" aria-expanded="false" aria-controls="color-menu-bed2" aria-label="2 Bedrooms color">
+                    <span class="sp-color-chip-label">2 Bedrooms</span>
+                    <span class="swatch sp-swatch" id="swatch-bed2" style="background: #3b776f"></span>
+                  </button>
+                  <div class="color-menu sp-color-menu sp-color-picker" id="color-menu-bed2" hidden role="listbox" aria-label="2 Bedrooms colors">
+                    <div class="sp-color-picker-swatches">
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Primary" data-hex="#74926a" style="background:#74926a" aria-label="Primary"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Secondary" data-hex="#00324d" style="background:#00324d" aria-label="Secondary"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Tertiary" data-hex="#717c81" style="background:#717c81" aria-label="Tertiary"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="White" data-hex="#ffffff" style="background:#ffffff" aria-label="White"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Dark" data-hex="#262626" style="background:#262626" aria-label="Dark"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch sp-color-picker-add" data-color="Custom" data-hex="custom" aria-label="Custom color">
+                        <img src="assets/static-pages/icon-color-add.svg" alt="" width="24" height="24" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="sp-color-field" data-slot="bed3">
+                  <button type="button" class="sp-color-chip color-trigger" id="color-trigger-bed3" aria-haspopup="listbox" aria-expanded="false" aria-controls="color-menu-bed3" aria-label="3 Bedrooms color">
+                    <span class="sp-color-chip-label">3 Bedrooms</span>
+                    <span class="swatch sp-swatch" id="swatch-bed3" style="background: #de7030"></span>
+                  </button>
+                  <div class="color-menu sp-color-menu sp-color-picker" id="color-menu-bed3" hidden role="listbox" aria-label="3 Bedrooms colors">
+                    <div class="sp-color-picker-swatches">
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Primary" data-hex="#74926a" style="background:#74926a" aria-label="Primary"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Secondary" data-hex="#00324d" style="background:#00324d" aria-label="Secondary"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Tertiary" data-hex="#717c81" style="background:#717c81" aria-label="Tertiary"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="White" data-hex="#ffffff" style="background:#ffffff" aria-label="White"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch" data-color="Dark" data-hex="#262626" style="background:#262626" aria-label="Dark"></button>
+                      <button type="button" role="option" class="sp-color-picker-swatch sp-color-picker-add" data-color="Custom" data-hex="custom" aria-label="Custom color">
+                        <img src="assets/static-pages/icon-color-add.svg" alt="" width="24" height="24" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="bld-edit-styles">Edit Site Styles</button>
+            </div>
+          </div>
+          <span class="sp-subbar-divider" aria-hidden="true"></span>
+          <div class="bld-icon-row">
+            <div class="bld-pop">
+              <button type="button" class="bld-icon-btn" id="smap-pan-trigger" aria-expanded="false" aria-controls="smap-pan-panel" aria-label="Enable Pan/Zoom" aria-describedby="sp-tooltip" data-tooltip="Enable Pan/Zoom">
+                <img src="assets/static-pages/icon-pan-zoom.svg" alt="" width="28" height="28" />
+              </button>
+              <div class="bld-flyout" id="smap-pan-panel" hidden>
+                <p class="bld-title">Enable Pan/Zoom</p>
+                <div class="bld-choices" data-choice="pan">
+                  <button type="button" class="bld-choice is-selected" data-value="yes" aria-pressed="true">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                </div>
+                <p class="bld-title bld-split">Initial Zoom Scale</p>
+                <div class="bld-zoom-row">
+                  <span>Site Map Zoom</span>
+                  <span class="bld-zoom-control">
+                    <span class="bld-zoom-value" id="smap-zoom-value">1</span>
+                    <span class="bld-zoom-arrows">
+                      <button type="button" class="bld-zoom-btn" data-zoom="up" aria-label="Increase site map zoom">
+                        <img src="assets/static-pages/icon-chevron-up.svg" alt="" width="11" height="7" />
+                      </button>
+                      <button type="button" class="bld-zoom-btn" data-zoom="down" aria-label="Decrease site map zoom" disabled>
+                        <img class="bld-zoom-down" src="assets/static-pages/icon-chevron-up.svg" alt="" width="11" height="7" />
+                      </button>
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="bld-pop">
+              <button type="button" class="bld-icon-btn" id="smap-settings-trigger" aria-expanded="false" aria-controls="smap-settings-panel" aria-label="Site Map Settings" aria-describedby="sp-tooltip" data-tooltip="Site Map Settings">
+                <img src="assets/static-pages/icon-sitemap-settings.svg" alt="" width="28" height="28" />
+              </button>
+              <div class="bld-flyout smap-settings" id="smap-settings-panel" hidden>
+                <p class="bld-title">Site Map Settings</p>
+                <div class="bld-color-row smap-dot-color">
+                  <span>Dot Color</span>
+                  <div class="sp-color-field" data-slot="dot" data-label="Dot color">
+                    <button type="button" class="sp-color-chip color-trigger" id="color-trigger-dot" aria-haspopup="listbox" aria-expanded="false" aria-controls="color-menu-dot" aria-label="Dot color">
+                      <span class="swatch bld-swatch" id="swatch-dot" style="background: #6cbc44"></span>
+                    </button>
+                    <div class="color-menu sp-color-menu sp-color-picker" id="color-menu-dot" hidden role="listbox" aria-label="Dot colors">
+                      <div class="sp-color-picker-swatches">
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Primary" data-hex="#74926a" style="background:#74926a" aria-label="Primary"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Secondary" data-hex="#00324d" style="background:#00324d" aria-label="Secondary"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Tertiary" data-hex="#717c81" style="background:#717c81" aria-label="Tertiary"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="White" data-hex="#ffffff" style="background:#ffffff" aria-label="White"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Dark" data-hex="#262626" style="background:#262626" aria-label="Dark"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch sp-color-picker-add" data-color="Custom" data-hex="custom" aria-label="Custom color">
+                          <img src="assets/static-pages/icon-color-add.svg" alt="" width="24" height="24" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="bld-zoom-row smap-radius">
+                  <span>Radius</span>
+                  <span class="bld-zoom-control">
+                    <input class="smap-radius-input" id="smap-radius-value" type="text" inputmode="numeric" value="20" aria-label="Dot radius" />
+                    <span class="smap-radius-unit">px</span>
+                    <span class="bld-zoom-arrows">
+                      <button type="button" class="bld-zoom-btn" data-radius="up" aria-label="Increase dot radius">
+                        <img src="assets/static-pages/icon-chevron-up.svg" alt="" width="11" height="7" />
+                      </button>
+                      <button type="button" class="bld-zoom-btn" data-radius="down" aria-label="Decrease dot radius">
+                        <img class="bld-zoom-down" src="assets/static-pages/icon-chevron-up.svg" alt="" width="11" height="7" />
+                      </button>
+                    </span>
+                  </span>
+                </div>
+                <p class="bld-title bld-split">Show Unavailable Units</p>
+                <div class="bld-choices" data-choice="unavailable">
+                  <button type="button" class="bld-choice is-selected" data-value="general" aria-pressed="true">Use General Settings <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                </div>
+                <p class="bld-title bld-split">Display Unit Number</p>
+                <div class="bld-choices" data-choice="unit-number">
+                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice is-selected" data-value="no" aria-pressed="true">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                </div>
+              </div>
+            </div>
+            <div class="bld-pop">
+              <button type="button" class="bld-icon-btn" id="smap-seo-trigger" aria-expanded="false" aria-controls="smap-seo-panel" aria-label="SEO Information" aria-describedby="sp-tooltip" data-tooltip="SEO Information">
+                <img src="assets/static-pages/icon-seo-search.svg" alt="" width="28" height="28" />
+              </button>
+              <div class="bld-flyout bld-seo smap-seo" id="smap-seo-panel" hidden>
+                <p class="bld-title">SEO Information</p>
+                <label class="bld-field">
+                  <span>SEO Screen Title</span>
+                  <input type="text" value="[screen_title] [separator] [site_title]" />
+                </label>
+                <label class="bld-field bld-field-area">
+                  <span>SEO Screen Meta Description</span>
+                  <textarea rows="6">Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!</textarea>
+                </label>
+              </div>
+            </div>
+            <div class="bld-pop">
+              <button type="button" class="bld-icon-btn" id="smap-visible-trigger" aria-expanded="false" aria-controls="smap-visible-panel" aria-label="Visible Search Engines" aria-describedby="sp-tooltip" data-tooltip="Visible Search Engines">
+                <img src="assets/static-pages/icon-language.svg" alt="" width="24" height="24" />
+              </button>
+              <div class="bld-flyout" id="smap-visible-panel" hidden>
+                <p class="bld-title">Visible to Search Engines</p>
+                <div class="bld-choices" data-choice="visible">
+                  <button type="button" class="bld-choice is-selected" data-value="global" aria-pressed="true">Use Global Settings <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="sp-subbar-divider" aria-hidden="true"></span>
+          <div class="bld-pop">
+            <button type="button" class="sp-sections-trigger" id="smap-sections-trigger" aria-expanded="false" aria-controls="smap-sections-panel" aria-describedby="sp-tooltip" data-tooltip="Display Sections">
+              <img src="assets/static-pages/icon-sections-track.svg" alt="" width="28" height="28" />
+              <span><strong>Sections:</strong> <span id="smap-sections-value"><span>Show All</span></span></span>
+              <img class="sp-sections-chevron" src="assets/static-pages/icon-chevron-down.svg" alt="" width="20" height="20" />
+            </button>
+            <div class="sp-sections-panel" id="smap-sections-panel" role="dialog" aria-labelledby="smap-sections-title" hidden>
+              <h2 class="sp-sections-title" id="smap-sections-title">Display Sections</h2>
+              <ul class="sp-sections-list" role="listbox" aria-multiselectable="true" aria-label="Display sections">
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section-all="true" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Show All</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="sitemap" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Sitemap</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="thumbnail" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Building Thumbnail</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <span class="sp-subbar-divider" aria-hidden="true"></span>
+          <button type="button" class="sp-options-trigger" id="smap-options-trigger" aria-expanded="false" aria-controls="options-panel" aria-label="More Options" aria-describedby="sp-tooltip" data-tooltip="More Options">
+            <img src="assets/static-pages/icon-tune.svg" alt="" width="28" height="28" />
+            <strong>Options</strong>
+          </button>
+        </div>
+        <div class="sp-model-tools" id="model-tools" hidden>
+          <div class="bld-icon-row">
+            <button type="button" class="bld-icon-btn is-shown" id="mdl-visibility" aria-pressed="true" aria-label="Visibility: Active" aria-describedby="sp-tooltip" data-tooltip="Visibility: Active">
+              <img class="mdl-visibility-on" src="assets/static-pages/icon-visibility.svg" alt="" width="28" height="28" />
+              <img class="mdl-visibility-off" src="assets/static-pages/icon-visibility-off.svg" alt="" width="28" height="28" />
+            </button>
+            <div class="bld-pop">
+              <button type="button" class="bld-icon-btn" id="mdl-contact-trigger" aria-expanded="false" aria-controls="mdl-contact-panel" aria-label="Contact Form" aria-describedby="sp-tooltip" data-tooltip="Contact Form">
+                <img src="assets/static-pages/icon-contact-form.svg" alt="" width="24" height="24" />
+              </button>
+              <div class="bld-flyout mdl-contact" id="mdl-contact-panel" hidden>
+                <p class="bld-title">Contact Content</p>
+                <div class="bld-choices" data-multi="true">
+                  <button type="button" class="bld-choice is-selected" data-value="address" aria-pressed="true">Display Address <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice is-selected" data-value="phone" aria-pressed="true">Display Phone <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice is-selected" data-value="social" aria-pressed="true">Display Social <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                </div>
+                <div class="mdl-fields">
+                  <label class="bld-field">
+                    <span>Form Title</span>
+                    <input type="text" value="Let’s Get In Touch" />
+                  </label>
+                  <label class="bld-field bld-field-area">
+                    <span>Form Message</span>
+                    <textarea rows="6">Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!</textarea>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="bld-pop">
+              <button type="button" class="bld-icon-btn" id="mdl-disclaimer-trigger" aria-expanded="false" aria-controls="mdl-disclaimer-panel" aria-label="Model Disclaimer" aria-describedby="sp-tooltip" data-tooltip="Model Disclaimer">
+                <img src="assets/static-pages/icon-model-disclaimer.svg" alt="" width="24" height="24" />
+              </button>
+              <div class="bld-flyout mdl-disclaimer" id="mdl-disclaimer-panel" hidden>
+                <p class="bld-title">Model Disclaimer</p>
+                <label class="bld-field bld-field-area">
+                  <span>Message</span>
+                  <textarea rows="6">Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!</textarea>
+                </label>
+              </div>
+            </div>
+            <div class="bld-pop">
+              <button type="button" class="bld-icon-btn" id="mdl-seo-trigger" aria-expanded="false" aria-controls="mdl-seo-panel" aria-label="SEO Information" aria-describedby="sp-tooltip" data-tooltip="SEO Information">
+                <img src="assets/static-pages/icon-seo-search.svg" alt="" width="28" height="28" />
+              </button>
+              <div class="bld-flyout bld-seo" id="mdl-seo-panel" hidden>
+                <p class="bld-title">SEO Information</p>
+                <label class="bld-field">
+                  <span>SEO Screen Title</span>
+                  <input type="text" value="[screen_title] [separator] [site_title]" />
+                </label>
+                <label class="bld-field bld-field-area">
+                  <span>SEO Screen Meta Description</span>
+                  <textarea rows="6">Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!</textarea>
+                </label>
+              </div>
+            </div>
+            <div class="bld-pop">
+              <button type="button" class="bld-icon-btn" id="mdl-visible-trigger" aria-expanded="false" aria-controls="mdl-visible-panel" aria-label="Visible Search Engines" aria-describedby="sp-tooltip" data-tooltip="Visible Search Engines">
+                <img src="assets/static-pages/icon-language.svg" alt="" width="24" height="24" />
+              </button>
+              <div class="bld-flyout mdl-visible" id="mdl-visible-panel" hidden>
+                <p class="bld-title">Visible to Search Engines</p>
+                <div class="bld-choices" data-choice="visible">
+                  <button type="button" class="bld-choice is-selected" data-value="global" aria-pressed="true">Use Global Settings <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                </div>
+                <p class="bld-title bld-split">Use Canonical URL</p>
+                <input class="mdl-canonical" type="text" aria-label="Canonical URL" />
+              </div>
+            </div>
+          </div>
+          <span class="sp-subbar-divider" aria-hidden="true"></span>
+          <div class="bld-pop">
+            <button type="button" class="sp-sections-trigger" id="mdl-sections-trigger" aria-expanded="false" aria-controls="mdl-sections-panel" aria-describedby="sp-tooltip" data-tooltip="Display Sections">
+              <img src="assets/static-pages/icon-sections-track.svg" alt="" width="28" height="28" />
+              <span><strong>Sections:</strong> <span id="mdl-sections-value"><span>Show All</span></span></span>
+              <img class="sp-sections-chevron" src="assets/static-pages/icon-chevron-down.svg" alt="" width="20" height="20" />
+            </button>
+            <div class="sp-sections-panel" id="mdl-sections-panel" role="dialog" aria-labelledby="mdl-sections-title" hidden>
+              <h2 class="sp-sections-title" id="mdl-sections-title">Display Sections</h2>
+              <ul class="sp-sections-list" role="listbox" aria-multiselectable="true" aria-label="Display sections">
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="features" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Apartment Features</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="intro" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Intro</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="gallery" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Model Gallery</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="contact" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Contact Form</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <span class="sp-subbar-divider" aria-hidden="true"></span>
+          <button type="button" class="sp-options-trigger" id="mdl-options-trigger" aria-expanded="false" aria-controls="options-panel" aria-label="More Options" aria-describedby="sp-tooltip" data-tooltip="More Options">
+            <img src="assets/static-pages/icon-tune.svg" alt="" width="28" height="28" />
+            <strong>Options</strong>
+          </button>
+        </div>
+        <div class="sp-unit-tools" id="unit-tools" hidden>
+          <div class="bld-icon-row">
+            <div class="bld-pop">
+              <button type="button" class="bld-icon-btn" id="unt-contact-trigger" aria-expanded="false" aria-controls="unt-contact-panel" aria-label="Contact Form" aria-describedby="sp-tooltip" data-tooltip="Contact Form">
+                <img src="assets/static-pages/icon-contact-form.svg" alt="" width="24" height="24" />
+              </button>
+              <div class="bld-flyout mdl-contact" id="unt-contact-panel" hidden>
+                <p class="bld-title">Contact Content</p>
+                <div class="bld-choices" data-multi="true">
+                  <button type="button" class="bld-choice is-selected" data-value="address" aria-pressed="true">Display Address <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice is-selected" data-value="phone" aria-pressed="true">Display Phone <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice is-selected" data-value="social" aria-pressed="true">Display Social <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                </div>
+                <div class="mdl-fields">
+                  <label class="bld-field">
+                    <span>Form Title</span>
+                    <input type="text" value="Let’s Get In Touch" />
+                  </label>
+                  <label class="bld-field bld-field-area">
+                    <span>Form Message</span>
+                    <textarea rows="6">Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!</textarea>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="bld-pop">
+              <button type="button" class="bld-icon-btn" id="unt-seo-trigger" aria-expanded="false" aria-controls="unt-seo-panel" aria-label="SEO Information" aria-describedby="sp-tooltip" data-tooltip="SEO Information">
+                <img src="assets/static-pages/icon-seo-search.svg" alt="" width="28" height="28" />
+              </button>
+              <div class="bld-flyout bld-seo" id="unt-seo-panel" hidden>
+                <p class="bld-title">SEO Information</p>
+                <label class="bld-field">
+                  <span>SEO Screen Title</span>
+                  <input type="text" value="[screen_title] [separator] [site_title]" />
+                </label>
+                <label class="bld-field bld-field-area">
+                  <span>SEO Screen Meta Description</span>
+                  <textarea rows="6">Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!</textarea>
+                </label>
+              </div>
+            </div>
+            <div class="bld-pop">
+              <button type="button" class="bld-icon-btn" id="unt-visible-trigger" aria-expanded="false" aria-controls="unt-visible-panel" aria-label="Visible Search Engines" aria-describedby="sp-tooltip" data-tooltip="Visible Search Engines">
+                <img src="assets/static-pages/icon-language.svg" alt="" width="24" height="24" />
+              </button>
+              <div class="bld-flyout mdl-visible" id="unt-visible-panel" hidden>
+                <p class="bld-title">Visible to Search Engines</p>
+                <div class="bld-choices" data-choice="visible">
+                  <button type="button" class="bld-choice is-selected" data-value="global" aria-pressed="true">Use Global Settings <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                </div>
+                <p class="bld-title bld-split">Use Canonical URL</p>
+                <input class="mdl-canonical" type="text" aria-label="Canonical URL" />
+              </div>
+            </div>
+          </div>
+          <span class="sp-subbar-divider" aria-hidden="true"></span>
+          <div class="bld-pop">
+            <button type="button" class="sp-sections-trigger" id="unt-sections-trigger" aria-expanded="false" aria-controls="unt-sections-panel" aria-describedby="sp-tooltip" data-tooltip="Display Sections">
+              <img src="assets/static-pages/icon-sections-track.svg" alt="" width="28" height="28" />
+              <span><strong>Sections:</strong> <span id="unt-sections-value"><span>Show All</span></span></span>
+              <img class="sp-sections-chevron" src="assets/static-pages/icon-chevron-down.svg" alt="" width="20" height="20" />
+            </button>
+            <div class="sp-sections-panel" id="unt-sections-panel" role="dialog" aria-labelledby="unt-sections-title" hidden>
+              <h2 class="sp-sections-title" id="unt-sections-title">Display Sections</h2>
+              <ul class="sp-sections-list" role="listbox" aria-multiselectable="true" aria-label="Display sections">
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="intro" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Intro</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="features" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Apartment Features</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="gallery" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Unit Gallery</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="contact" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Contact Form</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <span class="sp-subbar-divider" aria-hidden="true"></span>
+          <button type="button" class="sp-options-trigger" id="unt-options-trigger" aria-expanded="false" aria-controls="options-panel" aria-label="More Options" aria-describedby="sp-tooltip" data-tooltip="More Options">
+            <img src="assets/static-pages/icon-tune.svg" alt="" width="28" height="28" />
+            <strong>Options</strong>
+          </button>
+        </div>
+        <div class="sp-subbar-inner">
+          <div class="sp-sections-wrap">
+            <button
+              type="button"
+              class="sp-sections-trigger"
+              id="sections-trigger"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+              aria-controls="sections-panel"
+            >
+              <img src="assets/static-pages/icon-sections-track.svg" alt="" width="28" height="28" />
+              <span>
+                <strong>Sections:</strong>
+                <span id="sections-value"><span>Show All</span></span>
+              </span>
+              <img
+                class="sp-sections-chevron"
+                src="assets/static-pages/icon-chevron-down.svg"
+                alt=""
+                width="20"
+                height="20"
+              />
+            </button>
+            <div class="sp-sections-panel" id="sections-panel" role="dialog" aria-labelledby="sections-panel-title" hidden>
+              <h2 class="sp-sections-title" id="sections-panel-title">Display Sections</h2>
+              <ul class="sp-sections-list" role="listbox" aria-multiselectable="true" aria-label="Display sections">
+                <li>
+                  <button
+                    type="button"
+                    class="sp-sections-option"
+                    role="option"
+                    data-section-all="true"
+                    aria-selected="true"
+                  >
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img
+                          class="sp-sections-check-mark"
+                          src="assets/static-pages/icon-check-mark.svg"
+                          alt=""
+                          width="18"
+                          height="18"
+                        />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Show All</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="header" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img
+                          class="sp-sections-check-mark"
+                          src="assets/static-pages/icon-check-mark.svg"
+                          alt=""
+                          width="18"
+                          height="18"
+                        />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Header</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="gallery" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img
+                          class="sp-sections-check-mark"
+                          src="assets/static-pages/icon-check-mark.svg"
+                          alt=""
+                          width="18"
+                          height="18"
+                        />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Gallery</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="highlights" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img
+                          class="sp-sections-check-mark"
+                          src="assets/static-pages/icon-check-mark.svg"
+                          alt=""
+                          width="18"
+                          height="18"
+                        />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Highlights</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="about" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img
+                          class="sp-sections-check-mark"
+                          src="assets/static-pages/icon-check-mark.svg"
+                          alt=""
+                          width="18"
+                          height="18"
+                        />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">About</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="bedrooms" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img
+                          class="sp-sections-check-mark"
+                          src="assets/static-pages/icon-check-mark.svg"
+                          alt=""
+                          width="18"
+                          height="18"
+                        />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Bedrooms</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="amenities" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img
+                          class="sp-sections-check-mark"
+                          src="assets/static-pages/icon-check-mark.svg"
+                          alt=""
+                          width="18"
+                          height="18"
+                        />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Amenities</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="availability" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img
+                          class="sp-sections-check-mark"
+                          src="assets/static-pages/icon-check-mark.svg"
+                          alt=""
+                          width="18"
+                          height="18"
+                        />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Availability</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="reviews" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img
+                          class="sp-sections-check-mark"
+                          src="assets/static-pages/icon-check-mark.svg"
+                          alt=""
+                          width="18"
+                          height="18"
+                        />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Reviews</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="location" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img
+                          class="sp-sections-check-mark"
+                          src="assets/static-pages/icon-check-mark.svg"
+                          alt=""
+                          width="18"
+                          height="18"
+                        />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Location</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="policies" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img
+                          class="sp-sections-check-mark"
+                          src="assets/static-pages/icon-check-mark.svg"
+                          alt=""
+                          width="18"
+                          height="18"
+                        />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">Policies</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="sp-sections-option" role="option" data-section="faq" aria-selected="true">
+                    <span class="sp-sections-check" aria-hidden="true">
+                      <span class="sp-sections-check-box">
+                        <img
+                          class="sp-sections-check-mark"
+                          src="assets/static-pages/icon-check-mark.svg"
+                          alt=""
+                          width="18"
+                          height="18"
+                        />
+                      </span>
+                    </span>
+                    <span class="sp-sections-label">FAQs</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <span class="sp-subbar-divider" aria-hidden="true"></span>
+
+          <div class="sp-tool-cluster" aria-label="Page tools">
+            <div class="sp-tool-field" data-tool="colors">
+              <button
+                type="button"
+                class="sp-tool-btn sp-color-tool-btn"
+                id="btn-colors"
+                aria-label="Page Colors"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+                aria-controls="colors-panel"
+                aria-describedby="sp-tooltip"
+                data-tooltip="Page Colors"
+              >
+                <span class="sp-color-tool-swatch" id="swatch-toolbar" style="background: #00669e"></span>
+              </button>
+              <div class="sp-tool-panel sp-colors-panel" id="colors-panel" role="dialog" aria-label="Page Colors" hidden>
+                <p class="sp-tool-panel-title">Page Colors</p>
+                <div class="sp-colors-panel-list">
+                  <div class="sp-color-field" data-slot="background">
+                    <button
+                      type="button"
+                      class="sp-color-chip color-trigger"
+                      id="color-trigger-background"
+                      aria-haspopup="listbox"
+                      aria-expanded="false"
+                      aria-controls="color-menu-background"
+                      aria-label="Background color"
+                    >
+                      <span class="sp-color-chip-label">Background</span>
+                      <span class="swatch sp-swatch" id="swatch-background" style="background: #f5f6f0"></span>
+                    </button>
+                    <div class="color-menu sp-color-menu sp-color-picker" id="color-menu-background" hidden role="listbox" aria-label="Background colors">
+                      <div class="sp-color-picker-swatches">
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Soft Blue" data-hex="#94abf9" style="background:#94abf9" aria-label="Soft Blue"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Secondary" data-hex="#f598ff" style="background:#f598ff" aria-label="Secondary"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Mist" data-hex="#e5e9fd" style="background:#e5e9fd" aria-label="Mist"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Black" data-hex="#000000" style="background:#000000" aria-label="Black"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="White" data-hex="#ffffff" style="background:#ffffff" aria-label="White"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch sp-color-picker-add" data-color="Custom" data-hex="custom" aria-label="Custom color">
+                          <img src="assets/static-pages/icon-color-add.svg" alt="" width="24" height="24" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="sp-color-field" data-slot="accent1">
+                    <button
+                      type="button"
+                      class="sp-color-chip color-trigger"
+                      id="color-trigger-accent1"
+                      aria-haspopup="listbox"
+                      aria-expanded="false"
+                      aria-controls="color-menu-accent1"
+                      aria-label="Accent 1 color"
+                    >
+                      <span class="sp-color-chip-label">Accent 1</span>
+                      <span class="swatch sp-swatch" id="swatch-accent1" style="background: #00669e"></span>
+                    </button>
+                    <div class="color-menu sp-color-menu sp-color-picker" id="color-menu-accent1" hidden role="listbox" aria-label="Accent 1 colors">
+                      <div class="sp-color-picker-swatches">
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Soft Blue" data-hex="#94abf9" style="background:#94abf9" aria-label="Soft Blue"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Secondary" data-hex="#f598ff" style="background:#f598ff" aria-label="Secondary"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Mist" data-hex="#e5e9fd" style="background:#e5e9fd" aria-label="Mist"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Black" data-hex="#000000" style="background:#000000" aria-label="Black"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="White" data-hex="#ffffff" style="background:#ffffff" aria-label="White"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch sp-color-picker-add" data-color="Custom" data-hex="custom" aria-label="Custom color">
+                          <img src="assets/static-pages/icon-color-add.svg" alt="" width="24" height="24" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="sp-color-field" data-slot="accent2">
+                    <button
+                      type="button"
+                      class="sp-color-chip color-trigger"
+                      id="color-trigger-accent2"
+                      aria-haspopup="listbox"
+                      aria-expanded="false"
+                      aria-controls="color-menu-accent2"
+                      aria-label="Accent 2 color"
+                    >
+                      <span class="sp-color-chip-label">Accent 2</span>
+                      <span class="swatch sp-swatch" id="swatch-accent2" style="background: #e2e3dd"></span>
+                    </button>
+                    <div class="color-menu sp-color-menu sp-color-picker" id="color-menu-accent2" hidden role="listbox" aria-label="Accent 2 colors">
+                      <div class="sp-color-picker-swatches">
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Soft Blue" data-hex="#94abf9" style="background:#94abf9" aria-label="Soft Blue"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Secondary" data-hex="#f598ff" style="background:#f598ff" aria-label="Secondary"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Mist" data-hex="#e5e9fd" style="background:#e5e9fd" aria-label="Mist"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="Black" data-hex="#000000" style="background:#000000" aria-label="Black"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch" data-color="White" data-hex="#ffffff" style="background:#ffffff" aria-label="White"></button>
+                        <button type="button" role="option" class="sp-color-picker-swatch sp-color-picker-add" data-color="Custom" data-hex="custom" aria-label="Custom color">
+                          <img src="assets/static-pages/icon-color-add.svg" alt="" width="24" height="24" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sp-tool-field" data-tool="cta">
+              <button
+                type="button"
+                class="sp-tool-btn"
+                id="btn-cta"
+                aria-label="Button Styling"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+                aria-controls="cta-panel"
+                aria-describedby="sp-tooltip"
+                data-tooltip="Button Styling"
+              >
+                <img src="assets/static-pages/icon-cta.svg" alt="" width="28" height="28" />
+              </button>
+              <div class="sp-tool-panel sp-cta-panel" id="cta-panel" role="dialog" aria-label="Button Styles" hidden>
+                <p class="sp-tool-panel-title">Button Styles</p>
+                <div class="sp-cta-sections">
+                  <div class="sp-cta-section">
+                    <p class="sp-cta-section-label" id="cta-reserve-label">Reserve</p>
+                    <div class="sp-cta-style-field">
+                      <button
+                        type="button"
+                        class="sp-cta-style-trigger"
+                        id="cta-reserve-trigger"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-controls="cta-reserve-menu"
+                        aria-labelledby="cta-reserve-label cta-reserve-value"
+                      >
+                        <span class="sp-cta-preview" data-style="primary">
+                          <span class="sp-cta-preview-btn">Button</span>
+                        </span>
+                        <span class="sp-cta-style-name" id="cta-reserve-value">Primary</span>
+                        <span class="sp-cta-style-chevron" aria-hidden="true">
+                          <img src="assets/static-pages/icon-cta-chevron.svg" alt="" width="24" height="24" />
+                        </span>
+                      </button>
+                      <ul class="sp-cta-style-menu field-menu" id="cta-reserve-menu" hidden role="listbox" aria-labelledby="cta-reserve-label">
+                        <li>
+                          <button type="button" role="option" data-style="primary" aria-selected="true">
+                            <span class="sp-cta-preview" data-style="primary">
+                              <span class="sp-cta-preview-btn">Button</span>
+                            </span>
+                            <span>Primary</span>
+                          </button>
+                        </li>
+                        <li>
+                          <button type="button" role="option" data-style="secondary" aria-selected="false">
+                            <span class="sp-cta-preview" data-style="secondary">
+                              <span class="sp-cta-preview-btn">Button</span>
+                            </span>
+                            <span>Secondary</span>
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="sp-cta-divider" role="separator"></div>
+
+                  <div class="sp-cta-section">
+                    <p class="sp-cta-section-label" id="cta-share-label">Share/Save</p>
+                    <div class="sp-cta-style-field">
+                      <button
+                        type="button"
+                        class="sp-cta-style-trigger"
+                        id="cta-share-trigger"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-controls="cta-share-menu"
+                        aria-labelledby="cta-share-label cta-share-value"
+                      >
+                        <span class="sp-cta-preview" data-style="secondary">
+                          <span class="sp-cta-preview-btn">Button</span>
+                        </span>
+                        <span class="sp-cta-style-name" id="cta-share-value">Secondary</span>
+                        <span class="sp-cta-style-chevron" aria-hidden="true">
+                          <img src="assets/static-pages/icon-cta-chevron.svg" alt="" width="24" height="24" />
+                        </span>
+                      </button>
+                      <ul class="sp-cta-style-menu field-menu" id="cta-share-menu" hidden role="listbox" aria-labelledby="cta-share-label">
+                        <li>
+                          <button type="button" role="option" data-style="primary" aria-selected="false">
+                            <span class="sp-cta-preview" data-style="primary">
+                              <span class="sp-cta-preview-btn">Button</span>
+                            </span>
+                            <span>Primary</span>
+                          </button>
+                        </li>
+                        <li>
+                          <button type="button" role="option" data-style="secondary" aria-selected="true">
+                            <span class="sp-cta-preview" data-style="secondary">
+                              <span class="sp-cta-preview-btn">Button</span>
+                            </span>
+                            <span>Secondary</span>
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sp-tool-field" data-tool="radius">
+              <button
+                type="button"
+                class="sp-tool-btn"
+                id="btn-radius"
+                aria-label="Corner Radius"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+                aria-controls="radius-panel"
+                aria-describedby="sp-tooltip"
+                data-tooltip="Corner Radius"
+              >
+                <img src="assets/static-pages/icon-rounded-corner.svg" alt="" width="28" height="28" />
+              </button>
+              <div class="sp-tool-panel sp-radius-panel" id="radius-panel" role="dialog" aria-label="Corner Radius" hidden>
+                <p class="sp-tool-panel-title">Corner Radius</p>
+                <div class="sp-radius-row">
+                  <label class="sp-radius-bar">
+                    <img src="assets/static-pages/icon-crop-free.svg" alt="" width="28" height="28" />
+                    <input
+                      type="text"
+                      inputmode="numeric"
+                      id="radius-all"
+                      value="20"
+                      aria-label="Corner radius"
+                    />
+                  </label>
+                  <button
+                    type="button"
+                    class="sp-tool-btn sp-radius-individual-btn"
+                    id="radius-individual"
+                    aria-pressed="false"
+                    aria-expanded="false"
+                    aria-controls="radius-individual-panel"
+                    aria-label="Edit individual corners"
+                  >
+                    <img src="assets/static-pages/icon-rounded-corner.svg" alt="" width="28" height="28" />
+                  </button>
+                </div>
+                <div class="sp-radius-individual" id="radius-individual-panel" hidden>
+                  <label class="sp-radius-corner">
+                    <img class="sp-radius-corner-tl" src="assets/static-pages/icon-rounded-corner.svg" alt="" width="24" height="24" />
+                    <input type="text" inputmode="numeric" id="radius-tl" value="20" aria-label="Top left radius" />
+                  </label>
+                  <label class="sp-radius-corner">
+                    <img src="assets/static-pages/icon-rounded-corner.svg" alt="" width="24" height="24" />
+                    <input type="text" inputmode="numeric" id="radius-tr" value="20" aria-label="Top right radius" />
+                  </label>
+                  <label class="sp-radius-corner">
+                    <img class="sp-radius-corner-bl" src="assets/static-pages/icon-rounded-corner.svg" alt="" width="24" height="24" />
+                    <input type="text" inputmode="numeric" id="radius-bl" value="20" aria-label="Bottom left radius" />
+                  </label>
+                  <label class="sp-radius-corner">
+                    <img class="sp-radius-corner-br" src="assets/static-pages/icon-rounded-corner.svg" alt="" width="24" height="24" />
+                    <input type="text" inputmode="numeric" id="radius-br" value="20" aria-label="Bottom right radius" />
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="sp-tool-field" data-tool="location">
+              <button
+                type="button"
+                class="sp-tool-btn"
+                id="btn-location"
+                aria-label="Location Map Style"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+                aria-controls="location-panel"
+                aria-describedby="sp-tooltip"
+                data-tooltip="Location Map Style"
+              >
+                <img src="assets/static-pages/icon-location.svg" alt="" width="28" height="28" />
+              </button>
+              <div class="sp-tool-panel sp-map-style-panel" id="location-panel" role="dialog" aria-label="Location Map Style" hidden>
+                <p class="sp-map-style-title">Location Map Style</p>
+                <ul class="sp-map-style-list" role="listbox" aria-label="Location map style">
+                  <li>
+                    <button type="button" role="option" data-map-style="map" aria-selected="true">
+                      <span>Map</span>
+                      <img class="sp-map-style-check" src="assets/static-pages/icon-check.svg" alt="" width="24" height="24" />
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" role="option" data-map-style="neighborhood" aria-selected="false">
+                      <span>Neighborhood POI</span>
+                      <img class="sp-map-style-check" src="assets/static-pages/icon-check.svg" alt="" width="24" height="24" />
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="sp-tool-field" data-tool="animations">
+              <button
+                type="button"
+                class="sp-tool-btn"
+                id="btn-animations"
+                aria-label="Animation"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+                aria-controls="animations-panel"
+                aria-describedby="sp-tooltip"
+                data-tooltip="Animation"
+              >
+                <img src="assets/static-pages/icon-animations.svg" alt="" width="40" height="40" />
+              </button>
+              <div class="sp-tool-panel" id="animations-panel" role="dialog" aria-label="Animation" hidden>
+                <p class="sp-tool-panel-title">Animation</p>
+
+                <p class="sp-tool-section">Entry animation</p>
+                <div class="field sp-tool-field-control">
+                  <span class="field-label" id="page-animation-label">Behavior</span>
+                  <button
+                    type="button"
+                    class="field-trigger"
+                    id="page-animation-trigger"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                    aria-labelledby="page-animation-label page-animation-value"
+                  >
+                    <span id="page-animation-value">Fade</span>
+                    <span class="icon-button" aria-hidden="true">
+                      <span class="icon-24">
+                        <img src="assets/icon-chevron.svg" alt="" width="24" height="24" />
+                      </span>
+                    </span>
+                  </button>
+                  <ul class="field-menu" id="page-animation-menu" hidden role="listbox" aria-labelledby="page-animation-label">
+                    <li><button type="button" role="option" data-animation="none" aria-selected="false">None</button></li>
+                    <li><button type="button" role="option" data-animation="fade" aria-selected="true">Fade</button></li>
+                    <li><button type="button" role="option" data-animation="slide-y" aria-selected="false">Slide From Bottom</button></li>
+                    <li><button type="button" role="option" data-animation="zoom-in" aria-selected="false">Grow</button></li>
+                    <li><button type="button" role="option" data-animation="zoom-out-in" aria-selected="false">Shrink</button></li>
+                    <li><button type="button" role="option" data-animation="zoom-in-more" aria-selected="false">Zoom In</button></li>
+                    <li><button type="button" role="option" data-animation="zoom-out" aria-selected="false">Zoom Out</button></li>
+                  </ul>
+                </div>
+
+                <p class="sp-tool-section">Speed</p>
+                <div class="icon-bar speed-bar sp-speed-bar" id="page-speed" role="group" aria-label="Speed">
+                  <button type="button" class="active" data-speed="normal" aria-label="Normal speed">
+                    <span class="icon-24">
+                      <img src="assets/icon-speed-normal.svg" alt="" width="24" height="24" />
+                    </span>
+                  </button>
+                  <button type="button" data-speed="fast" aria-label="Fast speed">
+                    <span class="icon-24">
+                      <img src="assets/icon-speed-fast.svg" alt="" width="24" height="24" />
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <span class="sp-subbar-divider" aria-hidden="true"></span>
+
+          <div class="sp-options-wrap">
+            <button
+              type="button"
+              class="sp-options-trigger"
+              id="options-trigger"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+              aria-controls="options-panel"
+            >
+              <img src="assets/static-pages/icon-tune.svg" alt="" width="28" height="28" />
+              <strong>Options</strong>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <main class="sp-canvas" id="page-viewport" aria-label="Page canvas">
+        <div class="sp-viewport" id="viewport-frame" data-device="laptop">
+          <iframe
+            id="live-page"
+            class="sp-iframe"
+            title="Meadow View Lodge — live page"
+            src="preview/meadow-view-lodge.html"
+            data-remote-path="/properties/meadow-view-lodge"
+            data-remote-url="https://spring-brook.vercel.app/properties/meadow-view-lodge"
+            loading="eager"
+          ></iframe>
+          <iframe
+            id="building-page"
+            class="sp-iframe"
+            title="Building view"
+            src="about:blank"
+            hidden
+          ></iframe>
+          <iframe
+            id="sitemap-page"
+            class="sp-iframe"
+            title="Site map"
+            src="about:blank"
+            hidden
+          ></iframe>
+          <iframe
+            id="model-page"
+            class="sp-iframe"
+            title="Model page"
+            src="about:blank"
+            hidden
+          ></iframe>
+          <iframe
+            id="unit-page"
+            class="sp-iframe"
+            title="Unit page"
+            src="about:blank"
+            hidden
+          ></iframe>
+          <div class="sp-iframe-fallback" id="iframe-fallback" hidden aria-hidden="true">
+            <p>
+              The live page couldn’t load inside this frame (likely blocked by embed headers).
+            </p>
+            <a
+              class="sp-btn sp-btn--filled"
+              href="https://spring-brook.vercel.app/properties/meadow-view-lodge"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Meadow View Lodge
+            </a>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <aside
+      class="sp-pages-flyout"
+      id="pages-flyout"
+      role="dialog"
+      aria-labelledby="pages-flyout-title"
+      aria-modal="false"
+      hidden
+    >
+      <header class="sp-pages-flyout-header">
+        <h2 class="sp-pages-flyout-title" id="pages-flyout-title">Manage Pages</h2>
+        <button type="button" class="sp-pages-flyout-close" id="pages-close" aria-label="Close pages">
+          <img src="assets/static-pages/icon-close.svg" alt="" width="24" height="24" />
+        </button>
+      </header>
+
+      <div class="sp-pages-flyout-body">
+        <label class="sp-pages-search">
+          <span class="sr-only">Search Pages</span>
+          <input
+            type="search"
+            id="pages-search"
+            class="sp-pages-search-input"
+            placeholder="Search Pages"
+            autocomplete="off"
+          />
+          <span class="sp-pages-search-icon" aria-hidden="true">
+            <img src="assets/static-pages/icon-search.svg" alt="" width="17" height="17" />
+          </span>
+        </label>
+
+        <button type="button" class="sp-pages-add" id="pages-add">Add Page</button>
+
+        <section class="sp-pages-section" data-pages-section="module" aria-labelledby="module-pages-heading">
+          <div class="sp-pages-section-head">
+            <div class="sp-pages-section-copy">
+              <h3 class="sp-pages-section-title" id="module-pages-heading">Modular Pages</h3>
+              <p class="sp-pages-section-desc">
+                Customize page layouts, content, and styles within your available permissions.
+              </p>
+            </div>
+            <button
+              type="button"
+              class="sp-pages-section-toggle"
+              aria-expanded="true"
+              aria-controls="module-pages-list"
+              aria-label="Collapse Modular Pages"
+            >
+              <img src="assets/static-pages/icon-chevron-up.svg" alt="" width="11" height="7" />
+            </button>
+          </div>
+          <ul class="sp-pages-list" id="module-pages-list">
+            <li>
+              <button type="button" class="sp-pages-item" data-page-name="Home">Home</button>
+            </li>
+            <li>
+              <button type="button" class="sp-pages-item" data-page-name="Golf Course">Golf Course</button>
+            </li>
+            <li>
+              <button type="button" class="sp-pages-item" data-page-name="Pools &amp; Recreation">
+                Pools &amp; Recreation
+              </button>
+            </li>
+            <li>
+              <button type="button" class="sp-pages-item" data-page-name="Weddings &amp; Events">
+                Weddings &amp; Events
+              </button>
+            </li>
+            <li>
+              <button type="button" class="sp-pages-item" data-page-name="About Us">About Us</button>
+            </li>
+            <li>
+              <button type="button" class="sp-pages-item" data-page-name="Contact">Contact</button>
+            </li>
+          </ul>
+        </section>
+
+        <hr class="sp-pages-divider" />
+
+        <section
+          class="sp-pages-section"
+          data-pages-section="structured"
+          aria-labelledby="structured-pages-heading"
+        >
+          <div class="sp-pages-section-head">
+            <div class="sp-pages-section-copy">
+              <h3 class="sp-pages-section-title" id="structured-pages-heading">Structured Pages</h3>
+              <p class="sp-pages-section-desc">
+                Customize supported content and styles within a predefined layout.
+              </p>
+            </div>
+            <button
+              type="button"
+              class="sp-pages-section-toggle"
+              aria-expanded="true"
+              aria-controls="structured-pages-list"
+              aria-label="Collapse Structured Pages"
+            >
+              <img src="assets/static-pages/icon-chevron-up.svg" alt="" width="11" height="7" />
+            </button>
+          </div>
+          <ul class="sp-pages-list" id="structured-pages-list">
+            <li>
+              <button
+                type="button"
+                class="sp-pages-item is-selected"
+                data-page-name="Property Page"
+                aria-current="true"
+              >
+                <span>Property Page</span>
+                <img
+                  class="sp-pages-item-chevron"
+                  src="assets/static-pages/icon-angle-right.svg"
+                  alt=""
+                  width="7"
+                  height="11"
+                />
+              </button>
+            </li>
+            <li>
+              <button type="button" class="sp-pages-item" data-page-name="Booking">Booking</button>
+            </li>
+            <li>
+              <button type="button" class="sp-pages-item" data-page-name="Confirmation Page">
+                Confirmation Page
+              </button>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </aside>
+
+    <div
+      class="sp-options-panel"
+      id="options-panel"
+      role="dialog"
+      aria-labelledby="options-panel-title"
+      hidden
+    >
+      <header class="sp-options-header" id="options-drag-handle">
+        <h2 class="sp-options-title" id="options-panel-title">Options</h2>
+        <button type="button" class="sp-options-close" id="options-close" aria-label="Close options">
+          <img src="assets/static-pages/icon-close.svg" alt="" width="24" height="24" />
+        </button>
+      </header>
+      <div class="sp-options-body" id="options-default-body">
+        <p class="sp-options-empty">Page-level options will appear here.</p>
+      </div>
+      <div class="sp-options-body unit-options" id="options-unit-body" hidden>
+        <section class="unit-options-section">
+          <h3 class="unit-options-title">Extra Info Tiles</h3>
+          <p class="unit-options-empty" id="unit-tiles-empty">No items added yet</p>
+          <div class="unit-tile-list" id="unit-tiles"></div>
+          <button type="button" class="unit-add" data-add="tile" aria-label="Add extra info tile">
+            <img src="assets/static-pages/icon-unit-add.svg" alt="" width="28" height="28" />
+          </button>
+        </section>
+        <section class="unit-options-section">
+          <h3 class="unit-options-title">Additional Buttons</h3>
+          <div class="unit-button-list" id="unit-buttons">
+            <article class="unit-button-row">
+              <div class="unit-button-card">
+                <label class="bld-field">
+                  <span>Button Label</span>
+                  <input type="text" value="Fees Guide" />
+                </label>
+                <label class="bld-field">
+                  <span>Link</span>
+                  <input type="text" value="/fees" />
+                </label>
+                <div class="unit-select">
+                  <span class="unit-select-label">Button Color</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">Transpar...</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="10.7812" height="6.10107" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">Transpar...</button></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="unit-button-actions">
+                <button type="button" class="unit-icon-btn" data-edit="button" aria-label="Edit button">
+                  <img src="assets/static-pages/icon-unit-edit.svg" alt="" width="28" height="28" />
+                </button>
+                <button type="button" class="unit-icon-btn" data-remove="button" aria-label="Delete button">
+                  <img src="assets/static-pages/icon-unit-delete.svg" alt="" width="28" height="28" />
+                </button>
+              </div>
+            </article>
+          </div>
+          <button type="button" class="unit-add" data-add="button" aria-label="Add button">
+            <img src="assets/static-pages/icon-unit-add.svg" alt="" width="28" height="28" />
+          </button>
+        </section>
+        <section class="unit-options-section">
+          <div class="unit-area">
+            <p class="unit-options-title">Amenities Intro</p>
+            <div class="unit-area-field">
+              <textarea aria-label="Amenities Intro" rows="4"></textarea>
+              <button type="button" class="unit-grip" aria-label="Resize amenities intro">
+                <img src="assets/static-pages/icon-unit-grip.svg" alt="" width="12" height="12" />
+              </button>
+            </div>
+          </div>
+        </section>
+        <section class="unit-options-section">
+          <div class="unit-area">
+            <p class="unit-options-title">Amenities List</p>
+            <div class="unit-area-field">
+              <textarea aria-label="Amenities List" rows="4"></textarea>
+              <button type="button" class="unit-grip" aria-label="Resize amenities list">
+                <img src="assets/static-pages/icon-unit-grip.svg" alt="" width="12" height="12" />
+              </button>
+            </div>
+          </div>
+        </section>
+        <section class="unit-options-section">
+          <div class="unit-select">
+            <span class="unit-options-title">Hero Media Quality</span>
+            <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+              <span class="unit-select-value">Lighter: ≈20% more co...</span>
+              <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="10.7812" height="6.10107" />
+            </button>
+            <ul class="unit-select-menu" role="listbox" hidden>
+              <li><button type="button" role="option" aria-selected="true">Lighter: ≈20% more co...</button></li>
+            </ul>
+          </div>
+        </section>
+        <section class="unit-options-section">
+          <div class="unit-select">
+            <span class="unit-options-title">Gallery Media Quality</span>
+            <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+              <span class="unit-select-value">Lighter: ≈20% more co...</span>
+              <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="10.7812" height="6.10107" />
+            </button>
+            <ul class="unit-select-menu" role="listbox" hidden>
+              <li><button type="button" role="option" aria-selected="true">Lighter: ≈20% more co...</button></li>
+            </ul>
+          </div>
+        </section>
+        <section class="unit-options-section unit-switches">
+          <div class="unit-switch-row">
+            <button type="button" class="unit-switch" role="switch" aria-checked="false" aria-label="Hide Amenities">
+              <img src="assets/static-pages/icon-unit-toggle.svg" alt="" width="39.375" height="21.875" />
+            </button>
+            <span>Hide Amenities</span>
+          </div>
+          <div class="unit-switch-row">
+            <button type="button" class="unit-switch" role="switch" aria-checked="false" aria-label="Hide Gallery">
+              <img src="assets/static-pages/icon-unit-toggle.svg" alt="" width="39.375" height="21.875" />
+            </button>
+            <span>Hide Gallery</span>
+          </div>
+          <div class="unit-switch-row">
+            <button type="button" class="unit-switch" role="switch" aria-checked="false" aria-label="Hide Contact Form">
+              <img src="assets/static-pages/icon-unit-toggle.svg" alt="" width="39.375" height="21.875" />
+            </button>
+            <span>Hide Contact Form</span>
+          </div>
+          <div class="unit-switch-row">
+            <button type="button" class="unit-switch" role="switch" aria-checked="false" aria-label="Hide Fees">
+              <img src="assets/static-pages/icon-unit-toggle.svg" alt="" width="39.375" height="21.875" />
+            </button>
+            <span>Hide Fees</span>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="sp-tooltip" id="sp-tooltip" role="tooltip" hidden></div>
+    <p class="sr-only" id="live" aria-live="polite"></p>
+    <script src="static-pages.js?v=31"></script>
+  </body>
+</html>
