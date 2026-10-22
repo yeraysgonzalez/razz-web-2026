@@ -2168,3 +2168,13 @@ if (unitButton && new URLSearchParams(location.search).get("page") === "unit") {
   pageName.textContent = unitButton.dataset.page;
   showUnitPage();
 }
+
+// The shared GitHub Pages link has no page query. Open Building there.
+// Localhost keeps Meadow View Lodge unless a page is requested.
+if (buildingButton && !new URLSearchParams(location.search).get("page") && !usesLocalPreviewProxy()) {
+  pageMenu.querySelectorAll(".sp-page-entries [role='option']").forEach((item) => {
+    item.setAttribute("aria-selected", String(item === buildingButton));
+  });
+  pageName.textContent = buildingButton.dataset.page;
+  showBuildingPage();
+}
