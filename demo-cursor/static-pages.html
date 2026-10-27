@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="static-pages.css?v=39" />
+    <link rel="stylesheet" href="static-pages.css?v=45" />
   </head>
   <body class="sp-body">
     <a class="skip-link" href="#page-viewport">Skip to page canvas</a>
@@ -248,8 +248,8 @@
       <div class="sp-subbar" aria-label="Page settings">
         <div class="sp-building-tools" id="building-tools" hidden>
           <div class="bld-pop">
-            <button type="button" class="bld-swatch-btn" id="bld-color-trigger" aria-expanded="false" aria-controls="bld-color-panel" aria-label="Floor Selector Color" aria-describedby="sp-tooltip" data-tooltip="Floor Selector Color">
-              <span class="bld-swatch" id="bld-swatch" style="background: #74926a"></span>
+            <button type="button" class="sp-tool-btn sp-color-tool-btn" id="bld-color-trigger" aria-expanded="false" aria-controls="bld-color-panel" aria-label="Floor Selector Color" aria-describedby="sp-tooltip" data-tooltip="Floor Selector Color">
+              <span class="sp-color-tool-swatch" id="bld-swatch" style="background: #74926a"></span>
             </button>
             <div class="bld-flyout sp-tool-panel sp-colors-panel" id="bld-color-panel" role="dialog" aria-label="Floor Selector Color" hidden>
               <p class="sp-tool-panel-title">Floor Selector Color</p>
@@ -293,8 +293,8 @@
               <div class="bld-flyout bld-pan" id="bld-pan-panel" hidden>
                 <p class="bld-title">Enable Pan/Zoom</p>
                 <div class="bld-choices" data-choice="pan">
-                  <button type="button" class="bld-choice is-selected" data-value="yes" aria-pressed="true">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice is-selected" data-value="yes" aria-pressed="true"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Yes</span></button>
+                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">No</span></button>
                 </div>
                 <p class="bld-title bld-split">Initial Zoom Scale</p>
                 <div class="bld-zoom-row">
@@ -313,42 +313,12 @@
                 </div>
                 <p class="bld-title bld-split">Multi Building Hover</p>
                 <div class="bld-choices" data-choice="hover">
-                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice is-selected" data-value="no" aria-pressed="true">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                </div>
-              </div>
-            </div>
-            <div class="bld-pop">
-              <button type="button" class="bld-icon-btn" id="bld-seo-trigger" aria-expanded="false" aria-controls="bld-seo-panel" aria-label="SEO Information" aria-describedby="sp-tooltip" data-tooltip="SEO Information">
-                <img src="assets/static-pages/icon-seo-search.svg" alt="" width="28" height="28" />
-              </button>
-              <div class="bld-flyout bld-seo" id="bld-seo-panel" hidden>
-                <p class="bld-title">SEO Information</p>
-                <label class="bld-field">
-                  <span>SEO Screen Title</span>
-                  <input type="text" value="[screen_title] [separator] [site_title]" />
-                </label>
-                <label class="bld-field bld-field-area">
-                  <span>SEO Screen Meta Description</span>
-                  <textarea rows="5">Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!</textarea>
-                </label>
-              </div>
-            </div>
-            <div class="bld-pop">
-              <button type="button" class="bld-icon-btn" id="bld-visible-trigger" aria-expanded="false" aria-controls="bld-visible-panel" aria-label="Visible Search Engines" aria-describedby="sp-tooltip" data-tooltip="Visible Search Engines">
-                <img src="assets/static-pages/icon-language.svg" alt="" width="24" height="24" />
-              </button>
-              <div class="bld-flyout" id="bld-visible-panel" hidden>
-                <p class="bld-title">Visible to Search Engines</p>
-                <div class="bld-choices" data-choice="visible">
-                  <button type="button" class="bld-choice is-selected" data-value="global" aria-pressed="true">Use Global Settings <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Yes</span></button>
+                  <button type="button" class="bld-choice is-selected" data-value="no" aria-pressed="true"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">No</span></button>
                 </div>
               </div>
             </div>
           </div>
-          <span class="sp-subbar-divider" aria-hidden="true"></span>
           <div class="bld-pop">
             <button type="button" class="sp-sections-trigger" id="bld-sections-trigger" aria-expanded="false" aria-controls="bld-sections-panel" aria-describedby="sp-tooltip" data-tooltip="Display Sections">
               <img src="assets/static-pages/icon-sections-track.svg" alt="" width="28" height="28" />
@@ -392,17 +362,11 @@
             </div>
           </div>
           <span class="sp-subbar-divider" aria-hidden="true"></span>
-          <div class="bld-pop">
-            <button type="button" class="sp-options-trigger" id="bld-options-trigger" aria-expanded="false" aria-controls="options-panel" aria-label="More Options" aria-describedby="sp-tooltip" data-tooltip="More Options">
-              <img src="assets/static-pages/icon-tune.svg" alt="" width="28" height="28" />
-              <strong>Options</strong>
-            </button>
-          </div>
         </div>
         <div class="sp-sitemap-tools" id="sitemap-tools" hidden>
           <div class="bld-pop">
-            <button type="button" class="bld-swatch-btn" id="smap-color-trigger" aria-expanded="false" aria-controls="smap-color-panel" aria-label="Filter Colors" aria-describedby="sp-tooltip" data-tooltip="Filter Colors">
-              <span class="bld-swatch" id="smap-swatch" style="background: #6cbc44"></span>
+            <button type="button" class="sp-tool-btn sp-color-tool-btn" id="smap-color-trigger" aria-expanded="false" aria-controls="smap-color-panel" aria-label="Filter Colors" aria-describedby="sp-tooltip" data-tooltip="Filter Colors">
+              <span class="sp-color-tool-swatch" id="smap-swatch" style="background: #6cbc44"></span>
             </button>
             <div class="bld-flyout sp-tool-panel sp-colors-panel smap-colors" id="smap-color-panel" role="dialog" aria-label="Filter Colors" hidden>
               <p class="bld-title">Filter Colors</p>
@@ -474,8 +438,8 @@
               <div class="bld-flyout" id="smap-pan-panel" hidden>
                 <p class="bld-title">Enable Pan/Zoom</p>
                 <div class="bld-choices" data-choice="pan">
-                  <button type="button" class="bld-choice is-selected" data-value="yes" aria-pressed="true">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice is-selected" data-value="yes" aria-pressed="true"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Yes</span></button>
+                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">No</span></button>
                 </div>
                 <p class="bld-title bld-split">Initial Zoom Scale</p>
                 <div class="bld-zoom-row">
@@ -537,48 +501,18 @@
                 </div>
                 <p class="bld-title bld-split">Show Unavailable Units</p>
                 <div class="bld-choices" data-choice="unavailable">
-                  <button type="button" class="bld-choice is-selected" data-value="general" aria-pressed="true">Use General Settings <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice is-selected" data-value="general" aria-pressed="true"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Use General Settings</span></button>
+                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Yes</span></button>
+                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">No</span></button>
                 </div>
                 <p class="bld-title bld-split">Display Unit Number</p>
                 <div class="bld-choices" data-choice="unit-number">
-                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice is-selected" data-value="no" aria-pressed="true">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                </div>
-              </div>
-            </div>
-            <div class="bld-pop">
-              <button type="button" class="bld-icon-btn" id="smap-seo-trigger" aria-expanded="false" aria-controls="smap-seo-panel" aria-label="SEO Information" aria-describedby="sp-tooltip" data-tooltip="SEO Information">
-                <img src="assets/static-pages/icon-seo-search.svg" alt="" width="28" height="28" />
-              </button>
-              <div class="bld-flyout bld-seo smap-seo" id="smap-seo-panel" hidden>
-                <p class="bld-title">SEO Information</p>
-                <label class="bld-field">
-                  <span>SEO Screen Title</span>
-                  <input type="text" value="[screen_title] [separator] [site_title]" />
-                </label>
-                <label class="bld-field bld-field-area">
-                  <span>SEO Screen Meta Description</span>
-                  <textarea rows="6">Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!</textarea>
-                </label>
-              </div>
-            </div>
-            <div class="bld-pop">
-              <button type="button" class="bld-icon-btn" id="smap-visible-trigger" aria-expanded="false" aria-controls="smap-visible-panel" aria-label="Visible Search Engines" aria-describedby="sp-tooltip" data-tooltip="Visible Search Engines">
-                <img src="assets/static-pages/icon-language.svg" alt="" width="24" height="24" />
-              </button>
-              <div class="bld-flyout" id="smap-visible-panel" hidden>
-                <p class="bld-title">Visible to Search Engines</p>
-                <div class="bld-choices" data-choice="visible">
-                  <button type="button" class="bld-choice is-selected" data-value="global" aria-pressed="true">Use Global Settings <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Yes</span></button>
+                  <button type="button" class="bld-choice is-selected" data-value="no" aria-pressed="true"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">No</span></button>
                 </div>
               </div>
             </div>
           </div>
-          <span class="sp-subbar-divider" aria-hidden="true"></span>
           <div class="bld-pop">
             <button type="button" class="sp-sections-trigger" id="smap-sections-trigger" aria-expanded="false" aria-controls="smap-sections-panel" aria-describedby="sp-tooltip" data-tooltip="Display Sections">
               <img src="assets/static-pages/icon-sections-track.svg" alt="" width="28" height="28" />
@@ -622,10 +556,6 @@
             </div>
           </div>
           <span class="sp-subbar-divider" aria-hidden="true"></span>
-          <button type="button" class="sp-options-trigger" id="smap-options-trigger" aria-expanded="false" aria-controls="options-panel" aria-label="More Options" aria-describedby="sp-tooltip" data-tooltip="More Options">
-            <img src="assets/static-pages/icon-tune.svg" alt="" width="28" height="28" />
-            <strong>Options</strong>
-          </button>
         </div>
         <div class="sp-model-tools" id="model-tools" hidden>
           <div class="bld-icon-row">
@@ -640,9 +570,9 @@
               <div class="bld-flyout mdl-contact" id="mdl-contact-panel" hidden>
                 <p class="bld-title">Contact Content</p>
                 <div class="bld-choices" data-multi="true">
-                  <button type="button" class="bld-choice is-selected" data-value="address" aria-pressed="true">Display Address <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice is-selected" data-value="phone" aria-pressed="true">Display Phone <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice is-selected" data-value="social" aria-pressed="true">Display Social <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice is-selected" data-value="address" aria-pressed="true"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Display Address</span></button>
+                  <button type="button" class="bld-choice is-selected" data-value="phone" aria-pressed="true"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Display Phone</span></button>
+                  <button type="button" class="bld-choice is-selected" data-value="social" aria-pressed="true"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Display Social</span></button>
                 </div>
                 <div class="mdl-fields">
                   <label class="bld-field">
@@ -668,39 +598,7 @@
                 </label>
               </div>
             </div>
-            <div class="bld-pop">
-              <button type="button" class="bld-icon-btn" id="mdl-seo-trigger" aria-expanded="false" aria-controls="mdl-seo-panel" aria-label="SEO Information" aria-describedby="sp-tooltip" data-tooltip="SEO Information">
-                <img src="assets/static-pages/icon-seo-search.svg" alt="" width="28" height="28" />
-              </button>
-              <div class="bld-flyout bld-seo" id="mdl-seo-panel" hidden>
-                <p class="bld-title">SEO Information</p>
-                <label class="bld-field">
-                  <span>SEO Screen Title</span>
-                  <input type="text" value="[screen_title] [separator] [site_title]" />
-                </label>
-                <label class="bld-field bld-field-area">
-                  <span>SEO Screen Meta Description</span>
-                  <textarea rows="6">Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!</textarea>
-                </label>
-              </div>
-            </div>
-            <div class="bld-pop">
-              <button type="button" class="bld-icon-btn" id="mdl-visible-trigger" aria-expanded="false" aria-controls="mdl-visible-panel" aria-label="Visible Search Engines" aria-describedby="sp-tooltip" data-tooltip="Visible Search Engines">
-                <img src="assets/static-pages/icon-language.svg" alt="" width="24" height="24" />
-              </button>
-              <div class="bld-flyout mdl-visible" id="mdl-visible-panel" hidden>
-                <p class="bld-title">Visible to Search Engines</p>
-                <div class="bld-choices" data-choice="visible">
-                  <button type="button" class="bld-choice is-selected" data-value="global" aria-pressed="true">Use Global Settings <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                </div>
-                <p class="bld-title bld-split">Use Canonical URL</p>
-                <input class="mdl-canonical" type="text" aria-label="Canonical URL" />
-              </div>
-            </div>
           </div>
-          <span class="sp-subbar-divider" aria-hidden="true"></span>
           <div class="bld-pop">
             <button type="button" class="sp-sections-trigger" id="mdl-sections-trigger" aria-expanded="false" aria-controls="mdl-sections-panel" aria-describedby="sp-tooltip" data-tooltip="Display Sections">
               <img src="assets/static-pages/icon-sections-track.svg" alt="" width="28" height="28" />
@@ -754,10 +652,6 @@
             </div>
           </div>
           <span class="sp-subbar-divider" aria-hidden="true"></span>
-          <button type="button" class="sp-options-trigger" id="mdl-options-trigger" aria-expanded="false" aria-controls="options-panel" aria-label="More Options" aria-describedby="sp-tooltip" data-tooltip="More Options">
-            <img src="assets/static-pages/icon-tune.svg" alt="" width="28" height="28" />
-            <strong>Options</strong>
-          </button>
         </div>
         <div class="sp-unit-tools" id="unit-tools" hidden>
           <div class="bld-icon-row">
@@ -768,9 +662,9 @@
               <div class="bld-flyout mdl-contact" id="unt-contact-panel" hidden>
                 <p class="bld-title">Contact Content</p>
                 <div class="bld-choices" data-multi="true">
-                  <button type="button" class="bld-choice is-selected" data-value="address" aria-pressed="true">Display Address <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice is-selected" data-value="phone" aria-pressed="true">Display Phone <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice is-selected" data-value="social" aria-pressed="true">Display Social <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
+                  <button type="button" class="bld-choice is-selected" data-value="address" aria-pressed="true"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Display Address</span></button>
+                  <button type="button" class="bld-choice is-selected" data-value="phone" aria-pressed="true"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Display Phone</span></button>
+                  <button type="button" class="bld-choice is-selected" data-value="social" aria-pressed="true"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Display Social</span></button>
                 </div>
                 <div class="mdl-fields">
                   <label class="bld-field">
@@ -782,37 +676,6 @@
                     <textarea rows="6">Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!</textarea>
                   </label>
                 </div>
-              </div>
-            </div>
-            <div class="bld-pop">
-              <button type="button" class="bld-icon-btn" id="unt-seo-trigger" aria-expanded="false" aria-controls="unt-seo-panel" aria-label="SEO Information" aria-describedby="sp-tooltip" data-tooltip="SEO Information">
-                <img src="assets/static-pages/icon-seo-search.svg" alt="" width="28" height="28" />
-              </button>
-              <div class="bld-flyout bld-seo" id="unt-seo-panel" hidden>
-                <p class="bld-title">SEO Information</p>
-                <label class="bld-field">
-                  <span>SEO Screen Title</span>
-                  <input type="text" value="[screen_title] [separator] [site_title]" />
-                </label>
-                <label class="bld-field bld-field-area">
-                  <span>SEO Screen Meta Description</span>
-                  <textarea rows="6">Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!</textarea>
-                </label>
-              </div>
-            </div>
-            <div class="bld-pop">
-              <button type="button" class="bld-icon-btn" id="unt-visible-trigger" aria-expanded="false" aria-controls="unt-visible-panel" aria-label="Visible Search Engines" aria-describedby="sp-tooltip" data-tooltip="Visible Search Engines">
-                <img src="assets/static-pages/icon-language.svg" alt="" width="24" height="24" />
-              </button>
-              <div class="bld-flyout mdl-visible" id="unt-visible-panel" hidden>
-                <p class="bld-title">Visible to Search Engines</p>
-                <div class="bld-choices" data-choice="visible">
-                  <button type="button" class="bld-choice is-selected" data-value="global" aria-pressed="true">Use Global Settings <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice" data-value="yes" aria-pressed="false">Yes <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                  <button type="button" class="bld-choice" data-value="no" aria-pressed="false">No <img src="assets/static-pages/icon-choice-check.svg" alt="" width="24" height="24" /></button>
-                </div>
-                <p class="bld-title bld-split">Use Canonical URL</p>
-                <input class="mdl-canonical" type="text" aria-label="Canonical URL" />
               </div>
             </div>
           </div>
@@ -1593,26 +1456,26 @@
           </div>
           <ul class="sp-pages-list" id="module-pages-list">
             <li>
-              <button type="button" class="sp-pages-item" data-page-name="Home">Home</button>
+              <button type="button" class="sp-pages-item" data-page-name="Home" data-settings="home">Home</button>
             </li>
             <li>
-              <button type="button" class="sp-pages-item" data-page-name="Golf Course">Golf Course</button>
+              <button type="button" class="sp-pages-item" data-page-name="Golf Course" data-settings="golf">Golf Course</button>
             </li>
             <li>
-              <button type="button" class="sp-pages-item" data-page-name="Pools &amp; Recreation">
+              <button type="button" class="sp-pages-item" data-page-name="Pools &amp; Recreation" data-settings="pools">
                 Pools &amp; Recreation
               </button>
             </li>
             <li>
-              <button type="button" class="sp-pages-item" data-page-name="Weddings &amp; Events">
+              <button type="button" class="sp-pages-item" data-page-name="Weddings &amp; Events" data-settings="weddings">
                 Weddings &amp; Events
               </button>
             </li>
             <li>
-              <button type="button" class="sp-pages-item" data-page-name="About Us">About Us</button>
+              <button type="button" class="sp-pages-item" data-page-name="About Us" data-settings="about">About Us</button>
             </li>
             <li>
-              <button type="button" class="sp-pages-item" data-page-name="Contact">Contact</button>
+              <button type="button" class="sp-pages-item" data-page-name="Contact" data-settings="contact">Contact</button>
             </li>
           </ul>
         </section>
@@ -1647,6 +1510,7 @@
                 type="button"
                 class="sp-pages-item is-selected"
                 data-page-name="Property Page"
+                data-settings="property"
                 aria-current="true"
               >
                 <span>Property Page</span>
@@ -1660,15 +1524,126 @@
               </button>
             </li>
             <li>
-              <button type="button" class="sp-pages-item" data-page-name="Booking">Booking</button>
+              <button type="button" class="sp-pages-item" data-page-name="Booking" data-settings="booking">Booking</button>
             </li>
             <li>
-              <button type="button" class="sp-pages-item" data-page-name="Confirmation Page">
+              <button type="button" class="sp-pages-item" data-page-name="Confirmation Page" data-settings="confirmation">
                 Confirmation Page
               </button>
             </li>
           </ul>
         </section>
+
+        <hr class="sp-pages-divider" />
+
+        <section class="sp-pages-section" data-pages-section="ifpb" aria-labelledby="ifpb-pages-heading">
+          <div class="sp-pages-section-head">
+            <div class="sp-pages-section-copy">
+              <h3 class="sp-pages-section-title" id="ifpb-pages-heading">IFPB</h3>
+              <p class="sp-pages-section-desc">
+                Customize building, sitemap, model, and unit pages within a predefined layout.
+              </p>
+            </div>
+            <button
+              type="button"
+              class="sp-pages-section-toggle"
+              aria-expanded="true"
+              aria-controls="ifpb-pages-list"
+              aria-label="Collapse IFPB"
+            >
+              <img src="assets/static-pages/icon-chevron-up.svg" alt="" width="11" height="7" />
+            </button>
+          </div>
+          <ul class="sp-pages-list" id="ifpb-pages-list">
+            <li>
+              <div class="sp-pages-item" data-page-name="Building Page" data-settings="building">
+                <button type="button" class="sp-pages-item-select"><span>Building Page</span></button>
+                <button type="button" class="sp-pages-item-open" aria-label="Open Building Page settings" aria-expanded="false" aria-controls="page-settings">
+                  <img class="sp-pages-item-chevron" src="assets/static-pages/icon-angle-right.svg" alt="" width="7" height="11" />
+                </button>
+              </div>
+            </li>
+            <li>
+              <div class="sp-pages-item" data-page-name="Sitemap Page" data-settings="sitemap">
+                <button type="button" class="sp-pages-item-select"><span>Sitemap Page</span></button>
+                <button type="button" class="sp-pages-item-open" aria-label="Open Sitemap Page settings" aria-expanded="false" aria-controls="page-settings">
+                  <img class="sp-pages-item-chevron" src="assets/static-pages/icon-angle-right.svg" alt="" width="7" height="11" />
+                </button>
+              </div>
+            </li>
+            <li>
+              <div class="sp-pages-item" data-page-name="Model Page" data-settings="model">
+                <button type="button" class="sp-pages-item-select"><span>Model Page</span></button>
+                <button type="button" class="sp-pages-item-open" aria-label="Open Model Page settings" aria-expanded="false" aria-controls="page-settings">
+                  <img class="sp-pages-item-chevron" src="assets/static-pages/icon-angle-right.svg" alt="" width="7" height="11" />
+                </button>
+              </div>
+            </li>
+            <li>
+              <div class="sp-pages-item" data-page-name="Unit Page" data-settings="unit">
+                <button type="button" class="sp-pages-item-select"><span>Unit Page</span></button>
+                <button type="button" class="sp-pages-item-open" aria-label="Open Unit Page settings" aria-expanded="false" aria-controls="page-settings">
+                  <img class="sp-pages-item-chevron" src="assets/static-pages/icon-angle-right.svg" alt="" width="7" height="11" />
+                </button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </aside>
+
+    <aside
+      class="sp-page-settings"
+      id="page-settings"
+      role="dialog"
+      aria-labelledby="page-settings-title"
+      hidden
+    >
+      <header class="sp-page-settings-header">
+        <h2 class="sp-page-settings-title" id="page-settings-title">Building Page Settings</h2>
+        <button type="button" class="sp-pages-flyout-close" id="page-settings-close" aria-label="Close page settings">
+          <img src="assets/static-pages/icon-close.svg" alt="" width="24" height="24" />
+        </button>
+      </header>
+      <div class="sp-page-settings-bar">
+        <div class="sp-page-settings-tabs" role="tablist" aria-label="Page settings">
+          <button type="button" class="sp-page-settings-tab" role="tab" data-settings-tab="general" aria-selected="false" aria-controls="page-settings-general">General</button>
+          <button type="button" class="sp-page-settings-tab" role="tab" data-settings-tab="seo" aria-selected="true" aria-controls="page-settings-seo">SEO</button>
+          <button type="button" class="sp-page-settings-tab" role="tab" data-settings-tab="layout" aria-selected="false" aria-controls="page-settings-layout">Layout</button>
+          <button type="button" class="sp-page-settings-tab" role="tab" data-settings-tab="history" aria-selected="false" aria-controls="page-settings-history">Page History</button>
+        </div>
+        <button type="button" class="sp-page-settings-goto" id="page-settings-goto">Go to Page</button>
+      </div>
+      <div class="sp-page-settings-body">
+        <div class="sp-page-settings-pane" id="page-settings-general" data-settings-panel="general" role="tabpanel" hidden></div>
+        <div class="sp-page-settings-pane sp-page-settings-seo" id="page-settings-seo" data-settings-panel="seo" role="tabpanel">
+          <h3 class="sp-seo-heading">SEO Page Settings</h3>
+          <p class="sp-seo-kicker">Search Result Preview</p>
+          <div class="sp-seo-preview">
+            <p class="sp-seo-preview-title" id="page-settings-preview-title">[screen_title] [separator] [site_title]</p>
+            <p class="sp-seo-preview-url" id="page-settings-preview-url">https://www.livingappletree.com/buildings/1</p>
+            <p class="sp-seo-preview-desc" id="page-settings-preview-desc">Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!</p>
+          </div>
+          <label class="bld-field">
+            <span>Page Title</span>
+            <input type="text" id="page-settings-seo-title" value="[screen_title] [separator] [site_title]" />
+          </label>
+          <label class="bld-field bld-field-area">
+            <span>Meta Description</span>
+            <textarea id="page-settings-seo-description" rows="5">Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!</textarea>
+          </label>
+          <p class="sp-seo-note">Important: For optimal SEO, provide a unique page title and description. If left blank, will default to the site's settings.</p>
+          <section class="sp-seo-share">
+            <h3 class="sp-seo-heading">Share Image (Optional)</h3>
+            <label class="sp-seo-share-field">
+              <input type="file" id="page-settings-share" accept="image/*" />
+              <img id="page-settings-share-preview" alt="" hidden />
+              <span id="page-settings-share-label">Choose image</span>
+            </label>
+          </section>
+        </div>
+        <div class="sp-page-settings-pane" id="page-settings-layout" data-settings-panel="layout" role="tabpanel" hidden></div>
+        <div class="sp-page-settings-pane" id="page-settings-history" data-settings-panel="history" role="tabpanel" hidden></div>
       </div>
     </aside>
 
@@ -1812,6 +1787,6 @@
 
     <div class="sp-tooltip" id="sp-tooltip" role="tooltip" hidden></div>
     <p class="sr-only" id="live" aria-live="polite"></p>
-    <script src="static-pages.js?v=33"></script>
+    <script src="static-pages.js?v=37"></script>
   </body>
 </html>

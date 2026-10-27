@@ -307,17 +307,60 @@ function setPagesRailActive(active) {
 
 function closePagesFlyout() {
   if (!pagesFlyout) return;
+  closePageSettings();
   pagesFlyout.hidden = true;
   setPagesRailActive(false);
+}
+
+function setPagesSectionExpanded(section, expanded) {
+  if (!section) return;
+  section.classList.toggle("is-collapsed", !expanded);
+  const toggle = section.querySelector(".sp-pages-section-toggle");
+  if (!toggle) return;
+  toggle.setAttribute("aria-expanded", String(expanded));
+  const label = section.querySelector(".sp-pages-section-title")?.textContent || "section";
+  toggle.setAttribute("aria-label", `${expanded ? "Collapse" : "Expand"} ${label}`);
+}
+
+function currentPagesCategory() {
+  const active = pageMenu?.querySelector(".sp-page-entries [role='option'][aria-selected='true']");
+  const category = active?.closest(".sp-page-group")?.dataset.category;
+  if (category) return category;
+  return pagesFlyout?.querySelector(".sp-pages-item.is-selected")?.closest(".sp-pages-section")?.dataset.pagesSection || "";
+}
+
+function syncPagesSectionVisibility() {
+  if (!pagesFlyout) return;
+  const query = pagesSearch?.value.trim().toLowerCase() || "";
+  if (!query) {
+    const category = currentPagesCategory();
+    pagesFlyout.querySelectorAll(".sp-pages-section").forEach((section) => {
+      setPagesSectionExpanded(section, !category || section.dataset.pagesSection === category);
+    });
+    return;
+  }
+  pagesFlyout.querySelectorAll(".sp-pages-section").forEach((section) => {
+    const hasMatch = [...section.querySelectorAll(".sp-pages-item")].some((item) => {
+      const row = item.closest("li");
+      return row ? !row.hidden : !item.hidden;
+    });
+    setPagesSectionExpanded(section, hasMatch);
+  });
 }
 
 function openPagesFlyout() {
   if (!pagesFlyout) return;
   closeOptionsPanel();
   closeMenus({ keepPages: true });
+  syncPagesSectionVisibility();
   pagesFlyout.hidden = false;
   setPagesRailActive(true);
   pagesSearch?.focus();
+  const selected = pagesFlyout.querySelector(".sp-pages-item.is-selected");
+  const section = selected?.closest(".sp-pages-section");
+  if (selected && section && !section.classList.contains("is-collapsed")) {
+    selected.scrollIntoView({ block: "nearest" });
+  }
 }
 
 function clampOptionsPosition(left, top) {
@@ -905,6 +948,7 @@ pagesSearch?.addEventListener("input", () => {
     if (row) row.hidden = !match;
     else item.hidden = !match;
   });
+  syncPagesSectionVisibility();
 });
 
 pagesFlyout?.querySelectorAll(".sp-pages-section-toggle").forEach((toggle) => {
@@ -912,25 +956,236 @@ pagesFlyout?.querySelectorAll(".sp-pages-section-toggle").forEach((toggle) => {
     event.stopPropagation();
     const section = toggle.closest(".sp-pages-section");
     if (!section) return;
-    const expanded = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", String(!expanded));
-    section.classList.toggle("is-collapsed", expanded);
-    const label = section.querySelector(".sp-pages-section-title")?.textContent || "section";
-    toggle.setAttribute("aria-label", `${expanded ? "Expand" : "Collapse"} ${label}`);
+    setPagesSectionExpanded(section, toggle.getAttribute("aria-expanded") !== "true");
   });
 });
 
+function selectPagesItem(item) {
+  if (!pagesFlyout || !item) return;
+  pagesFlyout.querySelectorAll(".sp-pages-item").forEach((other) => {
+    const selected = other === item;
+    other.classList.toggle("is-selected", selected);
+    if (selected) other.setAttribute("aria-current", "true");
+    else other.removeAttribute("aria-current");
+  });
+  if (pageSettings && !pageSettings.hidden) {
+    if (item.dataset.settings) applyPageSettings(item);
+    else closePageSettings();
+  }
+}
+
+const MANAGED_PAGE_ALIASES = {
+  "Contact Us": "Contact",
+};
+
+function syncManagedPageSelection(name) {
+  if (!pagesFlyout) return;
+  const managedName = MANAGED_PAGE_ALIASES[name] || name;
+  const items = [...pagesFlyout.querySelectorAll(".sp-pages-item")];
+  const match = managedName ? items.find((item) => item.dataset.pageName === managedName) : null;
+  if (match) {
+    selectPagesItem(match);
+    return;
+  }
+  const selected = items.find((item) => item.classList.contains("is-selected"));
+  const ifpb = ["building", "sitemap", "model", "unit"].includes(selected?.dataset.settings);
+  if (!ifpb) return;
+  selectPagesItem(items.find((item) => item.dataset.pageName === "Property Page") || selected);
+  closePageSettings();
+}
+
 pagesFlyout?.querySelectorAll(".sp-pages-item").forEach((item) => {
   item.addEventListener("click", (event) => {
+    if (event.target.closest(".sp-pages-item-open")) return;
     event.stopPropagation();
-    pagesFlyout.querySelectorAll(".sp-pages-item").forEach((other) => {
-      const selected = other === item;
-      other.classList.toggle("is-selected", selected);
-      if (selected) other.setAttribute("aria-current", "true");
-      else other.removeAttribute("aria-current");
-    });
+    if (event.target.closest(".sp-pages-item-chevron")) {
+      openPageSettings(item);
+      return;
+    }
+    selectPagesItem(item);
     announce(`${item.dataset.pageName || item.textContent.trim()} selected`);
   });
+});
+
+const pageSettings = document.querySelector("#page-settings");
+const pageSettingsTitle = document.querySelector("#page-settings-title");
+const pageSettingsSeoTitle = document.querySelector("#page-settings-seo-title");
+const pageSettingsSeoDescription = document.querySelector("#page-settings-seo-description");
+const pageSettingsPreviewTitle = document.querySelector("#page-settings-preview-title");
+const pageSettingsPreviewUrl = document.querySelector("#page-settings-preview-url");
+const pageSettingsPreviewDesc = document.querySelector("#page-settings-preview-desc");
+const pageSettingsShare = document.querySelector("#page-settings-share");
+const pageSettingsSharePreview = document.querySelector("#page-settings-share-preview");
+const pageSettingsShareLabel = document.querySelector("#page-settings-share-label");
+let pageSettingsKey = null;
+const pageSeoState = {};
+const PAGE_SEO_URLS = {
+  building: "https://www.livingappletree.com/buildings/1",
+  sitemap: "https://www.livingappletree.com/buildings/1/floors/1",
+  model: "https://www.livingappletree.com/models/A1",
+  unit: "https://www.livingappletree.com/units/12001",
+};
+const PAGE_SEO_TITLE = "[screen_title] [separator] [site_title]";
+const PAGE_SEO_DESCRIPTION =
+  'Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!';
+
+function defaultPageSeo() {
+  return {
+    title: PAGE_SEO_TITLE,
+    description: PAGE_SEO_DESCRIPTION,
+    shareUrl: "",
+  };
+}
+
+function pageSeo(key) {
+  if (!pageSeoState[key]) pageSeoState[key] = defaultPageSeo();
+  return pageSeoState[key];
+}
+
+function syncSeoPreview(key) {
+  const title = pageSettingsSeoTitle?.value.trim() || PAGE_SEO_TITLE;
+  const description = pageSettingsSeoDescription?.value.trim() || PAGE_SEO_DESCRIPTION;
+  if (pageSettingsPreviewTitle) pageSettingsPreviewTitle.textContent = title;
+  if (pageSettingsPreviewDesc) pageSettingsPreviewDesc.textContent = description;
+  if (pageSettingsPreviewUrl) {
+    pageSettingsPreviewUrl.textContent = PAGE_SEO_URLS[key] || "https://www.livingappletree.com/";
+  }
+}
+
+function renderShareImage(url) {
+  if (!pageSettingsSharePreview || !pageSettingsShareLabel) return;
+  if (url) {
+    pageSettingsSharePreview.src = url;
+    pageSettingsSharePreview.hidden = false;
+    pageSettingsShareLabel.textContent = "Replace image";
+  } else {
+    pageSettingsSharePreview.removeAttribute("src");
+    pageSettingsSharePreview.hidden = true;
+    pageSettingsShareLabel.textContent = "Choose image";
+  }
+}
+
+function readPageSeo(key) {
+  if (!key || !pageSettingsSeoTitle) return;
+  const state = pageSeo(key);
+  state.title = pageSettingsSeoTitle.value;
+  state.description = pageSettingsSeoDescription.value;
+}
+
+function writePageSeo(key) {
+  const state = pageSeo(key);
+  if (pageSettingsSeoTitle) pageSettingsSeoTitle.value = state.title;
+  if (pageSettingsSeoDescription) pageSettingsSeoDescription.value = state.description;
+  if (pageSettingsShare) pageSettingsShare.value = "";
+  renderShareImage(state.shareUrl);
+  syncSeoPreview(key);
+}
+
+function applyPageSettings(item) {
+  const key = item?.dataset.settings;
+  if (!key) return;
+  if (pageSettingsKey) readPageSeo(pageSettingsKey);
+  pageSettingsKey = key;
+  writePageSeo(key);
+  if (pageSettingsTitle) pageSettingsTitle.textContent = `${item.dataset.pageName} Settings`;
+  pagesFlyout?.querySelectorAll(".sp-pages-item-open").forEach((button) => {
+    button.setAttribute("aria-expanded", String(button.closest(".sp-pages-item") === item));
+  });
+}
+
+function showSettingsTab(name) {
+  pageSettings?.querySelectorAll("[data-settings-tab]").forEach((tab) => {
+    tab.setAttribute("aria-selected", String(tab.dataset.settingsTab === name));
+  });
+  pageSettings?.querySelectorAll("[data-settings-panel]").forEach((panel) => {
+    panel.hidden = panel.dataset.settingsPanel !== name;
+  });
+}
+
+function openPageSettings(item) {
+  if (!item?.dataset.settings || !pageSettings) return;
+  if (pagesFlyout?.hidden) openPagesFlyout();
+  selectPagesItem(item);
+  pageSettings.hidden = false;
+  pagesFlyout?.classList.add("is-settings-open");
+  applyPageSettings(item);
+  showSettingsTab("seo");
+  announce(`${item.dataset.pageName} settings`);
+}
+
+function closePageSettings() {
+  if (!pageSettings || pageSettings.hidden) {
+    pagesFlyout?.classList.remove("is-settings-open");
+    return;
+  }
+  readPageSeo(pageSettingsKey);
+  pageSettingsKey = null;
+  pageSettings.hidden = true;
+  pagesFlyout?.classList.remove("is-settings-open");
+  pagesFlyout?.querySelectorAll(".sp-pages-item-open").forEach((button) => {
+    button.setAttribute("aria-expanded", "false");
+  });
+}
+
+pagesFlyout?.querySelectorAll(".sp-pages-item-open").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    event.stopPropagation();
+    openPageSettings(button.closest(".sp-pages-item"));
+  });
+});
+
+pageSettings?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  const choice = event.target.closest(".bld-choice");
+  if (!choice) return;
+  choice.parentElement.querySelectorAll(".bld-choice").forEach((item) => {
+    const on = item === choice;
+    item.classList.toggle("is-selected", on);
+    item.setAttribute("aria-pressed", String(on));
+  });
+});
+
+pageSettings?.querySelectorAll("[data-settings-tab]").forEach((tab) => {
+  tab.addEventListener("click", () => showSettingsTab(tab.dataset.settingsTab));
+});
+
+function rememberSeoField() {
+  if (pageSettingsKey) readPageSeo(pageSettingsKey);
+  syncSeoPreview(pageSettingsKey);
+}
+
+pageSettingsSeoTitle?.addEventListener("input", rememberSeoField);
+pageSettingsSeoDescription?.addEventListener("input", rememberSeoField);
+
+pageSettingsShare?.addEventListener("change", () => {
+  if (!pageSettingsKey) return;
+  const file = pageSettingsShare.files?.[0];
+  const state = pageSeo(pageSettingsKey);
+  if (!file) {
+    state.shareUrl = "";
+    renderShareImage("");
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = () => {
+    state.shareUrl = String(reader.result || "");
+    renderShareImage(state.shareUrl);
+  };
+  reader.readAsDataURL(file);
+});
+
+document.querySelector("#page-settings-close")?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  closePageSettings();
+  announce("Page settings closed");
+});
+
+document.querySelector("#page-settings-goto")?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  const item = pagesFlyout?.querySelector(".sp-pages-item.is-selected");
+  const name = item?.dataset.pageName || "";
+  if (name) goToManagedPage(name);
+  else closePagesFlyout();
 });
 
 colorsPanel?.addEventListener("click", (event) => {
@@ -953,7 +1208,8 @@ document.addEventListener("click", (event) => {
     event.target.closest("#options-panel") ||
     event.target.closest("#options-trigger") ||
     event.target.closest("#pages-flyout") ||
-    event.target.closest("#pages-trigger")
+    event.target.closest("#pages-trigger") ||
+    event.target.closest("#page-settings")
   ) {
     return;
   }
@@ -1085,58 +1341,89 @@ pageFilterPanel?.querySelectorAll(".sp-sections-option").forEach((button) => {
 
 syncPageFilterState();
 
-pageMenu.querySelectorAll(".sp-page-entries [role='option']").forEach((button) => {
-  button.addEventListener("click", () => {
-    pageMenu.querySelectorAll(".sp-page-entries [role='option']").forEach((item) => {
-      item.setAttribute("aria-selected", String(item === button));
-    });
-    pageName.textContent = button.dataset.page;
-    if (button.dataset.canvas === "building") {
-      showBuildingPage();
-      announce(`Loaded ${button.dataset.page}`);
-      closeMenus();
-      return;
-    }
-    if (button.dataset.canvas === "sitemap") {
-      showSitemapPage();
-      announce(`Loaded ${button.dataset.page}`);
-      closeMenus();
-      return;
-    }
-    if (button.dataset.canvas === "model") {
-      showModelPage();
-      announce(`Loaded ${button.dataset.page}`);
-      closeMenus();
-      return;
-    }
-    if (button.dataset.canvas === "unit") {
-      showUnitPage();
-      announce(`Loaded ${button.dataset.page}`);
-      closeMenus();
-      return;
-    }
-    if (button.dataset.pending === "true") {
-      announce(`Selected ${button.dataset.page}`);
-      closeMenus();
-      return;
-    }
-    showLivePage();
-    const absoluteUrl = button.dataset.url || LIVE_REMOTE;
-    let remotePath = LIVE_PATH;
-    try {
-      remotePath = button.dataset.url ? new URL(button.dataset.url).pathname || "/" : LIVE_PATH;
-    } catch {
-      remotePath = LIVE_PATH;
-    }
-    iframe.dataset.remotePath = remotePath;
-    iframe.dataset.remoteUrl = absoluteUrl;
-    hidePreviewFallback();
-    iframe.src = previewSrc(remotePath, absoluteUrl);
-    iframe.title = `${button.dataset.page} — live page`;
-    if (fallbackLink) fallbackLink.href = absoluteUrl;
+function editorPageOption(name) {
+  const names = [name];
+  const alias = MANAGED_PAGE_ALIASES[name];
+  if (alias) names.push(alias);
+  const reverse = Object.entries(MANAGED_PAGE_ALIASES).find(([, managed]) => managed === name);
+  if (reverse) names.push(reverse[0]);
+  for (const candidate of names) {
+    const button = pageMenu?.querySelector(
+      `.sp-page-entries [role='option'][data-page="${CSS.escape(candidate)}"]`
+    );
+    if (button) return button;
+  }
+  return null;
+}
+
+function activateEditorPage(button) {
+  if (!button) return;
+  pageMenu.querySelectorAll(".sp-page-entries [role='option']").forEach((item) => {
+    item.setAttribute("aria-selected", String(item === button));
+  });
+  pageName.textContent = button.dataset.page;
+  if (button.dataset.canvas === "building") {
+    showBuildingPage();
     announce(`Loaded ${button.dataset.page}`);
     closeMenus();
-  });
+    return;
+  }
+  if (button.dataset.canvas === "sitemap") {
+    showSitemapPage();
+    announce(`Loaded ${button.dataset.page}`);
+    closeMenus();
+    return;
+  }
+  if (button.dataset.canvas === "model") {
+    showModelPage();
+    announce(`Loaded ${button.dataset.page}`);
+    closeMenus();
+    return;
+  }
+  if (button.dataset.canvas === "unit") {
+    showUnitPage();
+    announce(`Loaded ${button.dataset.page}`);
+    closeMenus();
+    return;
+  }
+  if (button.dataset.pending === "true") {
+    showLivePage(button.dataset.page);
+    announce(`Loaded ${button.dataset.page}`);
+    closeMenus();
+    return;
+  }
+  showLivePage(button.dataset.page);
+  const absoluteUrl = button.dataset.url || LIVE_REMOTE;
+  let remotePath = LIVE_PATH;
+  try {
+    remotePath = button.dataset.url ? new URL(button.dataset.url).pathname || "/" : LIVE_PATH;
+  } catch {
+    remotePath = LIVE_PATH;
+  }
+  iframe.dataset.remotePath = remotePath;
+  iframe.dataset.remoteUrl = absoluteUrl;
+  hidePreviewFallback();
+  iframe.src = previewSrc(remotePath, absoluteUrl);
+  iframe.title = `${button.dataset.page} — live page`;
+  if (fallbackLink) fallbackLink.href = absoluteUrl;
+  announce(`Loaded ${button.dataset.page}`);
+  closeMenus();
+}
+
+function goToManagedPage(name) {
+  const button = editorPageOption(name);
+  if (button) {
+    activateEditorPage(button);
+    return;
+  }
+  if (pageName) pageName.textContent = name;
+  showLivePage(name);
+  announce(`Loaded ${name}`);
+  closeMenus();
+}
+
+pageMenu.querySelectorAll(".sp-page-entries [role='option']").forEach((button) => {
+  button.addEventListener("click", () => activateEditorPage(button));
 });
 
 sectionsPanel.addEventListener("click", (event) => {
@@ -1517,6 +1804,7 @@ function showBuildingPage() {
   }
   if (iframe) iframe.hidden = true;
   if (fallback) fallback.hidden = true;
+  syncManagedPageSelection("Building Page");
 }
 
 function showSitemapPage() {
@@ -1542,6 +1830,7 @@ function showSitemapPage() {
   }
   if (iframe) iframe.hidden = true;
   if (fallback) fallback.hidden = true;
+  syncManagedPageSelection("Sitemap Page");
 }
 
 function showModelPage() {
@@ -1568,6 +1857,7 @@ function showModelPage() {
   if (iframe) iframe.hidden = true;
   if (fallback) fallback.hidden = true;
   syncOptionsContent();
+  syncManagedPageSelection("Model Page");
 }
 
 function showUnitPage() {
@@ -1593,9 +1883,10 @@ function showUnitPage() {
   if (iframe) iframe.hidden = true;
   if (fallback) fallback.hidden = true;
   syncOptionsContent();
+  syncManagedPageSelection("Unit Page");
 }
 
-function showLivePage() {
+function showLivePage(managedName) {
   document.body.classList.remove("is-building", "is-sitemap", "is-model", "is-unit");
   closeBuildingFlyouts();
   closeSitemapFlyouts();
@@ -1611,6 +1902,7 @@ function showLivePage() {
   if (unitFrame) unitFrame.hidden = true;
   if (iframe) iframe.hidden = false;
   syncOptionsContent();
+  syncManagedPageSelection(managedName || "");
 }
 
 function buildingSectionButtons() {
