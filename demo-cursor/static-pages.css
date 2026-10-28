@@ -1883,10 +1883,26 @@
   padding: 28px 32px 40px;
 }
 
-.sp-page-settings-seo {
+.sp-page-settings-seo,
+.sp-page-settings-engines {
   display: flex;
   flex-direction: column;
   max-width: 520px;
+}
+
+.sp-page-settings-seo[hidden],
+.sp-page-settings-engines[hidden],
+.sp-page-settings-tab[hidden] {
+  display: none;
+}
+
+.sp-page-settings-engines .bld-choices {
+  margin-bottom: 8px;
+}
+
+.sp-page-settings-engines .bld-split {
+  margin-top: 18px;
+  padding-top: 20px;
 }
 
 .sp-seo-heading {

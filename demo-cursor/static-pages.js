@@ -1017,7 +1017,11 @@ const pageSettingsPreviewDesc = document.querySelector("#page-settings-preview-d
 const pageSettingsShare = document.querySelector("#page-settings-share");
 const pageSettingsSharePreview = document.querySelector("#page-settings-share-preview");
 const pageSettingsShareLabel = document.querySelector("#page-settings-share-label");
+const pageSettingsCanonical = document.querySelector("#page-settings-canonical");
 let pageSettingsKey = null;
+const ENGINES_PAGES = new Set(["model", "unit"]);
+const BASIC_PAGES = new Set(["building", "sitemap"]);
+const pageEngineState = {};
 const pageSeoState = {};
 const PAGE_SEO_URLS = {
   building: "https://www.livingappletree.com/buildings/1",
@@ -1081,12 +1085,52 @@ function writePageSeo(key) {
   syncSeoPreview(key);
 }
 
+function pageEngine(key) {
+  if (!pageEngineState[key]) pageEngineState[key] = { visible: "global", canonical: "" };
+  return pageEngineState[key];
+}
+
+function readPageEngines(key) {
+  if (!key || !ENGINES_PAGES.has(key)) return;
+  const state = pageEngine(key);
+  const selected = pageSettings?.querySelector("#page-settings-engines .bld-choice.is-selected");
+  state.visible = selected?.dataset.value || "global";
+  state.canonical = pageSettingsCanonical?.value || "";
+}
+
+function writePageEngines(key) {
+  const state = pageEngine(key);
+  pageSettings?.querySelectorAll("#page-settings-engines .bld-choice").forEach((item) => {
+    const on = item.dataset.value === state.visible;
+    item.classList.toggle("is-selected", on);
+    item.setAttribute("aria-pressed", String(on));
+  });
+  if (pageSettingsCanonical) pageSettingsCanonical.value = state.canonical;
+}
+
+function syncSettingsTabs(key) {
+  const engines = ENGINES_PAGES.has(key);
+  const basic = BASIC_PAGES.has(key);
+  pageSettings?.querySelectorAll("[data-settings-tab]").forEach((tab) => {
+    const only = tab.dataset.settingsOnly;
+    if (only === "engines") tab.hidden = !engines;
+    if (only === "standard") tab.hidden = engines || basic;
+  });
+  const selected = pageSettings?.querySelector('[data-settings-tab][aria-selected="true"]');
+  if (!selected || selected.hidden) showSettingsTab("seo");
+}
+
 function applyPageSettings(item) {
   const key = item?.dataset.settings;
   if (!key) return;
-  if (pageSettingsKey) readPageSeo(pageSettingsKey);
+  if (pageSettingsKey) {
+    readPageSeo(pageSettingsKey);
+    readPageEngines(pageSettingsKey);
+  }
   pageSettingsKey = key;
   writePageSeo(key);
+  writePageEngines(key);
+  syncSettingsTabs(key);
   if (pageSettingsTitle) pageSettingsTitle.textContent = `${item.dataset.pageName} Settings`;
   pagesFlyout?.querySelectorAll(".sp-pages-item-open").forEach((button) => {
     button.setAttribute("aria-expanded", String(button.closest(".sp-pages-item") === item));
@@ -1119,6 +1163,7 @@ function closePageSettings() {
     return;
   }
   readPageSeo(pageSettingsKey);
+  readPageEngines(pageSettingsKey);
   pageSettingsKey = null;
   pageSettings.hidden = true;
   pagesFlyout?.classList.remove("is-settings-open");
@@ -1143,6 +1188,7 @@ pageSettings?.addEventListener("click", (event) => {
     item.classList.toggle("is-selected", on);
     item.setAttribute("aria-pressed", String(on));
   });
+  readPageEngines(pageSettingsKey);
 });
 
 pageSettings?.querySelectorAll("[data-settings-tab]").forEach((tab) => {
@@ -1156,6 +1202,7 @@ function rememberSeoField() {
 
 pageSettingsSeoTitle?.addEventListener("input", rememberSeoField);
 pageSettingsSeoDescription?.addEventListener("input", rememberSeoField);
+pageSettingsCanonical?.addEventListener("input", () => readPageEngines(pageSettingsKey));
 
 pageSettingsShare?.addEventListener("change", () => {
   if (!pageSettingsKey) return;
