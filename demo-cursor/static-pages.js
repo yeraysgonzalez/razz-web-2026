@@ -1115,9 +1115,18 @@ function syncSettingsTabs(key) {
     const only = tab.dataset.settingsOnly;
     if (only === "engines") tab.hidden = !engines;
     if (only === "standard") tab.hidden = engines || basic;
+    if (only === "model") tab.hidden = true;
   });
+  const modelGeneral = document.querySelector("#page-settings-model-general");
+  if (modelGeneral) modelGeneral.hidden = key !== "model";
+  const unitGeneral = document.querySelector("#page-settings-unit-general");
+  if (unitGeneral) unitGeneral.hidden = key !== "unit";
+  const generalTab = pageSettings?.querySelector('[data-settings-tab="general"]');
+  if (generalTab) {
+    generalTab.textContent = ENGINES_PAGES.has(key) ? "Data & Pricing Settings" : "General";
+  }
   const selected = pageSettings?.querySelector('[data-settings-tab][aria-selected="true"]');
-  if (!selected || selected.hidden) showSettingsTab("seo");
+  if (!selected || selected.hidden) showSettingsTab("general");
 }
 
 function applyPageSettings(item) {
@@ -1131,20 +1140,160 @@ function applyPageSettings(item) {
   writePageSeo(key);
   writePageEngines(key);
   syncSettingsTabs(key);
+  showSettingsTab("general");
   if (pageSettingsTitle) pageSettingsTitle.textContent = `${item.dataset.pageName} Settings`;
   pagesFlyout?.querySelectorAll(".sp-pages-item-open").forEach((button) => {
     button.setAttribute("aria-expanded", String(button.closest(".sp-pages-item") === item));
   });
 }
 
+const TRACKED_PANES = {
+  general: "#page-settings-model-general",
+  display: "#page-settings-model-display",
+};
+const savedPaneState = {};
+let pendingSettingsTab = null;
+const pageSettingsUnsaved = document.querySelector("#page-settings-unsaved");
+
+function trackedRoot(name) {
+  if (name === "general") {
+    if (pageSettingsKey === "unit") return document.querySelector("#page-settings-unit-general");
+    if (pageSettingsKey === "model") return document.querySelector("#page-settings-model-general");
+    return null;
+  }
+  const selector = TRACKED_PANES[name];
+  return selector ? document.querySelector(selector) : null;
+}
+
+function stateBucket(name) {
+  return name === "general" ? `general:${pageSettingsKey}` : name;
+}
+
+function readPaneState(root) {
+  if (!root) return null;
+  return {
+    selects: [...root.querySelectorAll(".unit-select-value")].map((el) => el.textContent),
+    choices: [...root.querySelectorAll(".bld-choice")].map((el) => el.getAttribute("aria-pressed") === "true"),
+    switches: [...root.querySelectorAll(".unit-switch")].map((el) => el.getAttribute("aria-checked") === "true"),
+    fields: [...root.querySelectorAll("input, textarea")]
+      .filter((el) => el.type !== "file")
+      .map((el) => el.value),
+  };
+}
+
+function writePaneState(root, state) {
+  if (!root || !state) return;
+  root.querySelectorAll(".unit-select").forEach((select, index) => {
+    const value = state.selects[index] ?? "";
+    const label = select.querySelector(".unit-select-value");
+    if (label) label.textContent = value;
+    select.querySelectorAll(".unit-select-menu button").forEach((item) => {
+      item.setAttribute("aria-selected", String(item.textContent === value));
+    });
+  });
+  root.querySelectorAll(".bld-choice").forEach((item, index) => {
+    const on = Boolean(state.choices[index]);
+    item.classList.toggle("is-selected", on);
+    item.setAttribute("aria-pressed", String(on));
+  });
+  root.querySelectorAll(".unit-switch").forEach((item, index) => {
+    item.setAttribute("aria-checked", String(Boolean(state.switches[index])));
+  });
+  [...root.querySelectorAll("input, textarea")]
+    .filter((el) => el.type !== "file")
+    .forEach((el, index) => {
+      el.value = state.fields[index] ?? "";
+    });
+}
+
+function statesEqual(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function syncCanonicalField() {
+  const toggle = document.querySelector("#mdl-use-canonical");
+  const field = document.querySelector("#mdl-canonical-field");
+  if (!toggle || !field) return;
+  field.hidden = toggle.getAttribute("aria-checked") !== "true";
+}
+
+function currentTrackedTab() {
+  const selected = pageSettings?.querySelector('[data-settings-tab][aria-selected="true"]');
+  const name = selected?.dataset.settingsTab;
+  return TRACKED_PANES[name] ? name : null;
+}
+
+function isPaneDirty(name) {
+  const root = trackedRoot(name);
+  const saved = savedPaneState[stateBucket(name)];
+  if (!root || !saved) return false;
+  return !statesEqual(readPaneState(root), saved);
+}
+
+function setSaveVisible(name, visible) {
+  const save = trackedRoot(name)?.querySelector(".sp-settings-save");
+  if (save) save.hidden = !visible;
+}
+
+function refreshSaveButton() {
+  const name = currentTrackedTab();
+  if (!name) return;
+  setSaveVisible(name, isPaneDirty(name));
+}
+
+function commitPane(name) {
+  const root = trackedRoot(name);
+  if (!root) return;
+  savedPaneState[stateBucket(name)] = readPaneState(root);
+  setSaveVisible(name, false);
+}
+
+function revertPane(name) {
+  writePaneState(trackedRoot(name), savedPaneState[stateBucket(name)]);
+  syncCanonicalField();
+  setSaveVisible(name, false);
+}
+
+function hideUnsavedPrompt() {
+  pendingSettingsTab = null;
+  if (pageSettingsUnsaved) pageSettingsUnsaved.hidden = true;
+}
+
+function showUnsavedPrompt(nextTab) {
+  pendingSettingsTab = nextTab;
+  if (pageSettingsUnsaved) pageSettingsUnsaved.hidden = false;
+}
+
 function showSettingsTab(name) {
+  closeSettingsSelects();
   pageSettings?.querySelectorAll("[data-settings-tab]").forEach((tab) => {
     tab.setAttribute("aria-selected", String(tab.dataset.settingsTab === name));
   });
   pageSettings?.querySelectorAll("[data-settings-panel]").forEach((panel) => {
     panel.hidden = panel.dataset.settingsPanel !== name;
   });
+  syncCanonicalField();
+  refreshSaveButton();
 }
+
+function requestSettingsTab(name) {
+  const current = currentTrackedTab();
+  if (current === name) return;
+  if (pageSettingsUnsaved && !pageSettingsUnsaved.hidden) {
+    pendingSettingsTab = name;
+    return;
+  }
+  if (current && isPaneDirty(current)) {
+    showUnsavedPrompt(name);
+    return;
+  }
+  showSettingsTab(name);
+}
+
+savedPaneState["general:model"] = readPaneState(document.querySelector("#page-settings-model-general"));
+savedPaneState["general:unit"] = readPaneState(document.querySelector("#page-settings-unit-general"));
+savedPaneState.display = readPaneState(document.querySelector("#page-settings-model-display"));
+syncCanonicalField();
 
 function openPageSettings(item) {
   if (!item?.dataset.settings || !pageSettings) return;
@@ -1153,7 +1302,6 @@ function openPageSettings(item) {
   pageSettings.hidden = false;
   pagesFlyout?.classList.add("is-settings-open");
   applyPageSettings(item);
-  showSettingsTab("seo");
   announce(`${item.dataset.pageName} settings`);
 }
 
@@ -1179,20 +1327,93 @@ pagesFlyout?.querySelectorAll(".sp-pages-item-open").forEach((button) => {
   });
 });
 
+function closeSettingsSelects(except) {
+  pageSettings?.querySelectorAll(".unit-select-menu").forEach((menu) => {
+    if (menu === except) return;
+    menu.hidden = true;
+    menu.closest(".unit-select")?.querySelector(".unit-select-trigger")?.setAttribute("aria-expanded", "false");
+  });
+}
+
 pageSettings?.addEventListener("click", (event) => {
   event.stopPropagation();
+  const unsavedAction = event.target.closest("[data-unsaved]");
+  if (unsavedAction) {
+    const current = currentTrackedTab();
+    if (unsavedAction.dataset.unsaved === "save" && current) commitPane(current);
+    if (unsavedAction.dataset.unsaved === "discard" && current) revertPane(current);
+    const next = pendingSettingsTab;
+    hideUnsavedPrompt();
+    if (next) showSettingsTab(next);
+    if (unsavedAction.dataset.unsaved === "save") announce("Changes saved");
+    return;
+  }
+  const saveBtn = event.target.closest(".sp-settings-save-btn");
+  if (saveBtn) {
+    const name = saveBtn.closest("[data-save-for]")?.dataset.saveFor || currentTrackedTab();
+    if (name) commitPane(name);
+    announce("Changes saved");
+    return;
+  }
   const choice = event.target.closest(".bld-choice");
-  if (!choice) return;
-  choice.parentElement.querySelectorAll(".bld-choice").forEach((item) => {
-    const on = item === choice;
-    item.classList.toggle("is-selected", on);
-    item.setAttribute("aria-pressed", String(on));
-  });
-  readPageEngines(pageSettingsKey);
+  if (choice) {
+    const group = choice.parentElement;
+    if (group?.dataset.multi === "true") {
+      const on = choice.getAttribute("aria-pressed") !== "true";
+      choice.classList.toggle("is-selected", on);
+      choice.setAttribute("aria-pressed", String(on));
+    } else {
+      group?.querySelectorAll(".bld-choice").forEach((item) => {
+        const on = item === choice;
+        item.classList.toggle("is-selected", on);
+        item.setAttribute("aria-pressed", String(on));
+      });
+    }
+    readPageEngines(pageSettingsKey);
+    closeSettingsSelects();
+    refreshSaveButton();
+    return;
+  }
+  const option = event.target.closest("#page-settings .unit-select-menu button");
+  if (option) {
+    const select = option.closest(".unit-select");
+    const value = select?.querySelector(".unit-select-value");
+    if (value) value.textContent = option.textContent;
+    select?.querySelectorAll(".unit-select-menu button").forEach((item) => {
+      item.setAttribute("aria-selected", String(item === option));
+    });
+    closeSettingsSelects();
+    refreshSaveButton();
+    return;
+  }
+  const selectTrigger = event.target.closest("#page-settings .unit-select-trigger");
+  if (selectTrigger) {
+    const menu = selectTrigger.parentElement?.querySelector(".unit-select-menu");
+    const willOpen = Boolean(menu?.hidden);
+    closeSettingsSelects(willOpen ? menu : null);
+    if (menu) menu.hidden = !willOpen;
+    selectTrigger.setAttribute("aria-expanded", String(willOpen));
+    return;
+  }
+  const switchBtn = event.target.closest("#page-settings .unit-switch");
+  if (switchBtn) {
+    const on = switchBtn.getAttribute("aria-checked") !== "true";
+    switchBtn.setAttribute("aria-checked", String(on));
+    syncCanonicalField();
+    refreshSaveButton();
+    return;
+  }
+  closeSettingsSelects();
+});
+
+pageSettings?.addEventListener("input", (event) => {
+  if (event.target.closest("#page-settings-model-general, #page-settings-model-display, #page-settings-unit-general")) {
+    refreshSaveButton();
+  }
 });
 
 pageSettings?.querySelectorAll("[data-settings-tab]").forEach((tab) => {
-  tab.addEventListener("click", () => showSettingsTab(tab.dataset.settingsTab));
+  tab.addEventListener("click", () => requestSettingsTab(tab.dataset.settingsTab));
 });
 
 function rememberSeoField() {
@@ -1267,6 +1488,10 @@ document.addEventListener("click", (event) => {
 
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
+  if (pageSettingsUnsaved && !pageSettingsUnsaved.hidden) {
+    hideUnsavedPrompt();
+    return;
+  }
   closeMenus();
   closeOptionsPanel();
   closePagesFlyout();

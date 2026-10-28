@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="static-pages.css?v=46" />
+    <link rel="stylesheet" href="static-pages.css?v=49" />
   </head>
   <body class="sp-body">
     <a class="skip-link" href="#page-viewport">Skip to page canvas</a>
@@ -1607,8 +1607,9 @@
       </header>
       <div class="sp-page-settings-bar">
         <div class="sp-page-settings-tabs" role="tablist" aria-label="Page settings">
-          <button type="button" class="sp-page-settings-tab" role="tab" data-settings-tab="general" aria-selected="false" aria-controls="page-settings-general">General</button>
-          <button type="button" class="sp-page-settings-tab" role="tab" data-settings-tab="seo" aria-selected="true" aria-controls="page-settings-seo">SEO</button>
+          <button type="button" class="sp-page-settings-tab" role="tab" data-settings-tab="general" aria-selected="true" aria-controls="page-settings-general">Data &amp; Pricing Settings</button>
+          <button type="button" class="sp-page-settings-tab" role="tab" data-settings-tab="display" data-settings-only="model" aria-selected="false" aria-controls="page-settings-display" hidden>Display Settings</button>
+          <button type="button" class="sp-page-settings-tab" role="tab" data-settings-tab="seo" aria-selected="false" aria-controls="page-settings-seo">SEO</button>
           <button type="button" class="sp-page-settings-tab" role="tab" data-settings-tab="layout" data-settings-only="standard" aria-selected="false" aria-controls="page-settings-layout">Layout</button>
           <button type="button" class="sp-page-settings-tab" role="tab" data-settings-tab="history" data-settings-only="standard" aria-selected="false" aria-controls="page-settings-history">Page History</button>
           <button type="button" class="sp-page-settings-tab" role="tab" data-settings-tab="engines" data-settings-only="engines" aria-selected="false" aria-controls="page-settings-engines" hidden>Search Engines</button>
@@ -1616,8 +1617,415 @@
         <button type="button" class="sp-page-settings-goto" id="page-settings-goto">Go to Page</button>
       </div>
       <div class="sp-page-settings-body">
-        <div class="sp-page-settings-pane" id="page-settings-general" data-settings-panel="general" role="tabpanel" hidden></div>
-        <div class="sp-page-settings-pane sp-page-settings-seo" id="page-settings-seo" data-settings-panel="seo" role="tabpanel">
+        <div class="sp-page-settings-pane" id="page-settings-general" data-settings-panel="general" role="tabpanel">
+          <div class="sp-model-general" id="page-settings-model-general" hidden>
+            <section class="sp-settings-section">
+              <h3 class="sp-seo-heading">Model Settings</h3>
+              <div class="sp-settings-stack">
+                <div class="unit-select">
+                  <span class="unit-select-label">Model Price Label</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">$ /XX</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">$ /XX</button></li>
+                  </ul>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Model Price Per SQFT Label</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">$ /SQF</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">$ /SQF</button></li>
+                  </ul>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Model Base SQFT Label</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">BASE</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">BASE</button></li>
+                  </ul>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Model Base Price Label</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">PRICE ALL</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">PRICE ALL</button></li>
+                  </ul>
+                </div>
+                <div class="bld-choices" data-multi="true">
+                  <button type="button" class="bld-choice" data-value="override-apply" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Override Apply Button Copy</span></button>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Unit Availability</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">Soonest Available</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">Soonest Available</button></li>
+                  </ul>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Unit Availability Details By</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">Base Price</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">Base Price</button></li>
+                  </ul>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Model Priority Sorting By</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value"></span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true"></button></li>
+                  </ul>
+                </div>
+                <label class="bld-field">
+                  <span>Model Disclaimer Copy Title</span>
+                  <input type="text" aria-label="Model Disclaimer Copy Title" />
+                </label>
+                <label class="bld-field bld-field-area">
+                  <span>Model Disclaimer Copy</span>
+                  <textarea rows="5" aria-label="Model Disclaimer Copy">This model is considered an affordable home, and is subject to earning specific incomes. Ask our team for more details</textarea>
+                </label>
+              </div>
+            </section>
+            <section class="sp-settings-section">
+              <h3 class="sp-seo-heading">Model Data</h3>
+              <div class="sp-settings-stack">
+                <div class="unit-select">
+                  <span class="unit-select-label">Beds Managed By</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">Model</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">Model</button></li>
+                    <li><button type="button" role="option" aria-selected="false">Unit</button></li>
+                  </ul>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Square Feet Managed By</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">Model</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">Model</button></li>
+                    <li><button type="button" role="option" aria-selected="false">Unit</button></li>
+                  </ul>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Bathrooms Managed By</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">Model</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">Model</button></li>
+                    <li><button type="button" role="option" aria-selected="false">Unit</button></li>
+                  </ul>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Price Managed By</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">Minimum in Bathrooms</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="false">Model</button></li>
+                    <li><button type="button" role="option" aria-selected="false">Unit</button></li>
+                    <li><button type="button" role="option" aria-selected="true">Minimum in Bathrooms</button></li>
+                  </ul>
+                </div>
+                <div class="bld-choices" data-multi="true">
+                  <button type="button" class="bld-choice" data-value="show-unavailable" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Show Unavailable Models</span></button>
+                </div>
+                <div class="bld-choices" data-multi="true">
+                  <button type="button" class="bld-choice" data-value="disable-overlay" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Disable Unavailable Overlay</span></button>
+                </div>
+                <label class="bld-field">
+                  <span>Unavailable Models Label</span>
+                  <input type="text" value="Unavailable" aria-label="Unavailable Models Label" />
+                </label>
+                <label class="bld-field">
+                  <span>Unavailable Models Short Name</span>
+                  <input type="text" value="Contact us for more information" aria-label="Unavailable Models Short Name" />
+                </label>
+                <label class="bld-field">
+                  <span>Unavailable Models Long Name</span>
+                  <input type="text" value="Model Unavailable" aria-label="Unavailable Models Long Name" />
+                </label>
+              </div>
+            </section>
+            <section class="sp-settings-section">
+              <h3 class="sp-seo-heading">Hide Information</h3>
+              <div class="bld-choices" data-multi="true">
+                <button type="button" class="bld-choice" data-value="hide-model-name" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Model Name**</span></button>
+                <button type="button" class="bld-choice" data-value="hide-name" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Name**</span></button>
+                <button type="button" class="bld-choice" data-value="hide-deposit" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Deposit**</span></button>
+                <button type="button" class="bld-choice" data-value="hide-term" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Term**</span></button>
+                <button type="button" class="bld-choice" data-value="hide-floor" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Floor**</span></button>
+                <button type="button" class="bld-choice" data-value="hide-sqft" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Square Footage**</span></button>
+                <button type="button" class="bld-choice" data-value="hide-apply" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Apply Now Button</span></button>
+              </div>
+            </section>
+            <div class="sp-settings-save" data-save-for="general" hidden>
+              <button type="button" class="sp-settings-save-btn">Save</button>
+            </div>
+          </div>
+          <div class="sp-model-general" id="page-settings-unit-general" hidden>
+            <section class="sp-settings-section">
+              <h3 class="sp-seo-heading">Unit Settings</h3>
+              <div class="sp-settings-stack">
+                <div class="unit-select">
+                  <span class="unit-select-label">Unit Price Label</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">Starting at $1,200</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">Starting at $1,200</button></li>
+                  </ul>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Unit Price Per SQFT Label</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">$ /SQF</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">$ /SQF</button></li>
+                  </ul>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Unit Deposit Label</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">$400</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">$400</button></li>
+                  </ul>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Unit SQ. Ft. Label</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">900 sq. ft.</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">900 sq. ft.</button></li>
+                  </ul>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Unit Term/s Label</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">12 Months, Term Rent</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">12 Months, Term Rent</button></li>
+                  </ul>
+                </div>
+                <div class="bld-choices" data-multi="true">
+                  <button type="button" class="bld-choice" data-value="override-apply" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Override Apply Button Copy</span></button>
+                </div>
+                <label class="bld-field">
+                  <span>Unit Interest Copy Title</span>
+                  <input type="text" aria-label="Unit Interest Copy Title" />
+                </label>
+                <label class="bld-field bld-field-area">
+                  <span>Unit Interest Copy</span>
+                  <textarea rows="5" aria-label="Unit Interest Copy"></textarea>
+                </label>
+                <label class="bld-field">
+                  <span>Placeholder</span>
+                  <input type="text" aria-label="Placeholder" />
+                </label>
+              </div>
+            </section>
+            <section class="sp-settings-section">
+              <h3 class="sp-seo-heading">Unit Data</h3>
+              <div class="sp-settings-stack">
+                <label class="bld-field">
+                  <span>Disclaimer</span>
+                  <input type="text" value="Prices and availability subject to change without notice. Square footage is approximate" aria-label="Disclaimer" />
+                </label>
+                <div class="unit-select">
+                  <span class="unit-select-label">Bed Source</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">Unit</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">Unit</button></li>
+                  </ul>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Bath Source</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">Unit (Default)</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">Unit (Default)</button></li>
+                  </ul>
+                </div>
+                <div class="bld-choices" data-multi="true">
+                  <button type="button" class="bld-choice" data-value="building-custom-label" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Use Building Custom Label</span></button>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Building Source</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">Unit</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">Unit</button></li>
+                  </ul>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Floor/Level Source</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">Unit</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">Unit</button></li>
+                  </ul>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Deposit Source</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">Unit</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">Unit</button></li>
+                  </ul>
+                </div>
+                <div class="bld-choices" data-multi="true">
+                  <button type="button" class="bld-choice is-selected" data-value="show-unavailable" aria-pressed="true"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Show Unavailable Units</span></button>
+                  <button type="button" class="bld-choice" data-value="hide-terms-vacant" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Number of Terms List if Vacant</span></button>
+                  <button type="button" class="bld-choice is-selected" data-value="available-per-family" aria-pressed="true"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Available Per Family</span></button>
+                </div>
+                <label class="bld-field">
+                  <span>Available Per Family String</span>
+                  <input type="text" value="Buildings / Floors" aria-label="Available Per Family String" />
+                </label>
+              </div>
+            </section>
+            <section class="sp-settings-section">
+              <h3 class="sp-seo-heading">Hide Information</h3>
+              <div class="bld-choices" data-multi="true">
+                <button type="button" class="bld-choice" data-value="hide-price-range" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Price Range**</span></button>
+                <button type="button" class="bld-choice" data-value="hide-rent" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Rent**</span></button>
+                <button type="button" class="bld-choice" data-value="hide-deposit" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Deposit**</span></button>
+                <button type="button" class="bld-choice" data-value="hide-term" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Term**</span></button>
+                <button type="button" class="bld-choice" data-value="hide-floor" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Floor**</span></button>
+                <button type="button" class="bld-choice" data-value="hide-sqft" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Square Footage**</span></button>
+                <button type="button" class="bld-choice" data-value="hide-apply" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Apply Now Button</span></button>
+              </div>
+            </section>
+            <div class="sp-settings-save" data-save-for="general" hidden>
+              <button type="button" class="sp-settings-save-btn">Save</button>
+            </div>
+          </div>
+        </div>
+        <div class="sp-page-settings-pane" id="page-settings-display" data-settings-panel="display" role="tabpanel" hidden>
+          <div class="sp-model-general" id="page-settings-model-display">
+            <section class="sp-settings-section">
+              <h3 class="sp-seo-heading">Model Settings</h3>
+              <div class="sp-settings-stack">
+                <div class="unit-switch-row">
+                  <button type="button" class="unit-switch" role="switch" aria-checked="false" aria-labelledby="mdl-hide-screen-label">
+                    <img src="assets/static-pages/icon-unit-toggle.svg" alt="" width="39.375" height="21.875" />
+                  </button>
+                  <span id="mdl-hide-screen-label">Hide Screen**</span>
+                </div>
+                <div class="unit-select">
+                  <span class="unit-select-label">Side Panel Thumbnail</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">Auto</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">Auto</button></li>
+                  </ul>
+                </div>
+                <label class="bld-field bld-field-area sp-display-contact">
+                  <span>Contact Content</span>
+                  <textarea rows="8" aria-label="Contact Content">Let's Get in Touch
+[address]
+[phone link="true"]
+[social]
+
+Office Hours
+[office_hours]</textarea>
+                </label>
+                <label class="bld-field bld-field-area">
+                  <span>Model Disclaimer</span>
+                  <textarea rows="4" aria-label="Model Disclaimer">Contact us for more details on 'Affordable' and MFTE criteria.</textarea>
+                </label>
+              </div>
+            </section>
+            <section class="sp-settings-section">
+              <h3 class="sp-seo-heading">SEO Information</h3>
+              <div class="sp-settings-stack">
+                <label class="bld-field">
+                  <span>SEO Screen Title</span>
+                  <input type="text" value="[screen_title] [separator] [site_title]" aria-label="SEO Screen Title" />
+                </label>
+                <label class="bld-field bld-field-area">
+                  <span>SEO Screen Meta Description</span>
+                  <textarea rows="4" aria-label="SEO Screen Meta Description">Apartments for rent in [app key="address.city"] [app key="address.state"]. Contact us Today!</textarea>
+                </label>
+                <div class="unit-select">
+                  <span class="unit-select-label">Visible to search engines?</span>
+                  <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="unit-select-value">Use global setting</span>
+                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="11" height="6" />
+                  </button>
+                  <ul class="unit-select-menu" role="listbox" hidden>
+                    <li><button type="button" role="option" aria-selected="true">Use global setting</button></li>
+                    <li><button type="button" role="option" aria-selected="false">Yes</button></li>
+                    <li><button type="button" role="option" aria-selected="false">No</button></li>
+                  </ul>
+                </div>
+                <div class="unit-switch-row">
+                  <button type="button" class="unit-switch" id="mdl-use-canonical" role="switch" aria-checked="true" aria-labelledby="mdl-use-canonical-label">
+                    <img src="assets/static-pages/icon-unit-toggle.svg" alt="" width="39.375" height="21.875" />
+                  </button>
+                  <span id="mdl-use-canonical-label">Use Canonical URL</span>
+                </div>
+                <label class="bld-field" id="mdl-canonical-field">
+                  <span>Canonical URL</span>
+                  <input type="text" value="https://www.livingappletree.com/models" aria-label="Canonical URL" />
+                </label>
+              </div>
+            </section>
+            <div class="sp-settings-save" data-save-for="display" hidden>
+              <button type="button" class="sp-settings-save-btn">Save</button>
+            </div>
+          </div>
+        </div>
+        <div class="sp-page-settings-pane sp-page-settings-seo" id="page-settings-seo" data-settings-panel="seo" role="tabpanel" hidden>
           <h3 class="sp-seo-heading">SEO Page Settings</h3>
           <p class="sp-seo-kicker">Search Result Preview</p>
           <div class="sp-seo-preview">
@@ -1654,6 +2062,15 @@
           </div>
           <p class="bld-title bld-split">Use Canonical URL</p>
           <input class="mdl-canonical" id="page-settings-canonical" type="text" aria-label="Canonical URL" />
+        </div>
+      </div>
+      <div class="sp-unsaved" id="page-settings-unsaved" role="alertdialog" aria-modal="true" aria-labelledby="page-settings-unsaved-title" hidden>
+        <div class="sp-unsaved-card">
+          <p id="page-settings-unsaved-title">You need to save your changes before changing tabs.</p>
+          <div class="sp-unsaved-actions">
+            <button type="button" class="sp-unsaved-discard" data-unsaved="discard">Don't save</button>
+            <button type="button" class="sp-unsaved-confirm" data-unsaved="save">Save changes</button>
+          </div>
         </div>
       </div>
     </aside>
@@ -1798,6 +2215,6 @@
 
     <div class="sp-tooltip" id="sp-tooltip" role="tooltip" hidden></div>
     <p class="sr-only" id="live" aria-live="polite"></p>
-    <script src="static-pages.js?v=39"></script>
+    <script src="static-pages.js?v=46"></script>
   </body>
 </html>
