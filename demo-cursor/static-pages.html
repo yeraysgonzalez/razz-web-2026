@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="static-pages.css?v=49" />
+    <link rel="stylesheet" href="static-pages.css?v=52" />
   </head>
   <body class="sp-body">
     <a class="skip-link" href="#page-viewport">Skip to page canvas</a>
@@ -565,7 +565,7 @@
             </button>
             <div class="bld-pop">
               <button type="button" class="bld-icon-btn" id="mdl-contact-trigger" aria-expanded="false" aria-controls="mdl-contact-panel" aria-label="Contact Form" aria-describedby="sp-tooltip" data-tooltip="Contact Form">
-                <img src="assets/static-pages/icon-contact-form.svg" alt="" width="24" height="24" />
+                <img src="assets/static-pages/icon-contact-form-list.svg" alt="" width="28" height="28" />
               </button>
               <div class="bld-flyout mdl-contact" id="mdl-contact-panel" hidden>
                 <p class="bld-title">Contact Content</p>
@@ -657,7 +657,7 @@
           <div class="bld-icon-row">
             <div class="bld-pop">
               <button type="button" class="bld-icon-btn" id="unt-contact-trigger" aria-expanded="false" aria-controls="unt-contact-panel" aria-label="Contact Form" aria-describedby="sp-tooltip" data-tooltip="Contact Form">
-                <img src="assets/static-pages/icon-contact-form.svg" alt="" width="24" height="24" />
+                <img src="assets/static-pages/icon-contact-form-list.svg" alt="" width="28" height="28" />
               </button>
               <div class="bld-flyout mdl-contact" id="unt-contact-panel" hidden>
                 <p class="bld-title">Contact Content</p>
@@ -2096,19 +2096,25 @@ Office Hours
           <h3 class="unit-options-title">Extra Info Tiles</h3>
           <p class="unit-options-empty" id="unit-tiles-empty">No items added yet</p>
           <div class="unit-tile-list" id="unit-tiles"></div>
-          <button type="button" class="unit-add" data-add="tile" aria-label="Add extra info tile">
-            <img src="assets/static-pages/icon-unit-add.svg" alt="" width="28" height="28" />
+          <button type="button" class="unit-add unit-add-item" data-add="tile">
+            <img src="assets/static-pages/icon-unit-button-add.svg" alt="" width="28" height="28" />
+            <span>Add Item</span>
           </button>
         </section>
         <section class="unit-options-section">
           <h3 class="unit-options-title">Additional Buttons</h3>
           <div class="unit-button-list" id="unit-buttons">
-            <article class="unit-button-row">
-              <div class="unit-button-card">
+            <article class="unit-button-card">
+              <div class="unit-button-head">
                 <label class="bld-field">
                   <span>Button Label</span>
                   <input type="text" value="Fees Guide" />
                 </label>
+                <button type="button" class="unit-icon-btn" data-remove="button" aria-label="Delete button">
+                  <img src="assets/static-pages/icon-unit-button-delete.svg" alt="" width="28" height="28" />
+                </button>
+              </div>
+              <div class="unit-button-body">
                 <label class="bld-field">
                   <span>Link</span>
                   <input type="text" value="/fees" />
@@ -2116,26 +2122,21 @@ Office Hours
                 <div class="unit-select">
                   <span class="unit-select-label">Button Color</span>
                   <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
-                    <span class="unit-select-value">Transpar...</span>
-                    <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="10.7812" height="6.10107" />
+                    <span class="unit-select-value">Transparent</span>
+                    <img src="assets/static-pages/icon-unit-button-angle.svg" alt="" width="10.7812" height="6.10107" />
                   </button>
                   <ul class="unit-select-menu" role="listbox" hidden>
-                    <li><button type="button" role="option" aria-selected="true">Transpar...</button></li>
+                    <li><button type="button" role="option" aria-selected="true">Transparent</button></li>
+                    <li><button type="button" role="option" aria-selected="false">Primary</button></li>
+                    <li><button type="button" role="option" aria-selected="false">Secondary</button></li>
                   </ul>
                 </div>
               </div>
-              <div class="unit-button-actions">
-                <button type="button" class="unit-icon-btn" data-edit="button" aria-label="Edit button">
-                  <img src="assets/static-pages/icon-unit-edit.svg" alt="" width="28" height="28" />
-                </button>
-                <button type="button" class="unit-icon-btn" data-remove="button" aria-label="Delete button">
-                  <img src="assets/static-pages/icon-unit-delete.svg" alt="" width="28" height="28" />
-                </button>
-              </div>
             </article>
           </div>
-          <button type="button" class="unit-add" data-add="button" aria-label="Add button">
-            <img src="assets/static-pages/icon-unit-add.svg" alt="" width="28" height="28" />
+          <button type="button" class="unit-add unit-add-item" data-add="button">
+            <img src="assets/static-pages/icon-unit-button-add.svg" alt="" width="28" height="28" />
+            <span>Add Item</span>
           </button>
         </section>
         <section class="unit-options-section">
@@ -2184,30 +2185,12 @@ Office Hours
             </ul>
           </div>
         </section>
-        <section class="unit-options-section unit-switches">
-          <div class="unit-switch-row">
-            <button type="button" class="unit-switch" role="switch" aria-checked="false" aria-label="Hide Amenities">
-              <img src="assets/static-pages/icon-unit-toggle.svg" alt="" width="39.375" height="21.875" />
-            </button>
-            <span>Hide Amenities</span>
-          </div>
-          <div class="unit-switch-row">
-            <button type="button" class="unit-switch" role="switch" aria-checked="false" aria-label="Hide Gallery">
-              <img src="assets/static-pages/icon-unit-toggle.svg" alt="" width="39.375" height="21.875" />
-            </button>
-            <span>Hide Gallery</span>
-          </div>
-          <div class="unit-switch-row">
-            <button type="button" class="unit-switch" role="switch" aria-checked="false" aria-label="Hide Contact Form">
-              <img src="assets/static-pages/icon-unit-toggle.svg" alt="" width="39.375" height="21.875" />
-            </button>
-            <span>Hide Contact Form</span>
-          </div>
-          <div class="unit-switch-row">
-            <button type="button" class="unit-switch" role="switch" aria-checked="false" aria-label="Hide Fees">
-              <img src="assets/static-pages/icon-unit-toggle.svg" alt="" width="39.375" height="21.875" />
-            </button>
-            <span>Hide Fees</span>
+        <section class="unit-options-section">
+          <div class="bld-choices" data-multi="true">
+            <button type="button" class="bld-choice" data-value="hide-amenities" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Amenities</span></button>
+            <button type="button" class="bld-choice" data-value="hide-gallery" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Gallery</span></button>
+            <button type="button" class="bld-choice" data-value="hide-contact" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Contact Form</span></button>
+            <button type="button" class="bld-choice" data-value="hide-fees" aria-pressed="false"><span class="sp-sections-check" aria-hidden="true"><span class="sp-sections-check-box"><img class="sp-sections-check-mark" src="assets/static-pages/icon-check-mark.svg" alt="" width="18" height="18" /></span></span><span class="sp-sections-label">Hide Fees</span></button>
           </div>
         </section>
       </div>
@@ -2215,6 +2198,6 @@ Office Hours
 
     <div class="sp-tooltip" id="sp-tooltip" role="tooltip" hidden></div>
     <p class="sr-only" id="live" aria-live="polite"></p>
-    <script src="static-pages.js?v=46"></script>
+    <script src="static-pages.js?v=50"></script>
   </body>
 </html>

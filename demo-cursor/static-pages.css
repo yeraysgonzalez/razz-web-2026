@@ -3091,15 +3091,14 @@ body.is-unit #model-page {
 .unit-button-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .unit-tile-list:empty {
   display: none;
 }
 
-.unit-tile,
-.unit-button-row {
+.unit-tile {
   display: flex;
   align-items: flex-start;
   gap: 8px;
@@ -3117,8 +3116,7 @@ body.is-unit #model-page {
   letter-spacing: 0.75px;
 }
 
-.unit-tile .bld-field,
-.unit-button-card {
+.unit-tile .bld-field {
   flex: 1 1 auto;
   min-width: 0;
 }
@@ -3126,21 +3124,76 @@ body.is-unit #model-page {
 .unit-button-card {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 14px;
+  gap: 20px;
+  min-width: 0;
+  padding: 20px 19px 12px;
   border: 1px solid #dbdfe0;
-  border-radius: 12px;
+  border-radius: 10px;
+  background: #fff;
 }
 
-.unit-button-card .bld-field + .bld-field {
-  margin-top: 0;
+.unit-button-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-.unit-button-actions {
+.unit-button-head .bld-field {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.unit-button-body {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  flex: 0 0 auto;
+  gap: 20px;
+  margin-left: 6px;
+  padding-left: 20px;
+}
+
+.unit-button-body::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 18px;
+  width: 1px;
+  background: #dbdfe0;
+}
+
+.unit-button-body:not(:has(.unit-select))::before {
+  display: none;
+}
+
+.unit-button-body > .bld-field::before,
+.unit-button-card .unit-select-trigger::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  width: 14px;
+  height: 1px;
+  background: #dbdfe0;
+}
+
+.unit-button-card .bld-field input {
+  height: 33px;
+  padding: 4px 12px 4px 16px;
+  letter-spacing: 0.75px;
+}
+
+.unit-button-card .unit-select {
+  gap: 8px;
+}
+
+.unit-button-card .unit-select-trigger {
+  position: relative;
+  height: 36px;
+  padding: 0 17px;
+  border: 1px solid #49454f;
+  border-radius: 4px;
 }
 
 .unit-add,
@@ -3168,6 +3221,23 @@ body.is-unit #model-page {
 .unit-icon-btn:hover,
 .unit-icon-btn:focus-visible {
   background: #f0f0f0;
+}
+
+.unit-add.unit-add-item {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  justify-content: flex-start;
+  gap: 8px;
+  width: auto;
+  height: 40px;
+  margin: 0;
+  padding: 10px 5px;
+  border-radius: 10px;
+  color: #1e2743;
+  font: 400 14px/1 Lato, Helvetica, sans-serif;
+  letter-spacing: 0.7px;
+  white-space: nowrap;
 }
 
 .unit-icon-btn,

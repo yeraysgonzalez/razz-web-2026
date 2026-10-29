@@ -1123,10 +1123,11 @@ function syncSettingsTabs(key) {
   if (unitGeneral) unitGeneral.hidden = key !== "unit";
   const generalTab = pageSettings?.querySelector('[data-settings-tab="general"]');
   if (generalTab) {
+    generalTab.hidden = basic;
     generalTab.textContent = ENGINES_PAGES.has(key) ? "Data & Pricing Settings" : "General";
   }
   const selected = pageSettings?.querySelector('[data-settings-tab][aria-selected="true"]');
-  if (!selected || selected.hidden) showSettingsTab("general");
+  if (!selected || selected.hidden) showSettingsTab(basic ? "seo" : "general");
 }
 
 function applyPageSettings(item) {
@@ -1140,7 +1141,7 @@ function applyPageSettings(item) {
   writePageSeo(key);
   writePageEngines(key);
   syncSettingsTabs(key);
-  showSettingsTab("general");
+  showSettingsTab(BASIC_PAGES.has(key) ? "seo" : "general");
   if (pageSettingsTitle) pageSettingsTitle.textContent = `${item.dataset.pageName} Settings`;
   pagesFlyout?.querySelectorAll(".sp-pages-item-open").forEach((button) => {
     button.setAttribute("aria-expanded", String(button.closest(".sp-pages-item") === item));
@@ -2596,29 +2597,28 @@ document.addEventListener("click", (event) => {
 
 function unitButtonRow(label = "", link = "") {
   const row = document.createElement("article");
-  row.className = "unit-button-row";
+  row.className = "unit-button-card";
   row.innerHTML = `
-    <div class="unit-button-card">
+    <div class="unit-button-head">
       <label class="bld-field"><span>Button Label</span><input type="text" value="${label}" /></label>
+      <button type="button" class="unit-icon-btn" data-remove="button" aria-label="Delete button">
+        <img src="assets/static-pages/icon-unit-button-delete.svg" alt="" width="28" height="28" />
+      </button>
+    </div>
+    <div class="unit-button-body">
       <label class="bld-field"><span>Link</span><input type="text" value="${link}" /></label>
       <div class="unit-select">
         <span class="unit-select-label">Button Color</span>
         <button type="button" class="unit-select-trigger" aria-expanded="false" aria-haspopup="listbox">
-          <span class="unit-select-value">Transpar...</span>
-          <img src="assets/static-pages/icon-unit-angle.svg" alt="" width="10.7812" height="6.10107" />
+          <span class="unit-select-value">Transparent</span>
+          <img src="assets/static-pages/icon-unit-button-angle.svg" alt="" width="10.7812" height="6.10107" />
         </button>
         <ul class="unit-select-menu" role="listbox" hidden>
-          <li><button type="button" role="option" aria-selected="true">Transpar...</button></li>
+          <li><button type="button" role="option" aria-selected="true">Transparent</button></li>
+          <li><button type="button" role="option" aria-selected="false">Primary</button></li>
+          <li><button type="button" role="option" aria-selected="false">Secondary</button></li>
         </ul>
       </div>
-    </div>
-    <div class="unit-button-actions">
-      <button type="button" class="unit-icon-btn" data-edit="button" aria-label="Edit button">
-        <img src="assets/static-pages/icon-unit-edit.svg" alt="" width="28" height="28" />
-      </button>
-      <button type="button" class="unit-icon-btn" data-remove="button" aria-label="Delete button">
-        <img src="assets/static-pages/icon-unit-delete.svg" alt="" width="28" height="28" />
-      </button>
     </div>`;
   return row;
 }
@@ -2627,13 +2627,18 @@ function addUnitTile() {
   const list = document.querySelector("#unit-tiles");
   const empty = document.querySelector("#unit-tiles-empty");
   if (!list) return;
-  const tile = document.createElement("div");
-  tile.className = "unit-tile";
+  const tile = document.createElement("article");
+  tile.className = "unit-tile unit-button-card";
   tile.innerHTML = `
-    <input class="unit-tile-input" type="text" aria-label="Extra info tile" />
-    <button type="button" class="unit-icon-btn" data-remove="tile" aria-label="Delete tile">
-      <img src="assets/static-pages/icon-unit-delete.svg" alt="" width="28" height="28" />
-    </button>`;
+    <div class="unit-button-head">
+      <label class="bld-field"><span>Label</span><input type="text" /></label>
+      <button type="button" class="unit-icon-btn" data-remove="tile" aria-label="Delete tile">
+        <img src="assets/static-pages/icon-unit-button-delete.svg" alt="" width="28" height="28" />
+      </button>
+    </div>
+    <div class="unit-button-body">
+      <label class="bld-field"><span>Value</span><input type="text" /></label>
+    </div>`;
   list.appendChild(tile);
   if (empty) empty.hidden = true;
   tile.querySelector("input")?.focus();
@@ -2668,12 +2673,12 @@ unitOptions?.addEventListener("click", (event) => {
       const empty = document.querySelector("#unit-tiles-empty");
       if (empty && list && !list.children.length) empty.hidden = false;
     }
-    if (remove.dataset.remove === "button") remove.closest(".unit-button-row")?.remove();
+    if (remove.dataset.remove === "button") remove.closest(".unit-button-card")?.remove();
     return;
   }
   const edit = event.target.closest("[data-edit]");
   if (edit) {
-    edit.closest(".unit-button-row")?.querySelector("input")?.focus();
+    edit.closest(".unit-button-card")?.querySelector("input")?.focus();
     return;
   }
   const option = event.target.closest(".unit-select-menu button");
@@ -2696,10 +2701,13 @@ unitOptions?.addEventListener("click", (event) => {
     selectTrigger.setAttribute("aria-expanded", String(Boolean(willOpen)));
     return;
   }
-  const switchBtn = event.target.closest(".unit-switch");
-  if (switchBtn) {
-    const on = switchBtn.getAttribute("aria-checked") !== "true";
-    switchBtn.setAttribute("aria-checked", String(on));
+  const choice = event.target.closest(".bld-choice");
+  if (choice) {
+    if (choice.parentElement?.dataset.multi === "true") {
+      const on = choice.getAttribute("aria-pressed") !== "true";
+      choice.classList.toggle("is-selected", on);
+      choice.setAttribute("aria-pressed", String(on));
+    }
     return;
   }
   closeUnitSelects();
