@@ -57,7 +57,7 @@ const STATIC_PREVIEW_BY_PATH = {
   "/properties/meadow-view-lodge": "preview/meadow-view-lodge.html",
 };
 /** Bump when preview bridge / CTA CSS changes so GitHub Pages clients skip stale HTML. */
-const PREVIEW_CACHE_BUST = "13";
+const PREVIEW_CACHE_BUST = "14";
 
 /** Local static-pages-server.py proxies /properties/* same-origin; GitHub Pages cannot. */
 function usesLocalPreviewProxy() {
@@ -1026,7 +1026,7 @@ const pageSeoState = {};
 const PAGE_SEO_URLS = {
   building: "https://www.livingappletree.com/buildings/1",
   sitemap: "https://www.livingappletree.com/buildings/1/floors/1",
-  model: "https://www.livingappletree.com/models/A1",
+  model: "https://www.livingappletree.com/models",
   unit: "https://www.livingappletree.com/units/12001",
 };
 const PAGE_SEO_TITLE = "[screen_title] [separator] [site_title]";
@@ -1113,10 +1113,11 @@ function syncSettingsTabs(key) {
   const basic = BASIC_PAGES.has(key);
   pageSettings?.querySelectorAll("[data-settings-tab]").forEach((tab) => {
     const only = tab.dataset.settingsOnly;
-    if (only === "engines") tab.hidden = !engines;
     if (only === "standard") tab.hidden = engines || basic;
     if (only === "model") tab.hidden = true;
   });
+  const enginesSection = document.querySelector("#page-settings-engines");
+  if (enginesSection) enginesSection.hidden = !engines;
   const modelGeneral = document.querySelector("#page-settings-model-general");
   if (modelGeneral) modelGeneral.hidden = key !== "model";
   const unitGeneral = document.querySelector("#page-settings-unit-general");
@@ -1205,6 +1206,11 @@ function writePaneState(root, state) {
     .forEach((el, index) => {
       el.value = state.fields[index] ?? "";
     });
+  root.querySelectorAll(".unit-rich").forEach((rich) => {
+    const editor = rich.querySelector(".unit-rich-editor");
+    const field = rich.querySelector(".unit-rich-value");
+    if (editor && field) editor.innerHTML = field.value;
+  });
 }
 
 function statesEqual(left, right) {
@@ -1291,6 +1297,93 @@ function requestSettingsTab(name) {
   showSettingsTab(name);
 }
 
+function closeUnitRichMenus(except) {
+  document.querySelectorAll(".unit-rich-menu").forEach((menu) => {
+    if (menu === except) return;
+    menu.hidden = true;
+    menu.closest(".unit-rich-drop")?.querySelector("[aria-expanded]")?.setAttribute("aria-expanded", "false");
+  });
+}
+
+function syncUnitRich(rich) {
+  const editor = rich.querySelector(".unit-rich-editor");
+  const field = rich.querySelector(".unit-rich-value");
+  if (editor && field) field.value = editor.innerHTML;
+}
+
+function applyRichBlock(tag) {
+  const formatted = document.execCommand("formatBlock", false, tag);
+  if (!formatted) document.execCommand("formatBlock", false, `<${tag}>`);
+}
+
+document.querySelectorAll(".unit-rich").forEach((rich) => {
+  const editor = rich.querySelector(".unit-rich-editor");
+  const box = rich.querySelector(".unit-rich-box");
+  if (!editor || !box) return;
+  rich.querySelectorAll(".unit-rich-btn, .unit-rich-style").forEach((button) => {
+    button.addEventListener("mousedown", (event) => event.preventDefault());
+  });
+  editor.addEventListener("input", () => syncUnitRich(rich));
+  rich.querySelector(".unit-rich-file")?.addEventListener("change", (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      editor.focus();
+      document.execCommand("insertImage", false, String(reader.result || ""));
+      syncUnitRich(rich);
+    };
+    reader.readAsDataURL(file);
+    event.target.value = "";
+  });
+  box.addEventListener("click", (event) => {
+    const block = event.target.closest("[data-block]");
+    if (block) {
+      editor.focus();
+      applyRichBlock(block.dataset.block);
+      const label = rich.querySelector(".unit-rich-style span");
+      if (label) label.textContent = block.textContent;
+      closeUnitRichMenus();
+      syncUnitRich(rich);
+      event.stopPropagation();
+      return;
+    }
+    const style = event.target.closest(".unit-rich-style");
+    if (style) {
+      const menu = style.parentElement?.querySelector(".unit-rich-menu");
+      const willOpen = Boolean(menu?.hidden);
+      closeUnitRichMenus(willOpen ? menu : null);
+      if (menu) menu.hidden = !willOpen;
+      style.setAttribute("aria-expanded", String(willOpen));
+      event.stopPropagation();
+      return;
+    }
+    const command = event.target.closest("[data-cmd]")?.dataset.cmd;
+    if (!command) return;
+    editor.focus();
+    if (command === "quote") applyRichBlock("blockquote");
+    else if (command === "link") {
+      const url = window.prompt("Link URL");
+      if (url) document.execCommand("createLink", false, url);
+    } else if (command === "table") {
+      document.execCommand(
+        "insertHTML",
+        false,
+        "<table><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>"
+      );
+    } else if (command === "image") {
+      rich.querySelector(".unit-rich-file")?.click();
+    } else if (command === "expand") {
+      box.classList.toggle("is-expanded");
+    } else {
+      document.execCommand(command, false, null);
+    }
+    syncUnitRich(rich);
+    closeUnitRichMenus();
+    event.stopPropagation();
+  });
+});
+
 savedPaneState["general:model"] = readPaneState(document.querySelector("#page-settings-model-general"));
 savedPaneState["general:unit"] = readPaneState(document.querySelector("#page-settings-unit-general"));
 savedPaneState.display = readPaneState(document.querySelector("#page-settings-model-display"));
@@ -1338,6 +1431,7 @@ function closeSettingsSelects(except) {
 
 pageSettings?.addEventListener("click", (event) => {
   event.stopPropagation();
+  if (!event.target.closest(".unit-rich-drop")) closeUnitRichMenus();
   const unsavedAction = event.target.closest("[data-unsaved]");
   if (unsavedAction) {
     const current = currentTrackedTab();
@@ -1993,7 +2087,7 @@ const sitemapFlyouts = sitemapTools
   : [];
 const modelTools = document.querySelector("#model-tools");
 const modelFrame = document.querySelector("#model-page");
-const MODEL_PAGE_SRC = "/models/A1";
+const MODEL_PAGE_SRC = "/models";
 const modelFlyouts = modelTools ? [...modelTools.querySelectorAll(".bld-flyout")] : [];
 const unitTools = document.querySelector("#unit-tools");
 const unitFrame = document.querySelector("#unit-page");
@@ -2077,7 +2171,7 @@ function showBuildingPage() {
   }
   if (iframe) iframe.hidden = true;
   if (fallback) fallback.hidden = true;
-  syncManagedPageSelection("Building Page");
+  syncManagedPageSelection("Building");
 }
 
 function showSitemapPage() {
@@ -2103,7 +2197,7 @@ function showSitemapPage() {
   }
   if (iframe) iframe.hidden = true;
   if (fallback) fallback.hidden = true;
-  syncManagedPageSelection("Sitemap Page");
+  syncManagedPageSelection("Sitemap");
 }
 
 function showModelPage() {
@@ -2130,7 +2224,7 @@ function showModelPage() {
   if (iframe) iframe.hidden = true;
   if (fallback) fallback.hidden = true;
   syncOptionsContent();
-  syncManagedPageSelection("Model Page");
+  syncManagedPageSelection("Model Gallery");
 }
 
 function showUnitPage() {
@@ -2156,7 +2250,7 @@ function showUnitPage() {
   if (iframe) iframe.hidden = true;
   if (fallback) fallback.hidden = true;
   syncOptionsContent();
-  syncManagedPageSelection("Unit Page");
+  syncManagedPageSelection("Unit Details");
 }
 
 function showLivePage(managedName) {
